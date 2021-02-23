@@ -24,7 +24,7 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     my_adjust_layer
 );
 
-bool led_update_user(led_t led_state) {
+/*bool led_update_user(led_t led_state) {
     rgblight_set_layer(0, layer_state_cmp(state, _QWERTY));
     return true;
 }
@@ -34,7 +34,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer(2, layer_state_cmp(state, _RAISE));
     rgblight_set_layer(3, layer_state_cmp(state, _ADJUST));
     return state;
-}
+}*/
 #endif
 
 void keyboard_post_init_user(void) {
