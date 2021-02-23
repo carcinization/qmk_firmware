@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-bool show_felix = false;
+bool show_img = false;
 
 enum custom_keycodes {
     BREAD = SAFE_RANGE,
@@ -38,7 +38,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case RTEST:
             if (record->event.pressed) {
-                show_felix ^= 1;
+                show_img ^= 1;
             }
             break;
     }
