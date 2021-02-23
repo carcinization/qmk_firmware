@@ -195,6 +195,7 @@ static void render_anim(void) {
     }
 }
 
+#ifdef FELIX
 static void render_felix(int FELIX_X, int FELIX_Y) {
 
     static const char PROGMEM sit[2][FELIX_SIZE] = {
@@ -341,6 +342,7 @@ static void render_felix(int FELIX_X, int FELIX_Y) {
         oled_off();
     }
 }
+#endif
 
 void render_main(void) {
     if (get_current_wpm() != 000) {
@@ -361,6 +363,9 @@ void oled_task_user(void) {
     if (is_keyboard_master()) {
         render_main();
     } else {
+#ifdef FELIX
+        render_felix(0,7);
+#endif
         render_anim();
     }
 }
