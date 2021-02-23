@@ -46,7 +46,25 @@ void render_prompt(void) {
       }
 };
 
-static void render_image(void) {
+/*void render_keylock_status(led_t led_state) {
+    bool blink = (timer_read() % 1000) < 500;
+        oled_write_ln_P(blink ? PSTR("$ _ ") : PSTR("$     "), false);
+        oled_write_ln_P(blink ? PSTR("$ cp_") : PSTR("$ cp "), led_state.caps_lock);
+        oled_write_ln_P(PSTR(" "), false);
+        oled_write_ln_P(blink ? PSTR("$ nm_") : PSTR("$ nm "), led_state.num_lock);
+        oled_write_ln_P(PSTR(" "), false);
+}*/
+
+void render_mod_status(uint8_t modifiers) {
+    bool blink = (timer_read() % 1000) < 500;
+        oled_write_ln_P(blink ? PSTR("$ _ ") : PSTR("$     "), false);
+        oled_write_ln_P(blink ? PSTR("$ctl_") : PSTR("$ctl "), (modifiers & MOD_MASK_CTRL));
+        oled_write_ln_P(blink ? PSTR("$sft_") : PSTR("$sft "), (modifiers & MOD_MASK_SHIFT));
+        oled_write_ln_P(blink ? PSTR("$alt_") : PSTR("$alt "), (modifiers & MOD_MASK_ALT));
+        oled_write_ln_P(blink ? PSTR("$gui_") : PSTR("$gui "), (modifiers & MOD_MASK_GUI));
+}
+
+/*static void render_image(void) {
     static const char PROGMEM the_image[] = {
         0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00,
         0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfe, 0xfc, 0xf8, 0xf0, 0xe0, 0xc0, 0x80,
@@ -82,19 +100,26 @@ static void render_image(void) {
         0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x01, 0x03, 0x07, 0x0f, 0x1f, 0x3f
     };
     oled_write_raw_P(the_image, sizeof(the_image));
-}
+}*/
 
 void render_main(void) {
     oled_set_cursor(0, 0);
     render_wpm();
     oled_set_cursor(0, 4);
     render_qmk_logo();
-    oled_set_cursor(0, 10);
+    oled_set_cursor(0, 7);
     render_keyboard();
-    oled_set_cursor(0, 14);
+    oled_set_cursor(0, 11);
     render_prompt();
+    oled_set_cursor(0, 15);
+    render_mod_status(get_mods()|get_oneshot_mods());
 }
 
+void oled_task_user(void) {
+    render_main();
+}
+
+/* toggle on/off image
 void oled_task_user(void) {
     if (show_img) {
         render_image();
@@ -102,4 +127,5 @@ void oled_task_user(void) {
         render_main();
     }
 }
+*/
 
