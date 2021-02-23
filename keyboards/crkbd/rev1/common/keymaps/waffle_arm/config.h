@@ -27,10 +27,11 @@
 
 #define EE_HANDS
 //#define MASTER_LEFT
-// #define MASTER_RIGHT
+//#define MASTER_RIGHT
 
 #define USE_SERIAL_PD2
 #define RANDICT //this literally adds 8000 bytes to your compiled firmware
+//#define FELIX //felix the dog on your oled :D
 
 #ifdef RGBLIGHT_ENABLE
 #undef RGBLED_NUM
@@ -78,7 +79,7 @@
 #define TAPPING_TERM 150
 
 #ifdef COMBO_ENABLE
-  #define COMBO_COUNT 14
+  #define COMBO_COUNT 15
   #define COMBO_TERM 50
 #endif
 
