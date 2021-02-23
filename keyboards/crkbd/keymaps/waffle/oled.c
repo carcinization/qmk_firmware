@@ -16,7 +16,6 @@
 
 
 #pragma once
-#include <stido.h>
 
 extern uint8_t is_master;
 
