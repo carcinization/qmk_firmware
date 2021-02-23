@@ -21,6 +21,7 @@
 //#define MASTER_LEFT
 
 #define USE_SERIAL_PD2
+#define LAYER_STATE_8BIT
 
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
