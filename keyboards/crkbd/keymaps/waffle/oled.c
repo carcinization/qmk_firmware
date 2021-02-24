@@ -90,27 +90,32 @@ void render_prompt(void) {
 };
 
 void render_mod_status(void) {
-#ifdef NO_ACTION_ONESHOT
-    uint8_t modifiers = get_mods();
-#else
+    bool blink = (timer_read() % 1000) < 500;
     uint8_t modifiers = get_mods() | get_oneshot_mods();
-#endif
-
-    (modifiers & MOD_MASK_CTRL) ? render_mod_ctrl() : oled_write_P(PSTR("  "), false);
-    oled_write_P(PSTR(" "), false);
-    (modifiers & MOD_MASK_SHIFT) ? render_mod_shift() : oled_write_P(PSTR("  "), false);
-
-    (modifiers & MOD_MASK_ALT) ? render_mod_alt() : oled_write_P(PSTR("  "), false);
-    oled_write_P(PSTR(" "), false);
-    (modifiers & MOD_MASK_GUI) ? render_mod_gui() : oled_write_P(PSTR("  "), false);
+        if (modifiers & MOD_MASK_CTRL) {
+            oled_write_ln_P(blink ? PSTR("$ ctl") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_SHIFT) {
+            oled_write_ln_P(blink ? PSTR("$ sft") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_ALT) {
+            oled_write_ln_P(blink ? PSTR("$ alt") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_GUI) {
+            oled_write_ln_P(blink ? PSTR("$ gui") : PSTR("$ _  "), false);
+        } else {
+            oled_write_ln_P(blink ? PSTR("$ _  ") : PSTR("$     "), false);
+        }
 }
 
 void render_keylock_status(uint8_t led_usb_state) {
-    oled_write_P(PSTR("Lock:"), false);
-    oled_write_P(PSTR(" "), false);
-    oled_write_P(PSTR("C"), led_usb_state & (1 << USB_LED_CAPS_LOCK));
-    oled_write_P(PSTR("N"), led_usb_state & (1 << USB_LED_NUM_LOCK));
-    oled_write_P(PSTR("S"), led_usb_state & (1 << USB_LED_SCROLL_LOCK));
+    bool blink = (timer_read() % 1000) < 500;
+        if (led_usb_state & (1 << USB_LED_CAPS_LOCK)) {
+            oled_write_ln_P(blink ? PSTR("% cap") : PSTR("% _  "), false);
+        } else if (led_usb_state & (1 << USB_LED_NUM_LOCK)) {
+            oled_write_ln_P(blink ? PSTR("% num") : PSTR("% _  "), false);
+        } else if (led_usb_state & (1 << USB_LED_SCROLL_LOCK)) {
+            oled_write_ln_P(blink ? PSTR("% scr") : PSTR("% _  "), false);
+        } else {
+            oled_write_ln_P(blink ? PSTR("% _  ") : PSTR("%     "), false);
+        }
 }
 
 //bongo - filled style
@@ -233,9 +238,9 @@ void render_main(void) {
         oled_set_cursor(0, 10);
         render_prompt();
         oled_set_cursor(0, 12);
-        render_keylock_status(host_keyboard_leds());
-        oled_set_cursor(0, 14);
         render_mod_status();
+        oled_set_cursor(0, 14);
+        render_keylock_status(host_keyboard_leds());
     } else {
         oled_off();
     }
