@@ -15,6 +15,7 @@
  */
 
 #pragma once
+#include <string.h>
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return 1;
@@ -46,23 +47,56 @@ void render_prompt(void) {
       }
 };
 
-/*void render_keylock_status(led_t led_state) {
-    bool blink = (timer_read() % 1000) < 500;
-        oled_write_ln_P(blink ? PSTR("$ _ ") : PSTR("$     "), false);
-        oled_write_ln_P(blink ? PSTR("$ cp_") : PSTR("$ cp "), led_state.caps_lock);
-        oled_write_ln_P(PSTR(" "), false);
-        oled_write_ln_P(blink ? PSTR("$ nm_") : PSTR("$ nm "), led_state.num_lock);
-        oled_write_ln_P(PSTR(" "), false);
-}*/
+void render_mod_ctrl(void) { // ^
+    static const char PROGMEM font_ctrl[3] = {0x93, 0x94, 0};
+    oled_write_P(font_ctrl, false);
+};
 
-void render_mod_status(uint8_t modifiers) {
-    bool blink = (timer_read() % 1000) < 500;
-        oled_write_ln_P(blink ? PSTR("$ _ ") : PSTR("$     "), false);
-        oled_write_ln_P(blink ? PSTR("$ctl_") : PSTR("$ctl "), (modifiers & MOD_MASK_CTRL));
-        oled_write_ln_P(blink ? PSTR("$sft_") : PSTR("$sft "), (modifiers & MOD_MASK_SHIFT));
-        oled_write_ln_P(blink ? PSTR("$alt_") : PSTR("$alt "), (modifiers & MOD_MASK_ALT));
-        oled_write_ln_P(blink ? PSTR("$gui_") : PSTR("$gui "), (modifiers & MOD_MASK_GUI));
+void render_mod_alt(void) { // ⌥
+    static const char PROGMEM font_alt[3] = {0xb3, 0xb4, 0};
+    oled_write_P(font_alt, false);
+};
+
+void render_mod_shift(void) { // ⇧
+    static const char PROGMEM font_shift[3] = {0xd3, 0xd4, 0};
+    oled_write_P(font_shift, false);
+};
+
+void render_mod_gui(void) { // win symbol
+    static const char PROGMEM font_gui[3] = {0x95, 0x96, 0};
+    oled_write_P(font_gui, false);
+};
+
+void render_mod_status(void) {
+#ifdef NO_ACTION_ONESHOT
+    uint8_t modifiers = get_mods();
+#else
+    uint8_t modifiers = get_mods() | get_oneshot_mods();
+#endif
+
+    (modifiers & MOD_MASK_CTRL) ? render_mod_ctrl() : oled_write_P(PSTR("  "), false);
+    oled_write_P(PSTR(" "), false);
+    (modifiers & MOD_MASK_SHIFT) ? render_mod_shift() : oled_write_P(PSTR("  "), false);
+
+    (modifiers & MOD_MASK_ALT) ? render_mod_alt() : oled_write_P(PSTR("  "), false);
+    oled_write_P(PSTR(" "), false);
+    (modifiers & MOD_MASK_GUI) ? render_mod_gui() : oled_write_P(PSTR("  "), false);
 }
+
+/* almost working :c
+void render_mod_status(void) {
+    static uint8_t active_mods;
+    static uint8_t active_oneshot_mods;
+    active_mods = get_mods();
+    active_oneshot_mods = get_oneshot_mods();
+    char buf[20]={0};
+    if((active_mods | active_oneshot_mods) & MOD_MASK_SHIFT) strncat(buf, "+shift", sizeof(buf)-1);
+    if((active_mods | active_oneshot_mods) & MOD_MASK_CTRL) strncat(buf, "+ctrl", sizeof(buf)-1);
+    if((active_mods | active_oneshot_mods) & MOD_MASK_ALT) strncat(buf, "+alt", sizeof(buf)-1);
+    if((active_mods | active_oneshot_mods) & MOD_MASK_GUI) strncat(buf, "+gui", sizeof(buf)-1);
+    strncat(buf, "                    ", sizeof(buf)-1);
+    oled_write_ln(buf(), false);
+}*/
 
 /*static void render_image(void) {
     static const char PROGMEM the_image[] = {
@@ -105,26 +139,16 @@ void render_mod_status(uint8_t modifiers) {
 void render_main(void) {
     oled_set_cursor(0, 0);
     render_wpm();
-    oled_set_cursor(0, 4);
+    oled_set_cursor(0, 3);
     render_qmk_logo();
     oled_set_cursor(0, 7);
     render_keyboard();
-    oled_set_cursor(0, 11);
+    oled_set_cursor(0, 9);
     render_prompt();
-    oled_set_cursor(0, 15);
-    render_mod_status(get_mods()|get_oneshot_mods());
+    oled_set_cursor(0, 11);
+    render_mod_status();
 }
 
 void oled_task_user(void) {
     render_main();
 }
-
-/* toggle on/off image
-void oled_task_user(void) {
-    if (show_img) {
-        render_image();
-    } else {
-        render_main();
-    }
-}
-*/
