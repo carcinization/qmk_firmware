@@ -15,7 +15,6 @@
  */
 
 #pragma once
-
 extern uint8_t is_master;
 
 #define IDLE_FRAMES 5
@@ -80,18 +79,18 @@ void render_mod_gui(void) { // win symbol
 
 void render_prompt(void) {
     bool blink = (timer_read() % 1000) < 500;
-      if (layer_state_is(_LOWER)) {
-          oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
-      } else if (layer_state_is(_RAISE)) {
-          oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
-      } else {
-          oled_write_ln_P(blink ? PSTR("> _ ") : PSTR(">     "), false);
-      }
+        if (layer_state_is(_LOWER)) {
+        oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
+        } else if (layer_state_is(_RAISE)) {
+        oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
+        } else {
+        oled_write_ln_P(blink ? PSTR("> _ ") : PSTR(">     "), false);
+        }
 };
 
 void render_mod_status(void) {
     bool blink = (timer_read() % 1000) < 500;
-    uint8_t modifiers = get_mods() | get_oneshot_mods();
+        uint8_t modifiers = get_mods() | get_oneshot_mods();
         if (modifiers & MOD_MASK_CTRL) {
             oled_write_ln_P(blink ? PSTR("$ ctl") : PSTR("$ _  "), false);
         } else if (modifiers & MOD_MASK_SHIFT) {
@@ -99,9 +98,9 @@ void render_mod_status(void) {
         } else if (modifiers & MOD_MASK_ALT) {
             oled_write_ln_P(blink ? PSTR("$ alt") : PSTR("$ _  "), false);
         } else if (modifiers & MOD_MASK_GUI) {
-            oled_write_ln_P(blink ? PSTR("$ gui") : PSTR("$ _  "), false);
+            oled_write_ln_P(blink ? PSTR("$ cmd") : PSTR("$ _  "), false);
         } else {
-            oled_write_ln_P(blink ? PSTR("$ _  ") : PSTR("$     "), false);
+            oled_write_ln_P(blink ? PSTR("$ _  ") : PSTR("$    "), false);
         }
 }
 
