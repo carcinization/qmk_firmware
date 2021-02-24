@@ -320,13 +320,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #endif
 
-      case CTLS:
-        if (record->event.pressed) {
-          SEND_STRING(SS_DOWN(X_LGUI)SS_TAP(X_S)SS_UP(X_LGUI));
-        } else {
-        }
-        break;
-
       case KC_SBOB:
         if (record->event.pressed) {
             if (repeat_mode != KC_SBOB) {

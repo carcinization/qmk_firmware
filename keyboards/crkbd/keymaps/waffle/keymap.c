@@ -74,11 +74,11 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
     //|---------------------------------------------------|                 |------------------------------------------------------|
-       QMKTD,    KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,      KC_O,    KC_P,  MPSCR,
+       QMKTD,    ALTQ,  KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,      KC_O,    ALTP,   MPSCR,
     //|--------+--------+--------+--------+--------+------|                 |--------+--------+--------+--------+--------+---------|
-       MACTAB,   SFA,    KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,     KC_L,    SFCLN,  KC_MPLY,
+       MACTAB,   SFA,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,     KC_L,    SFCLN,   KC_MPLY,
     //---------+--------+--------+--------+--------+------|                 |--------+--------+--------+--------+--------+---------|
-       MAC_PSTE, CMDZ,  KC_X,    KC_C,    KC_V,    KC_B,                     KC_N,   KC_M,    KC_COMM,  KC_DOT,  CMDSLSH,  CTLS,
+       MAC_PSTE, CMDZ,  KC_X,    KC_C,    KC_V,    KC_B,                     KC_N,   KC_M,     KC_COMM,  KC_DOT,  CMDSLSH, CMDS,
     //---------+--------+--------+--------+--------+--------+----|  |--------+--------+--------+--------+--------+--------+--------|
                                            KC_MS_L, LOWER, KC_SPC,   KC_BSPC, RAISE,   KC_MS_R
                                       //|------------------------|  |--------------------------|
