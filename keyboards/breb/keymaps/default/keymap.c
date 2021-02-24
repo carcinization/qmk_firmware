@@ -108,19 +108,19 @@ static tap captap_state = {
 void cap_finished(qk_tap_dance_state_t *state, void *user_data) {
     captap_state.state = cur_dance(state);
     switch (captap_state.state) {
-        case SINGLE_TAP: register_code(KC_CAPS); break;
+        case SINGLE_TAP: register_code(KC_LGUI); break;
         case SINGLE_HOLD: register_code(KC_LCTRL); break;
-        case DOUBLE_TAP: register_code(KC_SLCK); break;
+        case DOUBLE_TAP: register_code(KC_LSHIFT); break;
         case DOUBLE_HOLD: register_code(KC_LALT); break;
-        case DOUBLE_SINGLE_TAP: tap_code(KC_F); register_code(KC_X);
+        case DOUBLE_SINGLE_TAP: tap_code(KC_F); register_code(KC_F);
     }
 }
 
 void cap_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (captap_state.state) {
-        case SINGLE_TAP: unregister_code(KC_CAPS); break;
+        case SINGLE_TAP: unregister_code(KC_LGUI); break;
         case SINGLE_HOLD: unregister_code(KC_LCTRL); break;
-        case DOUBLE_TAP: unregister_code(KC_SLCK); break;
+        case DOUBLE_TAP: unregister_code(KC_LSHIFT); break;
         case DOUBLE_HOLD: unregister_code(KC_LALT);
         case DOUBLE_SINGLE_TAP: unregister_code(KC_F);
     }
