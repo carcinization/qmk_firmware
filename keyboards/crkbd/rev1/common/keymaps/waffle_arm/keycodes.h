@@ -35,7 +35,6 @@ enum {
   HAP_SAD,
   QMK,
   DOCS,
-  LINKS,
 };
 
 enum typing_mode {
@@ -98,7 +97,6 @@ enum custom_keycodes {
 //---tap_dance---
 #define HAPSAD TD(HAP_SAD)
 #define DOCSTD TD(DOCS)
-#define LINKSTD TD(LINKS)
 #define QMKTD TD(QMK)
 //---unicode---
 #define ZHAP X(SIDE)

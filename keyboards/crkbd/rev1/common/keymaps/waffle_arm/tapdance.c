@@ -33,15 +33,6 @@ void dance_qmk_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void dance_link_finished(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-      SEND_STRING(":checkpinsbich:"SS_TAP(X_ENTER));
-      SEND_STRING("https://www.mechmap.tech/themap"SS_TAP(X_ENTER));
-    } else {
-      SEND_STRING("NovelKeys Inventory Updates - https://novelkeys.xyz/pages/inventory"SS_TAP(X_ENTER));
-    }
-}
-
 void dance_doc_finished(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
       SEND_STRING("https://docs.qmk.fm/#/newbs_getting_started");
@@ -54,5 +45,4 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [HAP_SAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_pep_finished, NULL),
     [QMK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_qmk_finished, NULL),
     [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_doc_finished, NULL),
-    [LINKS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_link_finished, NULL),
 };

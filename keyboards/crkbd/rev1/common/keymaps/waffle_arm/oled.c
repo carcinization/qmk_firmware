@@ -73,18 +73,65 @@ void render_keyboard(void) {
     oled_write_P(font_keyboard, false);
 };
 
+void render_mod_ctrl(void) { // ^
+    static const char PROGMEM font_ctrl[3] = {0x93, 0x94, 0};
+    oled_write_P(font_ctrl, false);
+};
+
+void render_mod_alt(void) { // ⌥
+    static const char PROGMEM font_alt[3] = {0xb3, 0xb4, 0};
+    oled_write_P(font_alt, false);
+};
+
+void render_mod_shift(void) { // ⇧
+    static const char PROGMEM font_shift[3] = {0xd3, 0xd4, 0};
+    oled_write_P(font_shift, false);
+};
+
+void render_mod_gui(void) { // win symbol
+    static const char PROGMEM font_gui[3] = {0x95, 0x96, 0};
+    oled_write_P(font_gui, false);
+};
+
 void render_prompt(void) {
     bool blink = (timer_read() % 1000) < 500;
       if (layer_state_is(_LOWER)) {
           oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
       } else if (layer_state_is(_RAISE)) {
           oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
-      } else if (layer_state_is(_ADJUST)) {
-          oled_write_ln_P(blink ? PSTR("> aj_") : PSTR("> aj "), false);
       } else {
           oled_write_ln_P(blink ? PSTR("> _ ") : PSTR(">     "), false);
       }
 };
+
+void render_mod_status(void) {
+    bool blink = (timer_read() % 1000) < 500;
+    uint8_t modifiers = get_mods() | get_oneshot_mods();
+        if (modifiers & MOD_MASK_CTRL) {
+            oled_write_ln_P(blink ? PSTR("$ ctl") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_SHIFT) {
+            oled_write_ln_P(blink ? PSTR("$ sft") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_ALT) {
+            oled_write_ln_P(blink ? PSTR("$ alt") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_GUI) {
+            oled_write_ln_P(blink ? PSTR("$ gui") : PSTR("$ _  "), false);
+        } else {
+            oled_write_ln_P(blink ? PSTR("$ _  ") : PSTR("$     "), false);
+        }
+}
+
+void render_keylock_status(uint8_t led_usb_state) {
+    bool blink = (timer_read() % 1000) < 500;
+        if (led_usb_state & (1 << USB_LED_CAPS_LOCK)) {
+            oled_write_ln_P(blink ? PSTR("% cap") : PSTR("% _  "), false);
+        } else if (led_usb_state & (1 << USB_LED_NUM_LOCK)) {
+            oled_write_ln_P(blink ? PSTR("% num") : PSTR("% _  "), false);
+        } else if (led_usb_state & (1 << USB_LED_SCROLL_LOCK)) {
+            oled_write_ln_P(blink ? PSTR("% scr") : PSTR("% _  "), false);
+        } else {
+            oled_write_ln_P(blink ? PSTR("% _  ") : PSTR("%     "), false);
+        }
+}
 
 //bongo - filled style
 static void render_anim(void) {
@@ -348,12 +395,16 @@ void render_main(void) {
     if (get_current_wpm() != 000) {
         oled_set_cursor(0, 0);
         render_wpm();
-        oled_set_cursor(0, 4);
+        oled_set_cursor(0, 3);
         render_qmk_logo();
-        oled_set_cursor(0, 10);
+        oled_set_cursor(0, 7);
         render_keyboard();
-        oled_set_cursor(0, 14);
+        oled_set_cursor(0, 10);
         render_prompt();
+        oled_set_cursor(0, 12);
+        render_mod_status();
+        oled_set_cursor(0, 14);
+        render_keylock_status(host_keyboard_leds());
     } else {
         oled_off();
     }
