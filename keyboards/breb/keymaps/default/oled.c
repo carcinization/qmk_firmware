@@ -83,6 +83,14 @@ void render_mod_status(void) {
     (modifiers & MOD_MASK_GUI) ? render_mod_gui() : oled_write_P(PSTR("  "), false);
 }
 
+void render_keylock_status(uint8_t led_usb_state) {
+    oled_write_P(PSTR("Lock:"), false);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(PSTR("C"), led_usb_state & (1 << USB_LED_CAPS_LOCK));
+    oled_write_P(PSTR("N"), led_usb_state & (1 << USB_LED_NUM_LOCK));
+    oled_write_P(PSTR("S"), led_usb_state & (1 << USB_LED_SCROLL_LOCK));
+}
+
 /* almost working :c
 void render_mod_status(void) {
     static uint8_t active_mods;
@@ -143,9 +151,11 @@ void render_main(void) {
     render_qmk_logo();
     oled_set_cursor(0, 7);
     render_keyboard();
-    oled_set_cursor(0, 9);
+    oled_set_cursor(0, 10);
     render_prompt();
-    oled_set_cursor(0, 11);
+    oled_set_cursor(0, 12);
+    render_keylock_status(host_keyboard_leds());
+    oled_set_cursor(0, 14);
     render_mod_status();
 }
 
