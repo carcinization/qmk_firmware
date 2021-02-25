@@ -62,17 +62,18 @@ void render_wpm(void) {
         oled_write(wpm_string, false);
 };
 
-#define KEYLOG_LEN 5
+#    define KEYLOG_LEN 5
 char     keylog_str[KEYLOG_LEN] = {};
 uint8_t  keylogs_str_idx        = 0;
 uint16_t log_timer              = 0;
+static uint32_t oled_timer      = 0;
 
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
+    'R', 'E', '<', 'T', '_', '-', '=', '[', ']', '\\',
     '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
 void add_keylog(uint16_t keycode) {
@@ -448,16 +449,17 @@ void render_main(void) {
         render_mod_status();
         oled_set_cursor(0, 13);
         render_keylock_status(host_keyboard_leds());
-        oled_set_cursor(1, 15);
-        render_keylogger_status();
         oled_set_cursor(0, 15);
         render_klgr();
+        oled_set_cursor(1, 15);
+        render_keylogger_status();
     } else {
         oled_off();
     }
 }
 
 void oled_task_user(void) {
+    update_log();
     if (is_keyboard_master()) {
         render_main();
     } else {
@@ -466,4 +468,14 @@ void oled_task_user(void) {
 #endif
         render_anim();
     }
+}
+
+bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+#ifdef OLED_DRIVER_ENABLE
+        oled_timer = timer_read32();
+        add_keylog(keycode);
+#endif
+    }
+    return true;
 }
