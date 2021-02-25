@@ -15,9 +15,6 @@
  */
 
 #pragma once
-#include "quantum.h"
-#include "oled_driver.h"
-bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
 extern uint8_t is_master;
 
 #define IDLE_FRAMES 5
@@ -50,7 +47,7 @@ void render_wpm(void) {
         oled_write(wpm_string, false);
 };
 
-#define KEYLOG_LEN 5
+#    define KEYLOG_LEN 5
 char     keylog_str[KEYLOG_LEN] = {};
 uint8_t  keylogs_str_idx        = 0;
 uint16_t log_timer              = 0;
@@ -61,7 +58,7 @@ const char code_to_name[60] = {
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
+    'R', 'E', '<', 'T', '_', '-', '=', '[', ']', '\\',
     '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
 void add_keylog(uint16_t keycode) {
@@ -288,16 +285,17 @@ void render_main(void) {
         render_mod_status();
         oled_set_cursor(0, 13);
         render_keylock_status(host_keyboard_leds());
-        oled_set_cursor(1, 15);
-        render_keylogger_status();
         oled_set_cursor(0, 15);
         render_klgr();
+        oled_set_cursor(1, 15);
+        render_keylogger_status();
     } else {
         oled_off();
     }
 }
 
 void oled_task_user(void) {
+  update_log();
 #ifdef SPLIT_KEYBOARD
   if (is_keyboard_master())
 #else
