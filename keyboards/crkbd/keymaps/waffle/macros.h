@@ -236,8 +236,9 @@ bool process_record_zalgo(uint16_t keycode, keyrecord_t *record) {
 
 bool no_mod_taps = false;
 #endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    process_record_user_oled(keycode, record);
+  process_record_user_oled(keycode, record);
   temp_keycode = keycode;
     if (keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) {
         temp_keycode &= 0xFF;

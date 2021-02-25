@@ -15,9 +15,10 @@
  */
 
 #pragma once
-extern uint8_t is_master;
-extern uint32_t oled_timer;
+#include "quantum.h"
+#include "oled_driver.h"
 bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
+extern uint8_t is_master;
 
 #define IDLE_FRAMES 5
 #define IDLE_SPEED 30
@@ -53,8 +54,7 @@ void render_wpm(void) {
 char     keylog_str[KEYLOG_LEN] = {};
 uint8_t  keylogs_str_idx        = 0;
 uint16_t log_timer              = 0;
-uint32_t oled_timer             = 0;
-
+static uint32_t oled_timer      = 0;
 
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
