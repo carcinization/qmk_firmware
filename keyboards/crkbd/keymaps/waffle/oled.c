@@ -47,6 +47,50 @@ void render_wpm(void) {
         oled_write(wpm_string, false);
 };
 
+#define KEYLOG_LEN 5
+char     keylog_str[KEYLOG_LEN] = {};
+uint8_t  keylogs_str_idx        = 0;
+uint16_t log_timer              = 0;
+
+const char code_to_name[60] = {
+    ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
+    'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+    'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
+    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
+
+void add_keylog(uint16_t keycode) {
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) {
+        keycode = keycode & 0xFF;
+    }
+
+    for (uint8_t i = KEYLOG_LEN - 1; i > 0; i--) {
+        keylog_str[i] = keylog_str[i - 1];
+    }
+    if (keycode < 60) {
+        keylog_str[0] = code_to_name[keycode];
+    }
+    keylog_str[KEYLOG_LEN - 1] = 0;
+
+    log_timer = timer_read();
+}
+
+void update_log(void) {
+    if (timer_elapsed(log_timer) > 750) {
+        add_keylog(0);
+    }
+}
+
+void render_keylogger_status(void) {
+    oled_write(keylog_str, false);
+}
+
+void render_klgr(void) {
+    bool blink = (timer_read() % 1000) < 500;
+    oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
+}
+
 void render_qmk_logo(void) {
     static const char PROGMEM font_qmk_logo[16] = {0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0};
     oled_write_P(font_qmk_logo, false);
@@ -234,12 +278,16 @@ void render_main(void) {
         render_qmk_logo();
         oled_set_cursor(0, 7);
         render_keyboard();
-        oled_set_cursor(0, 10);
+        oled_set_cursor(0, 9);
         render_prompt();
-        oled_set_cursor(0, 12);
+        oled_set_cursor(0, 11);
         render_mod_status();
-        oled_set_cursor(0, 14);
+        oled_set_cursor(0, 13);
         render_keylock_status(host_keyboard_leds());
+        oled_set_cursor(1, 15);
+        render_keylogger_status();
+        oled_set_cursor(0, 15);
+        render_klgr();
     } else {
         oled_off();
     }
