@@ -67,6 +67,49 @@ void render_mod_gui(void) { // win symbol
     oled_write_P(font_gui, false);
 };
 
+#    define KEYLOG_LEN 5
+char     keylog_str[KEYLOG_LEN] = {};
+uint8_t  keylogs_str_idx        = 0;
+uint16_t log_timer              = 0;
+
+const char code_to_name[60] = {
+    ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
+    'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+    'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
+    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
+
+void add_keylog(uint16_t keycode) {
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) {
+        keycode = keycode & 0xFF;
+    }
+
+    for (uint8_t i = KEYLOG_LEN - 1; i > 0; i--) {
+        keylog_str[i] = keylog_str[i - 1];
+    }
+    if (keycode < 60) {
+        keylog_str[0] = code_to_name[keycode];
+    }
+    keylog_str[KEYLOG_LEN - 1] = 0;
+
+    log_timer = timer_read();
+}
+
+void update_log(void) {
+    if (timer_elapsed(log_timer) > 750) {
+        add_keylog(0);
+    }
+}
+
+void render_keylogger_status(void) {
+    oled_write(keylog_str, false);
+}
+
+void render_klgr(void) {
+    bool blink = (timer_read() % 1000) < 500;
+    oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
+}
 void render_mod_status(void) {
     bool blink = (timer_read() % 1000) < 500;
     uint8_t modifiers = get_mods() | get_oneshot_mods();
@@ -96,34 +139,33 @@ void render_keylock_status(uint8_t led_usb_state) {
         }
 }
 
-/* almost working :c
-void render_mod_status(void) {
-    static uint8_t active_mods;
-    static uint8_t active_oneshot_mods;
-    active_mods = get_mods();
-    active_oneshot_mods = get_oneshot_mods();
-    char buf[20]={0};
-    if((active_mods | active_oneshot_mods) & MOD_MASK_SHIFT) strncat(buf, "+shift", sizeof(buf)-1);
-    if((active_mods | active_oneshot_mods) & MOD_MASK_CTRL) strncat(buf, "+ctrl", sizeof(buf)-1);
-    if((active_mods | active_oneshot_mods) & MOD_MASK_ALT) strncat(buf, "+alt", sizeof(buf)-1);
-    if((active_mods | active_oneshot_mods) & MOD_MASK_GUI) strncat(buf, "+gui", sizeof(buf)-1);
-    strncat(buf, "                    ", sizeof(buf)-1);
-    oled_write_ln(buf(), false);
-}*/
-
 void render_main(void) {
+    update_log();
     oled_set_cursor(0, 0);
     render_wpm();
     oled_set_cursor(0, 3);
     render_qmk_logo();
     oled_set_cursor(0, 7);
     render_keyboard();
-    oled_set_cursor(0, 10);
+    oled_set_cursor(0, 9);
     render_prompt();
-    oled_set_cursor(0, 12);
+    oled_set_cursor(0, 11);
     render_mod_status();
+    oled_set_cursor(0, 13);
+    render_keylock_status(host_keyboard_leds());
+    oled_set_cursor(1, 15);
+    render_keylogger_status();
+    oled_set_cursor(0, 15);
+    render_klgr();
 }
 
 void oled_task_user(void) {
     render_main();
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        add_keylog(keycode);
+    }
+    return true;
 }
