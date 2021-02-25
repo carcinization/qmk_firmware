@@ -50,13 +50,13 @@
 
 #include QMK_KEYBOARD_H
 #include "keycodes.h"
-#include "macros.h"
 #ifdef UNICODEMAP_ENABLE
 #   include "unicodes.h"
 #endif
 #ifdef OLED_DRIVER_ENABLE
 #   include "oled.c"
 #endif
+#include "macros.h"
 #ifdef COMBO_ENABLE
 #   include "combos.h"
 #endif
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+---------|                    |--------+--------+--------+--------+--------+-------------|
        KC_SLCK,  SFEXM,   KC_AT,   KC_HASH,  KC_DLR,   KC_PERC,                      KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN, KC_RPRN,  MAKE,
     //|--------+--------+--------+--------+--------+---------|                    |--------+--------+--------+--------+--------+-------------|
-       HAPSAD,   CMDESC,  KC_TAB,  KC_CAPS,  KC_TILD,  KC_GRV,                       KC_LEFT,  KC_UP,    KC_DOWN,  KC_RGHT,  KC_RGUI, KC_MPRV,
+       KC_NLCK,   CMDESC,  KC_TAB,  KC_CAPS,  KC_TILD,  KC_GRV,                       KC_LEFT,  KC_UP,    KC_DOWN,  KC_RGHT,  KC_RGUI, KC_MPRV,
     //|--------+--------+--------+--------+--------+--------+-------|  |--------+--------+--------+--------+--------+--------+---------------|
                                            KC_LGUI, KC_TRNS, KC_SPC,    KC_VOLU,   KC_MS_U,  KC_PGUP
                                         //|-------------------------|  |----------------------------|

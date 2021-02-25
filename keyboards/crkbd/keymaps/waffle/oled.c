@@ -16,6 +16,8 @@
 
 #pragma once
 extern uint8_t is_master;
+extern uint32_t oled_timer;
+bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
 
 #define IDLE_FRAMES 5
 #define IDLE_SPEED 30
@@ -51,6 +53,8 @@ void render_wpm(void) {
 char     keylog_str[KEYLOG_LEN] = {};
 uint8_t  keylogs_str_idx        = 0;
 uint16_t log_timer              = 0;
+uint32_t oled_timer             = 0;
+
 
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
@@ -304,4 +308,14 @@ void oled_task_user(void) {
   } else {
     render_anim();
   }
+}
+
+bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+#ifdef OLED_DRIVER_ENABLE
+        oled_timer = timer_read32();
+        add_keylog(keycode);
+#endif
+    }
+    return true;
 }
