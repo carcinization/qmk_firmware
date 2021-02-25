@@ -22,6 +22,8 @@
 
 #define USE_SERIAL_PD2
 #define LAYER_STATE_8BIT
+//#define NANOBOOT
+//#define RANDICT //this literally adds 8000 bytes to your compiled firmware
 
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
