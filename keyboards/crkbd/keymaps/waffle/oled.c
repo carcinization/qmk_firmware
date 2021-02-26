@@ -16,6 +16,7 @@
 
 #pragma once
 extern uint8_t is_master;
+bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
 
 #define IDLE_FRAMES 5
 #define IDLE_SPEED 30
@@ -47,7 +48,7 @@ void render_wpm(void) {
         oled_write(wpm_string, false);
 };
 
-#    define KEYLOG_LEN 5
+#define KEYLOG_LEN 5
 char     keylog_str[KEYLOG_LEN] = {};
 uint8_t  keylogs_str_idx        = 0;
 uint16_t log_timer              = 0;
@@ -273,6 +274,7 @@ static void render_anim(void) {
 
 void render_main(void) {
     if (get_current_wpm() != 000) {
+        update_log();
         oled_set_cursor(0, 0);
         render_wpm();
         oled_set_cursor(0, 3);
@@ -295,7 +297,6 @@ void render_main(void) {
 }
 
 void oled_task_user(void) {
-  update_log();
 #ifdef SPLIT_KEYBOARD
   if (is_keyboard_master())
 #else
