@@ -45,6 +45,7 @@ enum combos {
   CM_DQUO,
   TY_COLN,
   BN_UNDS,
+  FJ_MINS,
   XC_CLICK
 };
 
@@ -196,6 +197,7 @@ const uint16_t PROGMEM vm_combo[] = {KC_V, KC_M, COMBO_END};
 const uint16_t PROGMEM cm_combo[] = {KC_C, KC_M, COMBO_END};
 const uint16_t PROGMEM ty_combo[] = {KC_T, KC_Y, COMBO_END};
 const uint16_t PROGMEM bn_combo[] = {KC_B, KC_N, COMBO_END};
+const uint16_t PROGMEM fj_combo[] = {KC_F, KC_J, COMBO_END};
 const uint16_t PROGMEM click_combo[] = {KC_X, KC_C, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -205,6 +207,7 @@ combo_t key_combos[COMBO_COUNT] = {
 [CM_DQUO] = COMBO(cm_combo, KC_DQUO),
 [TY_COLN] = COMBO(ty_combo, KC_COLN),
 [BN_UNDS] = COMBO(bn_combo, KC_UNDS),
+[FJ_MINS] = COMBO(fj_combo, KC_MINS),
 [XC_CLICK] = COMBO_ACTION(click_combo),
 };
 
