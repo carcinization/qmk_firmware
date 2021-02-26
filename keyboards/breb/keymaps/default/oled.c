@@ -16,6 +16,7 @@
 
 #pragma once
 #include <string.h>
+#include <stdio.h>
 bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
