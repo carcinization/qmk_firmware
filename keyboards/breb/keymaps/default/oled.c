@@ -16,6 +16,7 @@
 
 #pragma once
 #include <string.h>
+bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return 1;
@@ -71,13 +72,14 @@ void render_mod_gui(void) { // win symbol
 char     keylog_str[KEYLOG_LEN] = {};
 uint8_t  keylogs_str_idx        = 0;
 uint16_t log_timer              = 0;
+static uint32_t oled_timer      = 0;
 
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
+    'R', 'E', '<', 'T', '_', '-', '=', '[', ']', '\\',
     '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
 void add_keylog(uint16_t keycode) {
@@ -110,6 +112,7 @@ void render_klgr(void) {
     bool blink = (timer_read() % 1000) < 500;
     oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
 }
+
 void render_mod_status(void) {
     bool blink = (timer_read() % 1000) < 500;
     uint8_t modifiers = get_mods() | get_oneshot_mods();
@@ -163,9 +166,12 @@ void oled_task_user(void) {
     render_main();
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
+#ifdef OLED_DRIVER_ENABLE
+        oled_timer = timer_read32();
         add_keylog(keycode);
+#endif
     }
     return true;
 }

@@ -239,146 +239,146 @@ bool no_mod_taps = false;
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %b, time: %5u, int: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
-  process_record_user_oled(keycode, record);
-  temp_keycode = keycode;
-    if (keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) {
-        temp_keycode &= 0xFF;
-    }
-
-  switch (keycode) {
-      case CP_PSTE:
-        if (record->event.pressed) {
-            tap_code16(C(KC_C));
-        } else {
-            tap_code16(C(KC_V));
+    //uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %b, time: %5u, int: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+    process_record_user_oled(keycode, record);
+    temp_keycode = keycode;
+        if (keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) {
+            temp_keycode &= 0xFF;
         }
-        return false;
 
-      case MAC_PSTE:
-        if (record->event.pressed) {
-            tap_code16(G(KC_C));
-        } else {
-            tap_code16(G(KC_V));
-        }
-        return false;
+    switch (keycode) {
+        case CP_PSTE:
+            if (record->event.pressed) {
+                tap_code16(C(KC_C));
+            } else {
+                tap_code16(C(KC_V));
+            }
+            return false;
 
-      case MT(MOD_LSFT, KC_F23):
-        if (record->tap.count > 0) {
-          if (record->event.pressed) {
-            register_code16(KC_EXLM);
-          } else {
-            unregister_code16(KC_EXLM);
-          }
-          return false;
-        }
-        break;
+        case MAC_PSTE:
+            if (record->event.pressed) {
+                tap_code16(G(KC_C));
+            } else {
+                tap_code16(G(KC_V));
+            }
+            return false;
+
+        case MT(MOD_LSFT, KC_F23):
+            if (record->tap.count > 0) {
+            if (record->event.pressed) {
+                register_code16(KC_EXLM);
+            } else {
+                unregister_code16(KC_EXLM);
+            }
+            return false;
+            }
+            break;
 
 
-      case MT(MOD_RSFT, KC_F24):
-        if (record->tap.count > 0) {
-          if (record->event.pressed) {
-            register_code16(KC_RPRN);
-          } else {
-            unregister_code16(KC_RPRN);
-          }
-          return false;
-        }
-        break;
+        case MT(MOD_RSFT, KC_F24):
+            if (record->tap.count > 0) {
+            if (record->event.pressed) {
+                register_code16(KC_RPRN);
+            } else {
+                unregister_code16(KC_RPRN);
+            }
+            return false;
+            }
+            break;
 
 #ifdef UNICODEMAP_ENABLE
-      case UNIT:
-        if (record->event.pressed) {
-          send_unicode_string("(＾▽＾)");
-        } else {
-        }
-        break;
+        case UNIT:
+            if (record->event.pressed) {
+                send_unicode_string("(＾▽＾)");
+            } else {
+            }
+            break;
 
-      case UNIT2:
-        if (record->event.pressed) {
-          send_unicode_string("≧ω≦");
-        } else {
-        }
-        break;
+        case UNIT2:
+            if (record->event.pressed) {
+                send_unicode_string("≧ω≦");
+            } else {
+            }
+            break;
 
-      case UNIT3:
-        if (record->event.pressed) {
-        send_unicode_string("(╯°□°）╯︵ ┻━┻");
-        } else {
-        }
-        break;
+        case UNIT3:
+            if (record->event.pressed) {
+                send_unicode_string("(╯°□°）╯︵ ┻━┻");
+            } else {
+            }
+            break;
 
-      case UNIT4:
-        if (record->event.pressed) {
-          send_unicode_string("┬──┬ ノ( ゜-゜ノ)");
-        } else {
-        }
-        break;
+        case UNIT4:
+            if (record->event.pressed) {
+                send_unicode_string("┬──┬ ノ( ゜-゜ノ)");
+            } else {
+            }
+            break;
 
-      case WEEB:
-        if (record->event.pressed) {
-          SEND_STRING(":WeebsDie1"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":WeebsDie2"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":WeebsDie3"SS_TAP(X_ENTER)SS_TAP(X_BSPC)SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
+        case WEEB:
+            if (record->event.pressed) {
+                SEND_STRING(":WeebsDie1"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":WeebsDie2"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":WeebsDie3"SS_TAP(X_ENTER)SS_TAP(X_BSPC)SS_TAP(X_ENTER));
+            } else {
+            }
+            break;
 #endif
 
-      case KC_SBOB:
-        if (record->event.pressed) {
+        case KC_SBOB:
+            if (record->event.pressed) {
             if (repeat_mode != KC_SBOB) {
-                dprint("Enabling Spongebob Mode\n");
+                    dprint("Enabling Spongebob Mode\n");
+                }
+                uppercase = false;
+                prev_upper = 0;
+                prev_lower = 0;
+                repeat_mode = keycode;
             }
-            uppercase = false;
-            prev_upper = 0;
-            prev_lower = 0;
-            repeat_mode = keycode;
-        }
-        return false;
+            return false;
 
 #ifdef RANDICT
-      case RWORD:
-        if (randword_seed == false) {
-          randword_seed = true;
-          srand(timer_read32());
-        }
-        rand_key = rand() % NUMBER_OF_WORDS;
-        if (record->event.pressed) {
-          send_string(dict[rand_key]);
-          tap_code(KC_SPC);
-        }
-        break;
+        case RWORD:
+            if (randword_seed == false) {
+                randword_seed = true;
+                srand(timer_read32());
+            }
+            rand_key = rand() % NUMBER_OF_WORDS;
+            if (record->event.pressed) {
+                send_string(dict[rand_key]);
+                tap_code(KC_SPC);
+            }
+            break;
 #endif
 
-/*      case NANORESET: //nanoboot reset key (only works on split common)
-        if (record->event.pressed) {
-            nanoboot_jump(void);
-        }
-        return false;
-*/
+#ifdef SPLIT_KEYBOARD_ENABLE
+        case NANORESET: //nanoboot reset key (only works on split common)
+            if (record->event.pressed) {
+                nanoboot_jump(void);
+            }
+            return false;
+#endif
 
-      case KC_NOMODE ... KC_ZALGO:
-          if (record->event.pressed) {
-            typing_mode = keycode - KC_REGIONAL;
-          }
-          return true;
+        case KC_NOMODE ... KC_ZALGO:
+            if (record->event.pressed) {
+                typing_mode = keycode - KC_REGIONAL;
+            }
+            return true;
 
-      case ALT_TAB:
-        if (record->event.pressed) {
-          if (!is_alt_tab_active) {
-            is_alt_tab_active = true;
-            register_code(KC_LGUI);
-          }
-          alt_tab_timer = timer_read();
-          register_code(KC_TAB);
-        } else {
-          unregister_code(KC_TAB);
-        }
-        break;
+        case ALT_TAB:
+            if (record->event.pressed) {
+                if (!is_alt_tab_active) {
+                    is_alt_tab_active = true;
+                    register_code(KC_LGUI);
+                }
+                alt_tab_timer = timer_read();
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+            }
+            break;
 
-      case MAKE:
-        if (!record->event.pressed) {
-          SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP
+        case MAKE:
+            if (!record->event.pressed) {
+                SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP
 #if (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
                           ":dfu"
 #elif defined(BOOTLOADER_HALFKAY)
@@ -394,15 +394,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 #ifdef UNICODEMAP_ENABLE
   if (typing_mode) {
-      if (((KC_A <= temp_keycode) && (temp_keycode <= KC_0)) || temp_keycode == KC_SPACE) {
-          if (typing_mode == TM_WIDE) { return process_record_glyph_replacement(temp_keycode, record, unicode_range_translator_wide);}
-          if (typing_mode == TM_SCRIPT) {return process_record_glyph_replacement(temp_keycode, record, unicode_range_translator_script);}
-          if (typing_mode == TM_BLOCKS) {return process_record_glyph_replacement(temp_keycode, record, unicode_range_translator_boxes);}
-          if (typing_mode == TM_REGIONAL) {return process_record_glyph_replacement(temp_keycode, record, unicode_range_translator_regional);}
-      } else {
-          if (typing_mode == TM_AUSSIE) {return process_record_aussie(temp_keycode, record);}
-          if (typing_mode == TM_ZALGO) {return process_record_zalgo(temp_keycode, record);}
-      }
+        if (((KC_A <= temp_keycode) && (temp_keycode <= KC_0)) || temp_keycode == KC_SPACE) {
+            if (typing_mode == TM_WIDE) { return process_record_glyph_replacement(temp_keycode, record, unicode_range_translator_wide);}
+            if (typing_mode == TM_SCRIPT) {return process_record_glyph_replacement(temp_keycode, record, unicode_range_translator_script);}
+            if (typing_mode == TM_BLOCKS) {return process_record_glyph_replacement(temp_keycode, record, unicode_range_translator_boxes);}
+            if (typing_mode == TM_REGIONAL) {return process_record_glyph_replacement(temp_keycode, record, unicode_range_translator_regional);}
+        } else {
+            if (typing_mode == TM_AUSSIE) {return process_record_aussie(temp_keycode, record);}
+            if (typing_mode == TM_ZALGO) {return process_record_zalgo(temp_keycode, record);}
+        }
   }
 #endif
     return true;
