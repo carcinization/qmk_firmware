@@ -225,9 +225,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
       case CP_PSTE:
         if (record->event.pressed) {
-            tap_code16(G(KC_C));
+            tap_code16(C(KC_C));
         } else {
-            tap_code16(G(KC_V));
+            tap_code16(C(KC_V));
         }
         return false;
 
@@ -296,59 +296,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-      case SSH_PI:
-        if (record->event.pressed) {
-            SEND_STRING("ssh pi@applepi.local"SS_TAP(X_ENTER) SS_DELAY(2000) "Rasp91111"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
       case CTLS:
         if (record->event.pressed) {
           SEND_STRING(SS_DOWN(X_LGUI)SS_TAP(X_S)SS_UP(X_LGUI));
-        } else {
-        }
-        break;
-
-      case GIT:
-        if (record->event.pressed) {
-          SEND_STRING("https://github.com/qmk/qmk_firmware/find/master"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case SETUP:
-        if (record->event.pressed) {
-          SEND_STRING("https://docs.qmk.fm/#/newbs_getting_started");
-        } else {
-        }
-        break;
-
-      case ZAD:
-        if (record->event.pressed) {
-          SEND_STRING("https://docs.qmk.fm/#/driver_installation_zadig");
-        } else {
-        }
-        break;
-
-      case CONF:
-        if (record->event.pressed) {
-          SEND_STRING("https://config.qmk.fm/#/"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case MMAP:
-        if (record->event.pressed) {
-            SEND_STRING(":checkpinsbich:"SS_TAP(X_ENTER)SS_TAP(X_ENTER));
-            SEND_STRING("https://www.mechmap.tech/themap"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case NKINV:
-        if (record->event.pressed) {
-            SEND_STRING("NovelKeys Inventory Updates - https://novelkeys.xyz/pages/inventory");
         } else {
         }
         break;
@@ -360,22 +310,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-      case CD1:
-        if (record->event.pressed) {
-          SEND_STRING("cd qmk_firmware"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
       case XWIDE:
         if (record->event.pressed) {
           SEND_STRING(":widepeepo1"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo2"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo3"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo4"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo5"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo6"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo7"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo8"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo9"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo10"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo11"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepo12"SS_TAP(X_ENTER)SS_TAP(X_BSPC)SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case BANNER:
-        if (record->event.pressed) {
-            SEND_STRING("'s board will be the banner for today!"SS_TAP(X_ENTER));
         } else {
         }
         break;

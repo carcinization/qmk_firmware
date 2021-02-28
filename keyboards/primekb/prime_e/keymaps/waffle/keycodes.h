@@ -34,7 +34,6 @@ enum {
   HAP_SAD,
   QMK,
   DOCS,
-  LINKS,
 };
 
 enum typing_mode {
@@ -58,17 +57,8 @@ enum custom_keycodes {
   UNIT4,
   WEEB,
   CTLS,
-  SSH_PI,
-  GIT,
-  SETUP,
-  ZAD,
-  CONF,
-  MMAP,
-  NKINV,
   VIA,
-  CD1,
   XWIDE,
-  BANNER,
   ALT_TAB,
   MAKE,
   KC_NOMODE,
@@ -98,7 +88,6 @@ enum custom_keycodes {
 #define SFL SFT_T(KC_L)
 #define HAPSAD TD(HAP_SAD)
 #define DOCSTD TD(DOCS)
-#define LINKSTD TD(LINKS)
 #define QMKTD TD(QMK)
 #define ZHAP X(SIDE)
 #define ARWUP X(UPAR)
