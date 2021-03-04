@@ -2,12 +2,13 @@
 #define MIN_WALK_SPEED 10
 #define MIN_RUN_SPEED 60
 #define FELIX_FRAMES 2
-#define FELIX_FRAME_DURATION 200
-#define FELIX_SIZE 96
+#define FELIX_FRAME_DURATION 200 // Number of ms per frame
+#define FELIX_SIZE 96 // 96-byte arrays for the little dog
 
 uint32_t felix_anim_timer = 0;
 uint32_t felix_anim_sleep = 0;
 uint8_t felix_current_frame = 0;
+
 uint8_t felix_prev_wpm = 0;
 bool felix_typing = false;
 
@@ -197,7 +198,7 @@ static void render_felix_sneak(void) {
 }
 
 static void render_felix_status(void) {
-    oled_set_cursor(0, 7);
+
 	void render_phase(void) {
 		oled_clear();
 		if (get_mods() & MOD_MASK_SHIFT || host_keyboard_led_state().caps_lock) { render_felix_bark(); }
@@ -234,4 +235,9 @@ static void render_felix_status(void) {
 			}
 		}
 	}
+}
+
+void oled_task_user(void) {
+    oled_set_cursor(0, 7);
+    render_felix_status();
 }

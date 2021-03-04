@@ -53,6 +53,9 @@
 #ifdef UNICODEMAP_ENABLE
 #   include "unicodes.h"
 #endif
+/*#ifdef FELIX
+#   include "felix.c"
+#endif*/
 #ifdef OLED_DRIVER_ENABLE
 #   include "oled.c"
 #endif
@@ -68,7 +71,7 @@
 #   include "pimoroni_trackball.h"
 #endif
 #ifdef NANOBOOT
-#include "nanoboot.c"
+#   include "nanoboot.c"
 #endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
