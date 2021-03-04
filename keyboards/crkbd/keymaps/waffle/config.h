@@ -22,7 +22,7 @@
 
 #define USE_SERIAL_PD2
 #define LAYER_STATE_8BIT
-#define FELIX
+//#define FELIX
 //#define BONGO
 //#define NANOBOOT
 //#define RANDICT //this literally adds 8000 bytes to your compiled firmware

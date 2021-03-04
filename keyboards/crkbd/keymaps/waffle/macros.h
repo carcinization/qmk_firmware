@@ -240,7 +240,9 @@ bool no_mod_taps = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     //uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %b, time: %5u, int: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+#ifdef OLED_DRIVER_ENABLE
     process_record_user_oled(keycode, record);
+#endif
     temp_keycode = keycode;
         if (keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) {
             temp_keycode &= 0xFF;

@@ -31,14 +31,12 @@ extern uint8_t is_master;
 #define FELIX_FRAMES 2
 #define FELIX_FRAME_DURATION 200
 #define FELIX_SIZE 96
-//#define FILLED
-//bongo
+#define FILLED
 bool gui_on = true;
 uint32_t bongo_anim_timer = 0;
 uint32_t bongo_anim_sleep = 0;
 uint8_t current_idle_frame = 0;
 uint8_t current_tap_frame = 0;
-//felix
 uint32_t felix_anim_timer = 0;
 uint32_t felix_anim_sleep = 0;
 uint8_t felix_current_frame = 0;
@@ -177,7 +175,7 @@ void render_keylock_status(uint8_t led_usb_state) {
         }
 }
 
-//#ifdef FELIX
+#ifdef FELIX
 static void render_felix_sit(void) {
 	static const char PROGMEM sit[FELIX_FRAMES][FELIX_SIZE] = { {
 #ifndef FILLED
@@ -404,7 +402,7 @@ static void render_felix_status(void) {
 }
 #endif
 
-/*#ifdef BONGO
+#ifdef BONGO
 static void render_bongo(void) {
     static const char PROGMEM idle[IDLE_FRAMES][BONGO_SIZE] = {
 
@@ -511,7 +509,7 @@ static void render_bongo(void) {
         }
     }
 }
-#endif*/
+#endif
 
 void render_main(void) {
     if (get_current_wpm() != 000) {
