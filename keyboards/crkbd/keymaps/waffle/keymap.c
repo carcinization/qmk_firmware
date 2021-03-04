@@ -53,9 +53,6 @@
 #ifdef UNICODEMAP_ENABLE
 #   include "unicodes.h"
 #endif
-/*#ifdef FELIX
-#   include "felix.c"
-#endif*/
 #ifdef OLED_DRIVER_ENABLE
 #   include "oled.c"
 #endif
