@@ -1,4 +1,4 @@
-/* Copyright 2020 @wafflekeebs/@waffle#6666
+/* Copyright 2021 @Itswaffle/@waffle#6666
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ enum unicodemap_names {
 };
 
 enum {
-//  HAP_SAD,
+  HAP_SAD,
   QMK,
   DOCS,
 };
@@ -99,7 +99,7 @@ enum custom_keycodes {
 #define CMDSLSH CMD_T(KC_SLSH)
 #define CMDS G(KC_S)
 //---tap dance---
-//#define HAPSAD TD(HAP_SAD)
+#define HAPSAD TD(HAP_SAD)
 #define DOCSTD TD(DOCS)
 #define QMKTD TD(QMK)
 //---unicode---
