@@ -16,7 +16,7 @@
 
 #include QMK_KEYBOARD_H
 #include <print.h>
-#include "felix.c"
+#include "oled.c"
 bool show_img = false;
 
 #ifdef TAP_DANCE_ENABLE
