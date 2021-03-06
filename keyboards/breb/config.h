@@ -23,11 +23,13 @@
 #define PRODUCT         Brebborb
 
 #define MATRIX_ROWS 1
-#define MATRIX_COLS 1
-#define DIODE_DIRECTION COL2ROW
+#define MATRIX_COLS 3
+//#define DIODE_DIRECTION COL2ROW
 #define DEBOUNCE 5
-#define MATRIX_COL_PINS { A9 }
-#define MATRIX_ROW_PINS { A11 }
+//#define MATRIX_COL_PINS { A9, B12, A15 }
+//#define MATRIX_ROW_PINS { A11, A0, A1 }
+#define DIRECT_PINS { {B12, B13, B14 } }
+#define UNUSED_PINS
 
 #ifdef RGBLIGHT_ENABLE
 #define RGBLIGHT_ANIMATIONS
@@ -45,8 +47,8 @@
 
 #ifdef ENCODER_ENABLE
 #define TAP_CODE_DELAY 5
-#define ENCODERS_PAD_A { A0 }
-#define ENCODERS_PAD_B { A1 }
+#define ENCODERS_PAD_A { A0, A7 }
+#define ENCODERS_PAD_B { A1, A6 }
 #endif
 
 #define LOCKING_SUPPORT_ENABLE
