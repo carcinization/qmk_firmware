@@ -487,16 +487,13 @@ static void render_bongo(void) {
         }
         bongo_anim_sleep = timer_read32();
     } else {
-        if (timer_elapsed32(bongo_anim_sleep) > OLED_TIMEOUT) {
-            oled_off();
-        } else {
             if (timer_elapsed32(bongo_anim_timer) > ANIM_FRAME_DURATION) {
                 bongo_anim_timer = timer_read32();
                 animation_phase();
             }
         }
     }
-}
+
 #endif
 
 void render_main(void) {

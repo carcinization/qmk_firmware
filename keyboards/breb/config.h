@@ -24,19 +24,15 @@
 
 #define MATRIX_ROWS 1
 #define MATRIX_COLS 3
-//#define DIODE_DIRECTION COL2ROW
 #define DEBOUNCE 5
-//#define MATRIX_COL_PINS { A9, B12, A15 }
-//#define MATRIX_ROW_PINS { A11, A0, A1 }
 #define DIRECT_PINS { {B12, B13, B14 } }
 #define UNUSED_PINS
 
 #ifdef RGBLIGHT_ENABLE
 #define RGBLIGHT_ANIMATIONS
-#define RGB_DI_PIN A4
-#define RGBLED_NUM 16
-#define RGBLIGHT_LIMIT_VAL 128
-#define RGBLIGHT_VAL_STEP 8
+#define RGB_DI_PIN A9
+#define RGBLED_NUM 4
+#define RGBLIGHT_LIMIT_VAL 200
 #define RGBLIGHT_SLEEP
 #endif
 
