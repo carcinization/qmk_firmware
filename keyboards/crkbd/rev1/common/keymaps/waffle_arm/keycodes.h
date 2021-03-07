@@ -56,7 +56,6 @@ enum custom_keycodes {
   UNIT3,
   UNIT4,
   WEEB,
-  VIA,
   RGBRST,
   RWORD,
   SPONGE,

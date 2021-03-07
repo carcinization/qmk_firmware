@@ -270,6 +270,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
+#ifdef FELIX
       case KC_SPC:
         if (record->event.pressed) {
             isJumping = true;
@@ -283,6 +284,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case KC_RCTL:
         isSneaking = record->event.pressed;
       break;
+#endif
 
       case UNIT:
         if (record->event.pressed) {
@@ -315,13 +317,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case WEEB:
         if (record->event.pressed) {
           SEND_STRING(":WeebsDie1"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":WeebsDie2"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":WeebsDie3"SS_TAP(X_ENTER)SS_TAP(X_BSPC)SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case VIA:
-        if (record->event.pressed) {
-            SEND_STRING("https://caniusevia.com/docs/download_firmware"SS_TAP(X_ENTER));
         } else {
         }
         break;
