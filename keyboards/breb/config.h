@@ -38,7 +38,6 @@
 
 #ifdef OLED_DRIVER_ENABLE
 #define OLED_DISPLAY_128X32
-#define OLED_TIMEOUT 0
 #endif
 
 #ifdef ENCODER_ENABLE
