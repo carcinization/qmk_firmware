@@ -51,7 +51,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [0] = LAYOUT_smol(
-     RGB_TOG, RGB_VAI, RGB_VAD
+     RGB_TOG, KC_LSPO, KC_RSPC
  )
 };
 
@@ -84,15 +84,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (clockwise) {
-            tap_code16(RGB_MOD);
+            tap_code16(KC_VOLU);
         } else {
-            tap_code16(RGB_RMOD);
+            tap_code16(KC_VOLD);
         }
     } else if (index == 1) {
         if (clockwise) {
-            tap_code16(RGB_HUI);
+            tap_code16(KC_3);
         } else {
-            tap_code16(RGB_HUD);
+            tap_code16(KC_H);
         }
     }
 }
