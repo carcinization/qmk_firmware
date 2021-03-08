@@ -1,8 +1,8 @@
 #include QMK_KEYBOARD_H
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_ortho_2x3(
-      LT(4, KC_A),  KC_B, KC_C,
-      TG(1),        TG(2),TG(3)
+      KC_A,  KC_B, KC_C,
+      TG(1), TG(2),TG(3)
     ),
     [1] = LAYOUT_ortho_2x3(
       KC_D,  KC_E, KC_F,
@@ -15,10 +15,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [3] = LAYOUT_ortho_2x3(
       KC_A,  KC_B, KC_C,
       KC_K,  KC_L, TG(3)
-    ),
-    [4] = LAYOUT_ortho_2x3(
-      KC_TRNS, KC_B, KC_C,
-      KC_M,    KC_N, KC_O
     )
 };
 
@@ -37,9 +33,6 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 #define BONGO_IDLE_SPEED 30
 #define BONGO_IDLE_FRAMES 5
 #define LAYER_TAP_FRAMES 3
-#define X_FRAMES 6
-uint32_t bongo_anim_timer = 0;
-uint32_t bongo_anim_sleep = 0;
 uint8_t current_idle_frame = 0;
 uint8_t current_tap_frame = 0;
 uint32_t anim_timer = 0;
@@ -146,18 +139,18 @@ static void render_bongo(void) {
     if (get_current_wpm() != 000) {
         oled_on();
 
-        if (timer_elapsed32(bongo_anim_timer) > BONGO_FRAME_DURATION) {
-            bongo_anim_timer = timer_read32();
+        if (timer_elapsed32(anim_timer) > BONGO_FRAME_DURATION) {
+            anim_timer = timer_read32();
             animation_phase();
         }
 
-        bongo_anim_sleep = timer_read32();
+        anim_sleep = timer_read32();
     } else {
-        if (timer_elapsed32(bongo_anim_sleep) > OLED_TIMEOUT) {
+        if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
             oled_off();
         } else {
-            if (timer_elapsed32(bongo_anim_timer) > BONGO_FRAME_DURATION) {
-                bongo_anim_timer = timer_read32();
+            if (timer_elapsed32(anim_timer) > BONGO_FRAME_DURATION) {
+                anim_timer = timer_read32();
                 animation_phase();
             }
         }
