@@ -51,28 +51,22 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [0] = LAYOUT_smol(
-     LT(5, RGB_TOG), TG(2), TG(1)
+     LT(1, RGB_TOG), TG(2), TG(3)
  ),
  [1] = LAYOUT_smol(
-     KC_TRNS, KC_TRNS, TG(1)
+     KC_TRNS, KC_A, KC_B
  ),
  [2] = LAYOUT_smol(
-     TG(3), TG(2), TG(4)
+     TG(2), KC_C, KC_D
  ),
  [3] = LAYOUT_smol(
-     TG(3), KC_TRNS, KC_TRNS
- ),
- [4] = LAYOUT_smol(
-     KC_TRNS, KC_TRNS, TG(4)
- ),
- [5] = LAYOUT_smol(
-     KC_TRNS, KC_B, KC_C
+     TG(3), KC_E, KC_F
  )
 };
 
 #include "oled.c"
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+/*bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef MAIN
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %b, time: %5u, int: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     process_record_user_oled(keycode, record);
@@ -94,7 +88,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
     }
     return true;
-};
+};*/
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    default:
+      anim_sleep = timer_read32();
+      return true;
+  }
+}
 
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
