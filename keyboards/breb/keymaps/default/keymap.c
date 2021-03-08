@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #include "oled.c"
 
-/*bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef MAIN
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %b, time: %5u, int: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     process_record_user_oled(keycode, record);
@@ -75,11 +75,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         default:
             anim_sleep = timer_read32();
             return true;
-        case BREAD:
-            if (record->event.pressed) {
-                SEND_STRING("Hello This Is A One Key Keyboard I built");
-            }
-            break;
 
         case RTEST:
             if (record->event.pressed) {
@@ -88,15 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             break;
     }
     return true;
-};*/
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    default:
-      anim_sleep = timer_read32();
-      return true;
-  }
-}
+};
 
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {

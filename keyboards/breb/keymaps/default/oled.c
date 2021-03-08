@@ -17,9 +17,9 @@
 #pragma once
 #include "quantum.h"
 #include <stdio.h>
-#define BONGO_LAYERS
+//#define BONGO_LAYERS
 //#define MAIN
-//#define FELIX
+#define FELIX
 uint32_t anim_timer = 0;
 uint32_t anim_sleep = 0;
 uint8_t current_idle_frame = 0;
@@ -52,7 +52,7 @@ bool showedJump = true;
 #endif
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return 2;
+    return 3;
     return rotation;
 }
 
@@ -594,7 +594,15 @@ void render_main(void) {
 #endif
 
 void oled_task_user(void) {
+#ifdef BONGO_LAYERS
     render_secondary();
+#endif
+#ifdef MAIN
+    render_main();
+#endif
+#ifdef FELIX
+    render_felix(0, 7);
+#endif
 }
 
 bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
