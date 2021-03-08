@@ -17,8 +17,8 @@
 #pragma once
 #include "quantum.h"
 #include <stdio.h>
-#define BONGO
-//#define MAIN
+//#define BONGO
+#define MAIN
 //#define FELIX
 //#define ANIM_LAYERS
 uint32_t anim_timer = 0;
@@ -57,7 +57,7 @@ bool showedJump = true;
 #endif
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return 3;
+    return 1;
     return rotation;
 }
 
@@ -669,26 +669,22 @@ void render_secondary(void) {
 
 #ifdef MAIN
 void render_main(void) {
-    if (get_current_wpm() != 000) {
-        oled_set_cursor(0, 0);
-        render_wpm();
-        oled_set_cursor(0, 3);
-        render_qmk_logo();
-        oled_set_cursor(0, 7);
-        render_keyboard();
-        oled_set_cursor(0, 9);
-        render_prompt();
-        oled_set_cursor(0, 11);
-        render_mod_status();
-        oled_set_cursor(0, 13);
-        render_keylock_status(host_keyboard_leds());
-        oled_set_cursor(0, 15);
-        render_klgr();
-        oled_set_cursor(1, 15);
-        render_keylogger_status();
-    } else {
-        oled_off();
-    }
+    oled_set_cursor(0, 0);
+    render_wpm();
+    oled_set_cursor(0, 3);
+    render_qmk_logo();
+    oled_set_cursor(0, 7);
+    render_keyboard();
+    oled_set_cursor(0, 9);
+    render_prompt();
+    oled_set_cursor(0, 11);
+    render_mod_status();
+    oled_set_cursor(0, 13);
+    render_keylock_status(host_keyboard_leds());
+    oled_set_cursor(0, 15);
+    render_klgr();
+    oled_set_cursor(1, 15);
+    render_keylogger_status();
 }
 #endif
 
