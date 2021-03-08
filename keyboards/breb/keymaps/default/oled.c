@@ -17,10 +17,10 @@
 #pragma once
 #include "quantum.h"
 #include <stdio.h>
-//#define BONGO
+#define BONGO
 //#define MAIN
 //#define FELIX
-#define ANIM_LAYERS
+//#define ANIM_LAYERS
 uint32_t anim_timer = 0;
 uint32_t anim_sleep = 0;
 uint8_t current_idle_frame = 0;
@@ -257,7 +257,6 @@ static void render_anim_xcom(void) {
 
 	animation_run();
 }
-
 #endif
 
 #ifdef MAIN

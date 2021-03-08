@@ -51,13 +51,22 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [0] = LAYOUT_smol(
-     RGB_TOG, KC_LSPO, KC_RSPC
+     LT(5, RGB_TOG), TG(2), TG(1)
  ),
  [1] = LAYOUT_smol(
      KC_TRNS, KC_TRNS, TG(1)
  ),
  [2] = LAYOUT_smol(
-     KC_TRNS, TG(2), KC_TRNS
+     TG(3), TG(2), TG(4)
+ ),
+ [3] = LAYOUT_smol(
+     TG(3), KC_TRNS, KC_TRNS
+ ),
+ [4] = LAYOUT_smol(
+     KC_TRNS, KC_TRNS, TG(4)
+ ),
+ [5] = LAYOUT_smol(
+     KC_TRNS, KC_B, KC_C
  )
 };
 
