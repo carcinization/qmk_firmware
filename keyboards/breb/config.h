@@ -46,6 +46,3 @@
 #define ENCODERS_PAD_A { A0, A7 }
 #define ENCODERS_PAD_B { A1, A6 }
 #endif
-
-#define LOCKING_SUPPORT_ENABLE
-#define LOCKING_RESYNC_ENABLE

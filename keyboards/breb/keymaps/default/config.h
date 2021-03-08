@@ -5,3 +5,5 @@
 #define BONGO_TESTING
 //#define MAIN_TESTING
 
+#define LSPO_KEYS KC_LSFT, KC_LSFT, KC_9
+#define RSPC_KEYS KC_RSFT, KC_RSFT, KC_0
