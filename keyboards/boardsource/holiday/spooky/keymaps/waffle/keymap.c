@@ -24,7 +24,11 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return rotation;
 }
 
-char keylog_str[24] = {};
+#define KEYLOG_LEN 11
+char keylog_str[KEYLOG_LEN] = {};
+uint8_t  keylogs_str_idx = 0;
+uint16_t log_timer = 0;
+
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
@@ -33,31 +37,48 @@ const char code_to_name[60] = {
     'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
     '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
-void set_keylog(uint16_t keycode, keyrecord_t *record) {
-    char name = ' ';
-        if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) ||
-            (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP)) { keycode = keycode & 0xFF; }
-    if (keycode < 60) {
-        name = code_to_name[keycode];
+void add_keylog(uint16_t keycode) {
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) {
+        keycode = keycode & 0xFF;
     }
 
-    snprintf(keylog_str, sizeof(keylog_str), "%dx%d, k%2d : %c",
-        record->event.key.row, record->event.key.col,
-        keycode, name);
+    for (uint8_t i = KEYLOG_LEN - 1; i > 0; i--) {
+        keylog_str[i] = keylog_str[i - 1];
+    }
+    if (keycode < 60) {
+        keylog_str[0] = code_to_name[keycode];
+    }
+    keylog_str[KEYLOG_LEN - 1] = 0;
 
+    log_timer = timer_read();
 }
 
-void oled_render_keylog(void) {
+void update_log(void) {
+    if (timer_elapsed(log_timer) > 750) {
+        add_keylog(0);
+    }
+}
+
+void render_keylogger(void) {
     oled_write(keylog_str, false);
 }
 
+void render_keylogger_status(void) {
+    bool blink = (timer_read() % 1000) < 500;
+    oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
+}
+
 void oled_task_user(void) {
-    oled_render_keylog();
+    update_log();
+    oled_set_cursor(6, 1);
+    render_keylogger();
+    oled_set_cursor(5, 1);
+    render_keylogger_status();
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
-        set_keylog(keycode, record);
+      add_keylog(keycode);
     }
     return true;
 }
