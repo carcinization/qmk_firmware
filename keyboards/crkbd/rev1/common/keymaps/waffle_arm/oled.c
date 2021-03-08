@@ -17,32 +17,32 @@
 #pragma once
 #include "quantum.h"
 #include <stdio.h>
-//bongo
-uint8_t get_current_wpm(void);
-#define IDLE_FRAMES 10
-#define IDLE_SPEED 35
-#define TAP_FRAMES 2
-#define TAP_SPEED 45
 #define ANIM_FRAME_DURATION 200
-#define BONGO_SIZE 512
-//felix
-#define MIN_WALK_SPEED 30
-#define MIN_RUN_SPEED 45
-#define ANIM_FRAME_DURATION 200
-#define FELIX_SIZE 96
-
-bool gui_on = true;
+//#define BONGO
+#define FELIX
 uint32_t anim_timer = 0;
 uint32_t anim_sleep = 0;
 uint8_t current_idle_frame = 0;
 uint8_t current_tap_frame = 0;
 uint8_t current_frame = 0;
+#ifdef BONGO
+uint8_t get_current_wpm(void);
+#define IDLE_FRAMES 10
+#define IDLE_SPEED 35
+#define TAP_FRAMES 2
+#define TAP_SPEED 45
+#define BONGO_SIZE 512
+#endif
+#ifdef FELIX
+#define MIN_WALK_SPEED 30
+#define MIN_RUN_SPEED 45
+#define FELIX_SIZE 96
 int current_wpm = 0;
 led_t led_usb_state;
-
 bool isSneaking = false;
 bool isJumping = false;
 bool showedJump = true;
+#endif
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (!is_keyboard_master()) {
@@ -177,7 +177,7 @@ void render_keylock_status(uint8_t led_usb_state) {
         }
 }
 
-//bongo - filled style
+#ifdef BONGO
 static void render_anim(void) {
 
     static const char PROGMEM idle[IDLE_FRAMES][BONGO_SIZE] = {
@@ -285,6 +285,7 @@ static void render_anim(void) {
         }
     }
 }
+#endif
 
 #ifdef FELIX
 static void render_felix(int FELIX_X, int FELIX_Y) {
@@ -466,7 +467,9 @@ void oled_task_user(void) {
 #ifdef FELIX
         render_felix(0,7);
 #endif
+#ifdef BONGO
         render_anim();
+#endif
     }
 }
 
