@@ -52,6 +52,12 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [0] = LAYOUT_smol(
      RGB_TOG, KC_LSPO, KC_RSPC
+ ),
+ [1] = LAYOUT_smol(
+     KC_TRNS, KC_TRNS, TG(1)
+ ),
+ [2] = LAYOUT_smol(
+     KC_TRNS, TG(2), KC_TRNS
  )
 };
 
@@ -60,11 +66,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    #ifdef KEYLOGGER_ENABLE
+#ifdef MAIN
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %b, time: %5u, int: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     process_record_user_oled(keycode, record);
-    #endif
+#endif
     switch (keycode) {
+        default:
+            anim_sleep = timer_read32();
+            return true;
         case BREAD:
             if (record->event.pressed) {
                 SEND_STRING("Hello This Is A One Key Keyboard I built");
@@ -96,7 +105,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
     }
 }
-
 #endif
 
 #ifdef TAP_DANCE_ENABLE
