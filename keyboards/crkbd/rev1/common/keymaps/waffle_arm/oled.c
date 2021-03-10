@@ -551,16 +551,16 @@ static void render_felix(int FELIX_X, int FELIX_Y) {
 
 void render_secondary(void) {
     switch (get_highest_layer(layer_state)) {
-        case 0:
+        case _QWERTY:
             render_bongo();
             break;
-        case 1:
-            render_anim_sym();
-            break;
-        case 2:
+        case _LOWER:
             render_anim_num();
             break;
-        case 3:
+        case _RAISE:
+            render_anim_sym();
+            break;
+        case _ADJUST:
             render_anim_sys();
             break;
     }
