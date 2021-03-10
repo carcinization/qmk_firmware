@@ -31,7 +31,7 @@ extern uint8_t is_master;
 #define FELIX_FRAMES 2
 #define FELIX_FRAME_DURATION 200
 #define FELIX_SIZE 96
-#define FILLED
+//#define FILLED
 uint32_t bongo_anim_timer = 0;
 uint32_t bongo_anim_sleep = 0;
 uint8_t current_idle_frame = 0;
