@@ -59,10 +59,10 @@ void render_wpm(void) {
         oled_write(wpm_string, false);
 };
 
-#    define KEYLOG_LEN 5
-char     keylog_str[KEYLOG_LEN] = {};
-uint8_t  keylogs_str_idx        = 0;
-uint16_t log_timer              = 0;
+#define KEYLOG_LEN 5
+char keylog_str[KEYLOG_LEN] = {};
+uint8_t  keylogs_str_idx = 0;
+uint16_t log_timer = 0;
 static uint32_t oled_timer      = 0;
 
 const char code_to_name[60] = {
@@ -70,7 +70,7 @@ const char code_to_name[60] = {
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    'R', 'E', '<', 'T', '_', '-', '=', '[', ']', '\\',
+    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
     '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
 void add_keylog(uint16_t keycode) {
@@ -95,11 +95,11 @@ void update_log(void) {
     }
 }
 
-void render_keylogger_status(void) {
+void render_keylogger(void) {
     oled_write(keylog_str, false);
 }
 
-void render_klgr(void) {
+void render_keylogger_status(void) {
     bool blink = (timer_read() % 1000) < 500;
     oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
 }
@@ -526,9 +526,9 @@ void render_main(void) {
         oled_set_cursor(0, 13);
         render_keylock_status(host_keyboard_leds());
         oled_set_cursor(1, 15);
-        render_keylogger_status();
+        render_keylogger();
         oled_set_cursor(0, 15);
-        render_klgr();
+        render_keylogger_status();
     } else {
         oled_off();
     }
