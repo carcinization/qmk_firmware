@@ -51,7 +51,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [0] = LAYOUT_smol(
-     KC_A, KC_B, KC_B
+     KC_A, KC_B, KC_CAPS
  ),
  [1] = LAYOUT_smol(
      KC_TRNS, KC_A, KC_B
