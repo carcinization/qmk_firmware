@@ -16,7 +16,7 @@
 
 #include QMK_KEYBOARD_H
 #include <print.h>
-#include "oled.c"
+#include "oled2.c"
 bool show_img = false;
 
 #ifdef TAP_DANCE_ENABLE
@@ -51,7 +51,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [0] = LAYOUT_smol(
-     LT(1, RGB_TOG), TG(2), TG(3)
+     KC_A, KC_B, KC_B
  ),
  [1] = LAYOUT_smol(
      KC_TRNS, KC_A, KC_B
@@ -64,17 +64,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  )
 };
 
-#include "oled.c"
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-#ifdef MAIN
+/*bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %b, time: %5u, int: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     process_record_user_oled(keycode, record);
-#endif
     switch (keycode) {
-        default:
-            anim_sleep = timer_read32();
-            return true;
+//        default:
+//            anim_sleep = timer_read32();
+//            return true;
 
         case RTEST:
             if (record->event.pressed) {
@@ -84,6 +80,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
+*/
 
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
