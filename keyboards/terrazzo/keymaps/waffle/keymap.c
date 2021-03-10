@@ -30,20 +30,7 @@ enum custom_keycodes {
   UNIT2,
   UNIT4,
   UNIT5,
-  SSH_PI,
-  GIT,
-  SETUP,
-  ZAD,
-  CONF,
-  CD1,
-  CTLS,
   WEEB,
-  WIDHAP,
-  WIDSAD,
-  CAD,
-  NKINV,
-  MMAP,
-  VIA,
   ALT_TAB,
   MAKE,
   KC_NOMODE,
@@ -74,15 +61,12 @@ enum {
 
 enum combos {
   RU_ENT,
-  EI_BSP,
   GH_QUOT,
   VM_QUES,
   CM_DQUO,
   TY_COLN,
-  DF_BTN1,
-  JK_BTN2,
-  VB_WHD,
-  NM_WHU
+  BN_UNDS,
+  FJ_MINS
 };
 
 #define SFA SFT_T(KC_A)
@@ -94,38 +78,33 @@ enum combos {
 #define SFL SFT_T(KC_L)
 #define SFEXM MT(MOD_LSFT, KC_F23)
 #define SFPRN MT(MOD_RSFT, KC_F24)
-#define GPSCR G(KC_PSCR)
 #define CTLRGT CTL_T(KC_RGHT)
 #define CTLESC CTL_T(KC_ESC)
 #define CTLSLSH CTL_T(KC_SLSH)
-#define CTLVIB CTL_T(X(VIB))
-#define CTLBSP CTL_T(KC_BSPC)
 #define HAPSAD TD(HAP_SAD)
 #define DOCSTD TD(DOCS)
-#define LINKSTD TD(LINKS)
 #define QMKTD TD(QMK)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
     [_QWERTY] = LAYOUT(
-	  	KC_MPLY, QMKTD,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  GPSCR,
+	  	KC_MPLY, QMKTD,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  X(VIB),
 	    TZ_NXT,  ALT_TAB, SFA,     KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    SFL,            KC_BSPC,
-	    TZ_PRV,  DOCSTD,  CTLTZ,   KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, CTLDOT,         CTLSLSH,
-	    TZ_OFF,           HAPSAD, KC_LGUI,          LWRSPC,           RAISE,            KC_RGUI,  CTLS
+	    TZ_PRV,  CP_PSTE, CTLTZ,   KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, CTLDOT,         CTLSLSH,
+	    TZ_OFF,           KC_LALT, KC_LGUI,          LWRSPC,           RAISE,            KC_RGUI,  KC_RALT
     ),
 
     [_LOWER] = LAYOUT(
-        KC_MUTE, LINKSTD, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
+        KC_MUTE, DOCSTD,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
 	    UNIT,    WEEB,    SFEXM,   KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,        SFPRN,
-	    UNIT4,   VIA,     CTLESC,  KC_TAB,  KC_CAPS, KC_TILD, KC_GRV,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT,        CTLVIB,
+	    UNIT4,   HAPSAD,  CTLESC,  KC_TAB,  KC_CAPS, KC_TILD, KC_GRV,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT,        KC_TRNS,
 	    UNIT5,            KC_LALT,  KC_LGUI,          KC_TRNS,          KC_SLSH,          KC_RGUI, WEEB
     ),
 
     [_RAISE] = LAYOUT(
         RESET,   X(SIDE), KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, CG_NORM, KC_ASUP, KC_ASON,  KC_AUSSIE, KC_WIDE, KC_NOMODE,
 	    UC_M_WC, X(UPAR), KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, CG_SWAP, KC_ASDN, KC_ASOFF, KC_REGIONAL,        KC_BLOCKS,
-	    UC_M_MA, X(STAR), KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   UNIT,    UNIT2,   UNIT4,    UNIT5,              KC_SCRIPT,
-	    MAKE,             WIDHAP,  KC_LGUI,          KC_SCLN,          KC_TRNS,          KC_RGUI,  WIDSAD
+	    UC_M_MA, X(STAR), KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F9,    KC_F10,             KC_SCRIPT,
+	    MAKE,             KC_LALT,  KC_LGUI,          KC_SCLN,          KC_TRNS,          KC_RGUI,  KC_RALT
     ),
 
     [_EXTRA] = LAYOUT(
@@ -137,28 +116,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM ru_combo[] = {KC_R, KC_U, COMBO_END};
-const uint16_t PROGMEM ei_combo[] = {KC_E, KC_I, COMBO_END};
 const uint16_t PROGMEM gh_combo[] = {KC_G, KC_H, COMBO_END};
 const uint16_t PROGMEM vm_combo[] = {KC_V, KC_M, COMBO_END};
 const uint16_t PROGMEM cm_combo[] = {KC_C, KC_M, COMBO_END};
 const uint16_t PROGMEM ty_combo[] = {KC_T, KC_Y, COMBO_END};
-const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM vb_combo[] = {KC_V, KC_B, COMBO_END};
-const uint16_t PROGMEM nm_combo[] = {KC_N, KC_M, COMBO_END};
+const uint16_t PROGMEM bn_combo[] = {KC_B, KC_N, COMBO_END};
+const uint16_t PROGMEM fj_combo[] = {KC_F, KC_J, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
 [RU_ENT] = COMBO(ru_combo, KC_ENT),
-[EI_BSP] = COMBO(ei_combo, CTLBSP),
 [GH_QUOT] = COMBO(gh_combo, KC_QUOT),
 [VM_QUES] = COMBO(vm_combo, KC_QUES),
 [CM_DQUO] = COMBO(cm_combo, KC_DQUO),
 [TY_COLN] = COMBO(ty_combo, KC_COLN),
-[DF_BTN1] = COMBO(df_combo, KC_BTN1),
-[JK_BTN2] = COMBO(jk_combo, KC_BTN2),
-[VB_WHD] = COMBO(vb_combo, KC_WH_D),
-[NM_WHU] = COMBO(nm_combo, KC_WH_U)
+[BN_UNDS] = COMBO(bn_combo, KC_UNDS),
+[FJ_MINS] = COMBO(fj_combo, KC_MINS),
 };
+
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LWRSPC:
@@ -192,15 +166,6 @@ void dance_qmk_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void dance_link_finished(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-      SEND_STRING(":checkpinsbich: "SS_TAP(X_ENTER));
-      SEND_STRING("https://www.mechmap.tech/themap"SS_TAP(X_ENTER));
-    } else {
-      SEND_STRING("NovelKeys Inventory Updates - https://novelkeys.xyz/pages/inventory"SS_TAP(X_ENTER));
-    }
-}
-
 void dance_doc_finished(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
       SEND_STRING("https://docs.qmk.fm/#/newbs_getting_started");
@@ -212,8 +177,7 @@ void dance_doc_finished(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     [HAP_SAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_pep_finished, NULL),
     [QMK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_qmk_finished, NULL),
-    [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_link_finished, NULL),
-    [LINKS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_doc_finished, NULL),
+    [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_doc_finished, NULL),
 };
 #endif
 
@@ -435,7 +399,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-
       case MT(MOD_RSFT, KC_F24):
         if (record->tap.count > 0) {
           if (record->event.pressed) {
@@ -450,13 +413,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case UNIT:
         if (record->event.pressed) {
           send_unicode_string("(＾▽＾)");
-        } else {
-        }
-        break;
-
-      case CTLS:
-        if (record->event.pressed) {
-         SEND_STRING(SS_DOWN(X_LGUI)SS_TAP(X_S)SS_UP(X_LGUI));
         } else {
         }
         break;
@@ -489,84 +445,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-      case WIDHAP:
-        if (record->event.pressed) {
-            SEND_STRING(":widepeepohappy1"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepohappy2"SS_TAP(X_ENTER)SS_TAP(X_BSPC)SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case WIDSAD:
-        if (record->event.pressed) {
-            SEND_STRING(":widepeeposad1"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeeposad2"SS_TAP(X_ENTER)SS_TAP(X_BSPC)SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case SSH_PI:
-        if (record->event.pressed) {
-            SEND_STRING("ssh pi@applepi.local"SS_TAP(X_ENTER) SS_DELAY(2000) "Rasp91111"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case GIT:
-        if (record->event.pressed) {
-          SEND_STRING("https://github.com/qmk/qmk_firmware/find/master"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case SETUP:
-        if (record->event.pressed) {
-          SEND_STRING("https://docs.qmk.fm/#/newbs_getting_started");
-        } else {
-        }
-        break;
-
-      case ZAD:
-        if (record->event.pressed) {
-          SEND_STRING("https://docs.qmk.fm/#/driver_installation_zadig");
-        } else {
-        }
-        break;
-
-      case CONF:
-        if (record->event.pressed) {
-          SEND_STRING("https://config.qmk.fm/#/"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case MMAP:
-        if (record->event.pressed) {
-            SEND_STRING(":checkpinsbich:"SS_TAP(X_ENTER)SS_TAP(X_ENTER));
-            SEND_STRING("https://www.mechmap.tech/themap"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case NKINV:
-        if (record->event.pressed) {
-            SEND_STRING("NovelKeys Inventory Updates - https://novelkeys.xyz/pages/inventory");
-        } else {
-        }
-        break;
-
-      case VIA:
-        if (record->event.pressed) {
-            SEND_STRING("https://caniusevia.com/docs/download_firmware"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
-      case CD1:
-        if (record->event.pressed) {
-          SEND_STRING("cd /c/Users/apple/qmk_firmware"SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
-
       case KC_NOMODE ... KC_ZALGO:
           if (record->event.pressed) {
             typing_mode = keycode - KC_REGIONAL;
@@ -586,16 +464,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-      case CAD:
-        if (record->event.pressed) {
-          SEND_STRING(SS_LCTL(SS_LALT(SS_TAP(X_BSPC))));
-          return false;
-        }
-        break;
-
       case MAKE:
         if (!record->event.pressed) {
-          //SEND_STRING("cd /c/Users/apple/qmk_firmware"SS_TAP(X_ENTER)SS_DELAY(500));
           SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP
 #if (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
                           ":dfu"
@@ -621,8 +491,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
           if (typing_mode == TM_AUSSIE) {return process_record_aussie(temp_keycode, record);}
           if (typing_mode == TM_ZALGO) {return process_record_zalgo(temp_keycode, record);}
-          //if (typing_mode == MODE_WOWMODE) {return process_record_glyph_replacement(keycode, record, unicode_range_translator_wowmode);}
-          //if (typing_mode == MODE_D3MODE) {return process_record_glyph_replacement(keycode, record, unicode_range_translator_d3mode);}
       }
   }
     return true;
