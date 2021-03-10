@@ -17,8 +17,8 @@
 #pragma once
 #include "quantum.h"
 #include <stdio.h>
-#define BONGO_LAYERS
-//#define MAIN
+//#define BONGO_LAYERS
+#define MAIN
 //#define FELIX
 uint32_t anim_timer = 0;
 uint32_t anim_sleep = 0;
@@ -52,7 +52,7 @@ bool showedJump = true;
 #endif
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return 0;
+    return 1;
     return rotation;
 }
 
@@ -66,10 +66,10 @@ void render_wpm(void) {
         oled_write(wpm_string, false);
 };
 
-#    define KEYLOG_LEN 5
-char     keylog_str[KEYLOG_LEN] = {};
-uint8_t  keylogs_str_idx        = 0;
-uint16_t log_timer              = 0;
+#define KEYLOG_LEN 5
+char keylog_str[KEYLOG_LEN] = {};
+uint8_t  keylogs_str_idx = 0;
+uint16_t log_timer = 0;
 static uint32_t oled_timer      = 0;
 
 const char code_to_name[60] = {
@@ -77,7 +77,7 @@ const char code_to_name[60] = {
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    'R', 'E', '<', 'T', '_', '-', '=', '[', ']', '\\',
+    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
     '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
 void add_keylog(uint16_t keycode) {
@@ -102,11 +102,11 @@ void update_log(void) {
     }
 }
 
-void render_keylogger_status(void) {
+void render_keylogger(void) {
     oled_write(keylog_str, false);
 }
 
-void render_klgr(void) {
+void render_keylogger_status(void) {
     bool blink = (timer_read() % 1000) < 500;
     oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
 }
@@ -574,6 +574,7 @@ void render_secondary(void) {
 
 #ifdef MAIN
 void render_main(void) {
+    update_log();
     oled_set_cursor(0, 0);
     render_wpm();
     oled_set_cursor(0, 3);
@@ -586,9 +587,9 @@ void render_main(void) {
     render_mod_status();
     oled_set_cursor(0, 13);
     render_keylock_status(host_keyboard_leds());
-    oled_set_cursor(0, 15);
-    render_klgr();
     oled_set_cursor(1, 15);
+    render_keylogger();
+    oled_set_cursor(0, 15);
     render_keylogger_status();
 }
 #endif
