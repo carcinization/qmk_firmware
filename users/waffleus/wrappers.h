@@ -26,7 +26,6 @@
          \/____/                  \|___|                   \|___|                   ~~                       ~~
 */
 
-
 #define ________________CRKBDQWERTY1_______________ QMKTD, ALTQ, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, GPSCR
 #define ________________CRKBDQWERTY2_______________ ALT_TAB, SFA, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, SFCLN, KC_MPLY
 #define ________________CRKBDQWERTY3_______________ CP_PSTE, CTLZ, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, CTLSLH, CTLS
@@ -42,6 +41,11 @@
 #define ________________CRKBDRAISE3________________ UC_M_LN, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,           UNIT,      UNIT3,     UNIT4, RWORD, SPONG, CMB_TOG
 #define ________________CRKBDRAISE4________________ KC_PGDN, KC_MS_D, KC_VOLD, KC_BSPC, KC_TRNS, KC_RALT
 
+#define _______________CRKBDADJUST1________________ RGB_TOG, RGB_M_P, RGB_M_G, RGB_HUD, RGB_HUI, RGB_SPI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TGADJ
+#define _______________CRKBDADJUST2________________ RGB_MOD, RGB_M_B, RGB_M_K, RGB_SAD, RGB_SAI, RGB_SPD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define _______________CRKBDADJUST3________________ RGB_RMOD, RGB_M_R, RGB_M_SW, RGB_VAD, RGB_VAI, RGBRST, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define _______________CRKBDADJUST4________________ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+
 /*
 ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
  _____/\\\\/\\\\____        ___/\\\\\\\\\\\\\__        _\////////////\\\__
@@ -54,6 +58,24 @@ ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
         _________\//////___        _\///________\///__        _\///////////////__
 */
 
+#define ________________QAZQWERTY1_________________ ALTQ, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, ALTP
+#define ________________QAZQWERTY2_________________ SFA, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, SFL, KC_BSPC
+#define ________________QAZQWERTY3_________________ CTLZ, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, CTLDOT
+#define ___________QAZQWERTY4_BIGSPACE_____________ QMKTD, KC_LGUI, LWRSPC, KC_RALT, RAISE
+#define ___________QAZQWERTY4_SPLITSPACE___________ QMKTD, KC_LALT, KC_LGUI, LWRSPC, RAISE, KC_RGUI, KC_RALT, DOCSTD
+
+#define _________________QAZLOWER1_________________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
+#define _________________QAZLOWER2_________________ SFEXM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, SFPRN
+#define _________________QAZLOWER3_________________ CTLESC, KC_TAB, KC_CAPS, KC_TILD, KC_GRV, KC_LEFT, KC_UP, KC_DOWN, KC_RGHT
+#define ___________QAZLOWER4_BIGSPACE______________ KC_SCLN, KC_LGUI, KC_TRNS, KC_RGUI, KC_SLSH,
+#define ___________QAZLOWER4_SPLITSPACE____________ HAPSAD, KC_LALT, KC_LGUI, KC_TRNS, KC_SLSH, KC_RGUI, KC_RALT, WEEB
+
+#define _________________QAZRAISE1_________________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, KC_SCRIPT, KC_BLOCKS, KC_WIDE, KC_AUSSIE, KC_NOMODE
+#define _________________QAZRAISE2_________________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, RGB_RMOD, RGB_MOD, RGB_HUD, RGB_HUI, RGB_TOG
+#define _________________QAZRAISE3_________________ KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9
+#define ____________QAZRAISE4_BIGSPACE_____________ KC_SCLN, KC_LGUI, UNIT, KC_RALT, KC_TRNS
+#define ____________QAZRAISE4_SPLITSPACE___________ UNIT, UNIT2, KC_LGUI, KC_SCLN, KC_TRNS, KC_RGUI, UNIT3, UNIT4
+
 
 /*
 ███╗   ███╗██╗ ██████╗██████╗  ██████╗ ██████╗  ██████╗ ██╗  ██╗
@@ -62,8 +84,8 @@ ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
 ██║╚██╔╝██║██║██║     ██╔══██╗██║   ██║██║  ██║██║   ██║ ██╔██╗
 ██║ ╚═╝ ██║██║╚██████╗██║  ██║╚██████╔╝██████╔╝╚██████╔╝██╔╝ ██╗
 ╚═╝     ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-
 */
+
 
 /*
    ___    ___    ____   __  ___   ____        ____

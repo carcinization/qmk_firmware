@@ -1,4 +1,5 @@
 #pragma once
+#include "waffleus.h"
 
 enum combos {
   RU_ENT,
@@ -62,7 +63,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 
     case ADJMD:
         if (pressed) {
-            layer_on(_ADJUST);
+            layer_on(4);
         }
         break;
   }

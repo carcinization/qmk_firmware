@@ -16,17 +16,18 @@ enum layers {
     _QWERTY,
     _LOWER,
     _RAISE,
-    _ADJUST
+    _ADJUST,
 };
 
 //---layers---
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-#define MAC DF(_MAC)
-#define WIN DF(_QWERTY)
+#define TGADJ TG(_ADJUST)
+#define LWRSPC LT(_LOWER, KC_SPC)
 //---general---
 #define SFA SFT_T(KC_A)
 #define SFCLN RSFT_T(KC_SCLN)
+#define SFL SFT_T(KC_L)
 #define SFEXM MT(MOD_LSFT, KC_F23)
 #define SFPRN MT(MOD_RSFT, KC_F24)
 #define ALTQ ALT_T(KC_Q)
@@ -36,6 +37,7 @@ enum layers {
 #define CTLZ CTL_T(KC_Z)
 #define CTLESC CTL_T(KC_ESC)
 #define CTLSLH CTL_T(KC_SLSH)
+#define CTLDOT CTL_T(KC_DOT)
 #define CTLS C(KC_S)
 //---mac---
 #define MPSCR G(S(KC_4))
@@ -52,3 +54,5 @@ enum layers {
 #define ZHAP X(SIDE)
 #define ARWUP X(UPAR)
 #define STARX X(STAR)
+
+void dance_pep_finished(qk_tap_dance_state_t *state, void *user_data);
