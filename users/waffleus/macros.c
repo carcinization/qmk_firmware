@@ -198,7 +198,9 @@ bool no_mod_taps = false;
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef OLED_DRIVER_ENABLE
   process_record_user_oled(keycode, record);
+#endif
   temp_keycode = keycode;
     if (keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) {
         temp_keycode &= 0xFF;
@@ -250,6 +252,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
 #endif
 
+#ifdef UNICODEMAP_ENABLE
       case UNIT:
         if (record->event.pressed) {
           send_unicode_string("(＾▽＾)");
@@ -277,6 +280,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
         }
         break;
+#endif
 
       case WEEB:
         if (record->event.pressed) {
