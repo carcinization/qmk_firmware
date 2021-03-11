@@ -1,5 +1,16 @@
 #pragma once
+#include QMK_KEYBOARD_H
 #include "wrappers.h"
+#include "macros.c"
+#ifdef TAP_DANCE_ENABLE
+#include "tapdance.c"
+#endif
+#ifdef COMBO_ENABLE
+#include "combos.c"
+#endif
+#ifdef OLED_DRIVER_ENABLE
+#include "oled.c"
+#endif
 
 enum layers {
     _QWERTY,

@@ -14,7 +14,15 @@ ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
     QUANTUM_LIB_SRC += i2c_master.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
+ifeq ($(strip $(PROTORNE)), yes)
+    OPT_DEFS += -DPROTORNE
+endif
+
+ifeq ($(strip $(WAFFLECRKBD)), yes)
+    OPT_DEFS += -DWAFFLECRKBD
+endif
+
+ifeq ($(strip $(PROTORNE)), yes)
 MCU = STM32F303
 CTPC = yes
 DEBUG_MATRIX_SCAN_RATE_ENABLE = yes
@@ -36,7 +44,7 @@ RGBLIGHT_ENABLE = yes
 NKRO_ENABLE = yes
 endif
 
-ifeq ($(strip $(KEYBOARD)), crkbd/rev1)
+ifeq ($(strip $(WAFFLECRKBD)), yes)
 MCU = atmega32u4
 BOOTLOADER = caterina
 #BOOTLOADER = nano-boot
