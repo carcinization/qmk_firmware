@@ -60,7 +60,7 @@
 #define COMBO_TERM 50
 #endif
 
-#ifdef KEYBOARD_crkbd_rev1_common
+#ifdef PROTORNE
 #undef PRODUCT
 #undef MANUFACTURER
 #define MANUFACTURER Waffle
