@@ -22,7 +22,7 @@ enum layers {
 #define ALTP ALT_T(KC_P)
 //---windows---
 #define GPSCR G(KC_PSCR)
-#define CTLTZ CTL_T(KC_Z)
+#define CTLZ CTL_T(KC_Z)
 #define CTLESC CTL_T(KC_ESC)
 #define CTLSLH CTL_T(KC_SLSH)
 #define CTLS C(KC_S)
