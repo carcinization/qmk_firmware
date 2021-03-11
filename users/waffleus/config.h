@@ -22,6 +22,7 @@
 #define TAPPING_TERM 150
 #define LAYER_STATE_8BIT
 #define USB_POLLING_INTERVAL_MS 1
+#define TAPPING_TERM_PER_KEY
 
 #ifdef OLED_DRIVER_ENABLE
 #define OLED_TIMEOUT 30000
@@ -59,7 +60,7 @@
 #define COMBO_TERM 50
 #endif
 
-#ifdef PROTORNE
+#ifdef KEYBOARD_crkbd_rev1_common
 #undef PRODUCT
 #undef MANUFACTURER
 #define MANUFACTURER Waffle
