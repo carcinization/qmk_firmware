@@ -17,8 +17,8 @@
 #pragma once
 #include "quantum.h"
 #include <stdio.h>
-#define BONGO_LAYERS
-//#define MAIN
+//#define BONGO_LAYERS
+#define MAIN
 //#define FELIX
 uint32_t anim_timer = 0;
 uint32_t anim_sleep = 0;
@@ -52,7 +52,12 @@ bool showedJump = true;
 #endif
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return 0;
+#ifdef BONGO_LAYERS
+    return 2;
+#endif
+#ifdef MAIN
+    return 1;
+#endif
     return rotation;
 }
 
