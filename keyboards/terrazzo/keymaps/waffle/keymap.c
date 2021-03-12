@@ -66,7 +66,8 @@ enum combos {
   CM_DQUO,
   TY_COLN,
   BN_UNDS,
-  FJ_MINS
+  FJ_MINS,
+  XC_CLICK
 };
 
 #define SFA SFT_T(KC_A)
@@ -122,6 +123,7 @@ const uint16_t PROGMEM cm_combo[] = {KC_C, KC_M, COMBO_END};
 const uint16_t PROGMEM ty_combo[] = {KC_T, KC_Y, COMBO_END};
 const uint16_t PROGMEM bn_combo[] = {KC_B, KC_N, COMBO_END};
 const uint16_t PROGMEM fj_combo[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM click_combo[] = {KC_X, KC_C, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
 [RU_ENT] = COMBO(ru_combo, KC_ENT),
@@ -131,7 +133,18 @@ combo_t key_combos[COMBO_COUNT] = {
 [TY_COLN] = COMBO(ty_combo, KC_COLN),
 [BN_UNDS] = COMBO(bn_combo, KC_UNDS),
 [FJ_MINS] = COMBO(fj_combo, KC_MINS),
+[XC_CLICK] = COMBO_ACTION(click_combo),
 };
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case XC_CLICK:
+            if (pressed) {
+                SEND_STRING(SS_DOWN(X_TAB)SS_TAP(X_ENTER)SS_UP(X_TAB)SS_TAP(X_ENTER));
+            }
+            break;
+    }
+}
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
