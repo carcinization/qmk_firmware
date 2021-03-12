@@ -149,7 +149,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LWRSPC:
-            return TAPPING_TERM - 50;
+            return TAPPING_TERM - 40;
         default:
             return TAPPING_TERM;
     }
