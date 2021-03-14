@@ -55,4 +55,6 @@ enum layers {
 #define ARWUP X(UPAR)
 #define STARX X(STAR)
 
-void dance_pep_finished(qk_tap_dance_state_t *state, void *user_data);
+void dance_pep_finished(qk_tap_dance_state_t*, void*);
+void dance_qmk_finished(qk_tap_dance_state_t*, void*);
+void dance_doc_finished(qk_tap_dance_state_t*, void*);
