@@ -31,13 +31,17 @@ __attribute__((weak)) void encoder_update_user(uint8_t index, bool clockwise) {
 #define TAP_SPEED 40
 #define ANIM_FRAME_DURATION 200
 #define ANIM_SIZE 512
+#ifdef OLED_DRIVER_ENABLE
+__attribute__((weak)) oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    return OLED_ROTATION_180;
+}
 
+__attribute__((weak)) void oled_task_user(void) {
 uint32_t anim_timer = 0;
 uint32_t anim_sleep = 0;
 uint8_t current_idle_frame = 0;
 uint8_t current_tap_frame = 0;
 
-static void render_anim(void) {
     static const char PROGMEM idle[IDLE_FRAMES][ANIM_SIZE] = {
 
         {
@@ -135,13 +139,6 @@ static void render_anim(void) {
             }
         }
     }
-}
-#ifdef OLED_DRIVER_ENABLE
-__attribute__((weak)) oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return OLED_ROTATION_180;
-}
 
-__attribute__((weak)) void oled_task_user(void) {
-  render_anim();
 }
 #endif
