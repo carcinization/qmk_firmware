@@ -13,7 +13,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "lck751.h"
 
 __attribute__((weak)) void encoder_update_user(uint8_t index, bool clockwise) {
@@ -25,8 +24,6 @@ __attribute__((weak)) void encoder_update_user(uint8_t index, bool clockwise) {
         }
     }
 }
-
-//extern uint8_t is_master;
 
 #define IDLE_FRAMES 5
 #define IDLE_SPEED 30
