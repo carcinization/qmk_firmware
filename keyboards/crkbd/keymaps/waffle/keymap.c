@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //---------+--------+--------+--------+--------+------|                 |--------+--------+--------+--------+--------+---------|
        MAC_PSTE, CMDZ,  KC_X,    KC_C,    KC_V,    KC_B,                     KC_N,   KC_M,     KC_COMM,  KC_DOT,  CMDSLSH, CMDS,
     //---------+--------+--------+--------+--------+--------+----|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_MS_L, LOWER, KC_SPC,   KC_BSPC, RAISE,   KC_MS_R
+                                           KC_MS_L, LOWER, RGB_TOG,   KC_BSPC, RAISE,   KC_MS_R
                                       //|------------------------|  |--------------------------|
   ),
 
@@ -108,6 +108,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //|---------------------------|  |---------------------------------------|
   )
 };
+
+#ifdef RGBLIGHT_ENABLE
+void keyboard_post_init_user(void) {
+  rgblight_enable_noeeprom();
+  rgblight_sethsv_noeeprom(HSV_CYAN);
+  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+}
+#endif
 
 /*
   [BLANK] = LAYOUT(

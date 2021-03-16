@@ -43,5 +43,5 @@
 
 #ifdef COMBO_ENABLE
   #define COMBO_COUNT 7
-  #define COMBO_TERM 50
+  #define COMBO_TERM 43
 #endif
