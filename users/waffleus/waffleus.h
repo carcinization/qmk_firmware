@@ -1,7 +1,7 @@
 #pragma once
 #include QMK_KEYBOARD_H
 #include "wrappers.h"
-#include "macros.c"
+/*#include "macros.c"
 #ifdef TAP_DANCE_ENABLE
 #include "tapdance.c"
 #endif
@@ -10,7 +10,7 @@
 #endif
 #ifdef OLED_DRIVER_ENABLE
 #include "oled.c"
-#endif
+#endif*/
 
 enum layers {
     _QWERTY,
