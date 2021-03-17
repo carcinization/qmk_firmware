@@ -16,6 +16,67 @@
 
 #pragma once
 
+typedef struct {
+    bool is_press_action;
+    uint8_t state;
+} tap;
+
+enum {
+    SINGLE_TAP = 1,
+    SINGLE_HOLD,
+    DOUBLE_TAP,
+    DOUBLE_HOLD,
+    DOUBLE_SINGLE_TAP,
+    TRIPLE_TAP,
+    TRIPLE_HOLD
+};
+
+uint8_t cur_dance(qk_tap_dance_state_t *state);
+void msgui_finished(qk_tap_dance_state_t *state, void *user_data);
+void msgui_reset(qk_tap_dance_state_t *state, void *user_data);
+
+uint8_t cur_dance(qk_tap_dance_state_t *state) {
+    if (state->count == 1) {
+        if (state->interrupted || !state->pressed) return SINGLE_TAP;
+        else return SINGLE_HOLD;
+    } else if (state->count == 2) {
+        if (state->interrupted) return DOUBLE_SINGLE_TAP;
+        else if (state->pressed) return DOUBLE_HOLD;
+        else return DOUBLE_TAP;
+    }
+    if (state->count == 3) {
+        if (state->interrupted || !state->pressed) return TRIPLE_TAP;
+        else return TRIPLE_HOLD;
+    } else return 8;
+}
+
+static tap msgui_tap_state = {
+    .is_press_action = true,
+    .state = 0
+};
+
+void msgui_finished(qk_tap_dance_state_t *state, void *user_data) {
+    msgui_tap_state.state = cur_dance(state);
+    switch (msgui_tap_state.state) {
+        case SINGLE_TAP: register_code(KC_LGUI); break;
+        case SINGLE_HOLD: register_code16(KC_MS_L); break;
+        case DOUBLE_TAP: register_code(KC_LGUI); break;
+        case DOUBLE_HOLD: register_code16(KC_MS_L); break;
+        case DOUBLE_SINGLE_TAP: tap_code(KC_LGUI); register_code(KC_LGUI);
+    }
+}
+
+void msgui_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (msgui_tap_state.state) {
+        case SINGLE_TAP: unregister_code(KC_LGUI); break;
+        case SINGLE_HOLD: unregister_code16(KC_MS_L); break;
+        case DOUBLE_TAP: unregister_code(KC_LGUI); break;
+        case DOUBLE_HOLD: unregister_code16(KC_MS_L);
+        case DOUBLE_SINGLE_TAP: unregister_code(KC_LGUI);
+    }
+    msgui_tap_state.state = 0;
+}
+
 void dance_pep_finished(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
       SEND_STRING(":widepeepohappy1"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":widepeepohappy2"SS_TAP(X_ENTER)SS_TAP(X_BSPC)SS_TAP(X_ENTER));
@@ -44,5 +105,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [HAP_SAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_pep_finished, NULL),
     [QMK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_qmk_finished, NULL),
     [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_doc_finished, NULL),
+    [MSLGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, msgui_finished, msgui_reset)
 };
 
