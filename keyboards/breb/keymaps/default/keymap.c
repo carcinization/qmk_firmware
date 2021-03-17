@@ -91,15 +91,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (clockwise) {
-            tap_code16(KC_VOLU);
+            tap_code16(C(S(KC_TAB)));
         } else {
-            tap_code16(KC_VOLD);
+            tap_code16(C(KC_TAB));
         }
     } else if (index == 1) {
         if (clockwise) {
-            tap_code16(KC_3);
+            tap_code(KC_VOLU);
         } else {
-            tap_code16(KC_H);
+            tap_code(KC_VOLD);
         }
     }
 }
