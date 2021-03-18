@@ -364,7 +364,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
           if (!is_alt_tab_active) {
             is_alt_tab_active = true;
-            register_code(KC_LGUI);
+            register_code(KC_LALT);
           }
           alt_tab_timer = timer_read();
           register_code(KC_TAB);
@@ -421,7 +421,7 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_scan_user(void) {
   if (is_alt_tab_active) {
     if (timer_elapsed(alt_tab_timer) > 1000) {
-      unregister_code(KC_LGUI);
+      unregister_code(KC_LALT);
       is_alt_tab_active = false;
     }
   }

@@ -32,9 +32,10 @@ enum unicodemap_names {
 };
 
 enum {
-  HAP_SAD,
-  QMK,
-  DOCS,
+    MSGUI,
+    HAP_SAD,
+    QMK,
+    DOCS
 };
 
 enum typing_mode {
@@ -99,6 +100,7 @@ enum custom_keycodes {
 #define HAPSAD TD(HAP_SAD)
 #define DOCSTD TD(DOCS)
 #define QMKTD TD(QMK)
+#define MSGTD TD(MSLGUI)
 //---unicode---
 #define ZHAP X(SIDE)
 #define ARWUP X(UPAR)
