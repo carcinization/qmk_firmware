@@ -100,7 +100,7 @@ enum custom_keycodes {
 #define HAPSAD TD(HAP_SAD)
 #define DOCSTD TD(DOCS)
 #define QMKTD TD(QMK)
-#define MSGTD TD(MSLGUI)
+#define MSGTD TD(MSGUI)
 //---unicode---
 #define ZHAP X(SIDE)
 #define ARWUP X(UPAR)

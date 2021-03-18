@@ -105,5 +105,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [HAP_SAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_pep_finished, NULL),
     [QMK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_qmk_finished, NULL),
     [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_doc_finished, NULL),
-    [MSLGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, msgui_finished, msgui_reset)
+    [MSGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, msgui_finished, msgui_reset)
 };
