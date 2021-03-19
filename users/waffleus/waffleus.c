@@ -11,6 +11,15 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LWRSPC:
+            return TAPPING_TERM - 40;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
 #ifdef RGBLIGHT_LAYERS
 const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 12, HSV_PURPLE}

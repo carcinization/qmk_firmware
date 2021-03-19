@@ -1,10 +1,11 @@
-SRC += waffleus.c
+SRC += waffleus.c \
+		combos.c
 
 BOOTMAGIC_ENABLE = lite
 EXTRAKEY_ENABLE = yes
 MOUSEKEY_ENABLE = yes
 COMBO_ENABLE = yes
-TAP_DANCE_ENABLE = yes
+TAP_DANCE_ENABLE = no
 AUTO_SHIFT_ENABLE = no
 LTO_ENABLE = yes
 ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
