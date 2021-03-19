@@ -1,6 +1,5 @@
 #pragma once
 #include "waffleus.h"
-
 typedef struct {
     bool is_press_action;
     uint8_t state;
@@ -20,7 +19,7 @@ enum custom_tapdances {
     MSLGUI,
     HAP_SAD,
     QMK,
-    DOCS
+    DOCS,
 };
 
 uint8_t cur_dance(qk_tap_dance_state_t *state);
