@@ -1,5 +1,6 @@
 SRC += waffleus.c \
-		combos.c
+		combos.c \
+		tapdance.c
 
 BOOTMAGIC_ENABLE = lite
 EXTRAKEY_ENABLE = yes

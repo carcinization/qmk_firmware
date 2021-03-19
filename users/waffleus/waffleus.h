@@ -1,6 +1,7 @@
 #pragma once
 #include QMK_KEYBOARD_H
 #include "wrappers.h"
+#include "tapdance.h"
 
 enum layers {
     _QWERTY,
@@ -36,4 +37,9 @@ enum layers {
 #define CMDESC CMD_T(KC_ESC)
 #define CMDSLSH CMD_T(KC_SLSH)
 #define CMDS G(KC_S)
+//---tap dance---
+#define HAPSAD TD(HAP_SAD)
+#define DOCSTD TD(DOCS)
+#define QMKTD TD(QMK)
+#define MSGTD TD(MSLGUI)
 

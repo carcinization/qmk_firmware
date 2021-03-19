@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "waffleus.h"
-#include "macros.h"
+#include "combos.h"
 
 const uint16_t PROGMEM ru_combo[] = {KC_R, KC_U, COMBO_END};
 const uint16_t PROGMEM gh_combo[] = {KC_G, KC_H, COMBO_END};

@@ -61,14 +61,14 @@ ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
 #define ________________QAZQWERTY1_________________ ALTQ, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, ALTP
 #define ________________QAZQWERTY2_________________ SFA, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, SFL, KC_BSPC
 #define ________________QAZQWERTY3_________________ CTLZ, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, CTLDOT
-#define ___________QAZQWERTY4_BIGSPACE_____________ /*QMKTD*/KC_TRNS, KC_LGUI, LWRSPC, KC_RALT, RAISE
-#define ___________QAZQWERTY4_SPLITSPACE___________ /*QMKTD*/KC_TRNS, KC_LALT, KC_LGUI, LWRSPC, RAISE, KC_RGUI, KC_RALT, /*DOCSTD*/KC_TRNS
+#define ___________QAZQWERTY4_BIGSPACE_____________ QMKTD, KC_LGUI, LWRSPC, KC_RALT, RAISE
+#define ___________QAZQWERTY4_SPLITSPACE___________ QMKTD, KC_LALT, KC_LGUI, LWRSPC, RAISE, KC_RGUI, KC_RALT, DOCSTD
 
 #define _________________QAZLOWER1_________________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
 #define _________________QAZLOWER2_________________ SFEXM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, SFPRN
 #define _________________QAZLOWER3_________________ CTLESC, KC_TAB, KC_CAPS, KC_TILD, KC_GRV, KC_LEFT, KC_UP, KC_DOWN, KC_RGHT
 #define ___________QAZLOWER4_BIGSPACE______________ KC_SCLN, KC_LGUI, KC_TRNS, KC_RGUI, KC_SLSH,
-#define ___________QAZLOWER4_SPLITSPACE____________ /*HAPSAD*/KC_TRNS, KC_LALT, KC_LGUI, KC_TRNS, KC_SLSH, KC_RGUI, KC_RALT, /*WEEB*/KC_TRNS
+#define ___________QAZLOWER4_SPLITSPACE____________ HAPSAD, KC_LALT, KC_LGUI, KC_TRNS, KC_SLSH, KC_RGUI, KC_RALT, /*WEEB*/KC_TRNS
 
 #define _________________QAZRAISE1_________________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, /*KC_SCRIPT, KC_BLOCKS, KC_WIDE, KC_AUSSIE, KC_NOMODE*/KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define _________________QAZRAISE2_________________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, RGB_RMOD, RGB_MOD, RGB_HUD, RGB_HUI, RGB_TOG
