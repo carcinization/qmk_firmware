@@ -21,6 +21,10 @@
 #include "pointing_device.h"
 #include "oled.c"
 bool show_img = false;
+static bool bsdel_mods = false;
+static bool flipeql_mods = false;
+uint16_t bc = KC_BSPC;
+uint16_t pc = KC_PLUS;
 
 #ifdef TAP_DANCE_ENABLE
 typedef struct {
@@ -50,6 +54,8 @@ void cap_reset(qk_tap_dance_state_t *state, void *user_data);
 enum custom_keycodes {
     BREAD = SAFE_RANGE,
     RTEST,
+    FLIPEQL,
+    BSDEL
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -76,12 +82,41 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             anim_sleep = timer_read32();
             return true;
 #endif
-
         case RTEST:
             if (record->event.pressed) {
                 show_img ^= 1;
             }
             break;
+
+        case BSDEL:
+            if (record->event.pressed) {
+                if (keyboard_report->mods) {
+                    bc = KC_DEL;
+                }
+                register_code(bc);
+                bsdel_mods = keyboard_report->mods;
+            }
+            else {
+                if (bsdel_mods) {
+                    bc = KC_DEL;
+                }
+                unregister_code(bc);
+            }
+
+        case FLIPEQL:
+            if (record->event.pressed) {
+                if (keyboard_report->mods) {
+                    pc = KC_EQL;
+                }
+                register_code(pc);
+                flipeql_mods = keyboard_report->mods;
+            } else {
+                if (flipeql_mods) {
+                    pc = KC_EQL;
+                }
+                unregister_code(pc);
+            }
+
     }
     return true;
 };
