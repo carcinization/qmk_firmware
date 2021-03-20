@@ -10,6 +10,14 @@ enum layers {
     _ADJUST,
 };
 
+enum unicodemap_names {
+    SIDE,
+    UPAR,
+    HAS,
+    STAR,
+    VIB
+};
+
 //---layers---
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -42,4 +50,7 @@ enum layers {
 #define DOCSTD TD(DOCS)
 #define QMKTD TD(QMK)
 #define MSGTD TD(MSLGUI)
-
+//---unicode---
+#define ZHAP X(SIDE)
+#define ARWUP X(UPAR)
+#define STARX X(STAR)

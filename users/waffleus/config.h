@@ -26,7 +26,7 @@
 
 #ifdef OLED_DRIVER_ENABLE
 #define OLED_TIMEOUT 30000
-#define OLED_FONT_H "users/waffleus/glcdfont.c"
+#define OLED_FONT_H "users/waffleus/oledfonts.c"
 #endif
 
 #ifdef UNICODEMAP_ENABLE
