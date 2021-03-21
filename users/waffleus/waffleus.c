@@ -47,6 +47,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 #endif
 
+#ifdef RGBLIGHT_ENALBE
 void keyboard_post_init_user(void) {
     rgblight_enable_noeeprom();
     rgblight_sethsv_noeeprom(HSV_CYAN);
@@ -55,6 +56,7 @@ void keyboard_post_init_user(void) {
     rgblight_layers = my_rgb_layers;
 #endif
 }
+#endif
 
 #ifdef UNICODEMAP_ENABLE
 const uint32_t PROGMEM unicode_map[] = {

@@ -1,6 +1,7 @@
 #pragma once
 #include "waffleus.h"
-#define LAYOUT_waffle(...) LAYOUT(__VA_ARGS__)
+#define LAYOUT_waffle_qaz(...) LAYOUT(__VA_ARGS__)
+#define LAYOUT_waffle_ortho(...) LAYOUT_ortho_4x12(__VA_ARGS__)
 
 /*
           _____                    _____                    _____                    _____                    _____
@@ -76,7 +77,6 @@ ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
 #define ____________QAZRAISE4_BIGSPACE_____________ KC_SCLN, KC_LGUI, UNIT, KC_RALT, KC_TRNS
 #define ____________QAZRAISE4_SPLITSPACE___________ /*UNIT*/KC_TRNS, /*UNIT2*/KC_TRNS, KC_LGUI, KC_SCLN, KC_TRNS, KC_RGUI, /*UNIT3*/KC_TRNS, /*UNIT4*/KC_TRNS
 
-
 /*
 ███╗   ███╗██╗ ██████╗██████╗  ██████╗ ██████╗  ██████╗ ██╗  ██╗
 ████╗ ████║██║██╔════╝██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗╚██╗██╔╝
@@ -93,3 +93,34 @@ ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
  / ___/ / , _/ _/ /   / /|_/ /  / _/  /___/ / _/
 /_/    /_/|_| /___/  /_/  /_/  /___/       /___/
 */
+
+/*
+                                               tttt
+                                            ttt:::t
+                                            t:::::t
+                                            t:::::t
+    eeeeeeeeeeee  xxxxxxx      xxxxxxxttttttt:::::ttttttt   rrrrr   rrrrrrrrr   aaaaaaaaaaaaa
+  ee::::::::::::ee x:::::x    x:::::x t:::::::::::::::::t   r::::rrr:::::::::r  a::::::::::::a
+ e::::::eeeee:::::eex:::::x  x:::::x  t:::::::::::::::::t   r:::::::::::::::::r aaaaaaaaa:::::a
+e::::::e     e:::::e x:::::xx:::::x   tttttt:::::::tttttt   rr::::::rrrrr::::::r         a::::a
+e:::::::eeeee::::::e  x::::::::::x          t:::::t          r:::::r     r:::::r  aaaaaaa:::::a
+e:::::::::::::::::e    x::::::::x           t:::::t          r:::::r     rrrrrrraa::::::::::::a
+e::::::eeeeeeeeeee     x::::::::x           t:::::t          r:::::r           a::::aaaa::::::a
+e:::::::e             x::::::::::x          t:::::t    ttttttr:::::r          a::::a    a:::::a
+e::::::::e           x:::::xx:::::x         t::::::tttt:::::tr:::::r          a::::a    a:::::a
+ e::::::::eeeeeeee  x:::::x  x:::::x        tt::::::::::::::tr:::::r          a:::::aaaa::::::a
+  ee:::::::::::::e x:::::x    x:::::x         tt:::::::::::ttr:::::r           a::::::::::aa:::a
+    eeeeeeeeeeeeeexxxxxxx      xxxxxxx          ttttttttttt  rrrrrrr            aaaaaaaaaa  aaaa
+*/
+
+#define ______________DEFAULTQWERTY1_______________ ALTQ, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, ALTP
+#define ______________DEFAULTQWERTY2_______________ SFA, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, SFL, KC_BSPC
+#define ______________DEFAULTQWERTY3_______________ CTLZ, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, CTLDOT
+
+#define ______________DEFAULTLOWER1_______________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
+#define ______________DEFAULTLOWER2_______________ SFEXM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, SFPRN
+#define ______________DEFAULTLOWER3_______________ CTLESC, KC_TAB, KC_CAPS, KC_TILD, KC_GRV, KC_LEFT, KC_UP, KC_DOWN, KC_RIGHT, KC_LCTL
+
+#define ______________DEFAULTRAISE1_______________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS
+#define ______________DEFAULTRAISE2_______________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE
+#define ______________DEFAULTRAISE3_______________ KC_F1, KC_F2, KC_F3, KC_F4, KC_F5

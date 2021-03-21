@@ -17,7 +17,7 @@
 
 void matrix_init_kb(void) {
 	led_init_ports();
-  
+
 	matrix_init_user();
 };
 
@@ -29,15 +29,15 @@ void led_init_ports(void) {
     // * Set our LED pins as output and high
     setPinOutput(F5);
     writePinHigh(F5);
-    
+
     setPinOutput(F4);
     writePinLow(F4);
 }
 
-bool led_update_kb(led_t led_state) {
+/*bool led_update_kb(led_t led_state) {
     if(led_update_user(led_state)) {
         writePin(F5, !led_state.caps_lock);
     }
 
     return true;
-}
+}*/
