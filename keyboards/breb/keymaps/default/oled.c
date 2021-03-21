@@ -17,8 +17,8 @@
 #pragma once
 #include "quantum.h"
 #include <stdio.h>
-//#define BONGO_LAYERS
-#define MAIN
+#define BONGO_LAYERS
+//#define MAIN
 //#define FELIX
 uint32_t anim_timer = 0;
 uint32_t anim_sleep = 0;
