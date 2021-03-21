@@ -1,6 +1,6 @@
 MCU = STM32F303
 CTPC = yes
-DEBUG_MATRIX_SCAN_RATE_ENABLE = yes #Outputs matrix scan rate in QMK Toolbox
+DEBUG_MATRIX_SCAN_RATE_ENABLE = no #Outputs matrix scan rate in QMK Toolbox
 SERIAL_DRIVER = usart
 WS2812_DRIVER = pwm
 #PWM needs patch to <https://github.com/qmk/qmk_firmware/blob/master/platforms/chibios/GENERIC_STM32_F303XC/configs/proton_c.mk>, otherwise defaults to bitbang.

@@ -567,23 +567,27 @@ void render_secondary(void) {
 }
 
 void render_main(void) {
-    update_log();
-    oled_set_cursor(0, 0);
-    render_wpm();
-    oled_set_cursor(0, 3);
-    render_qmk_logo();
-    oled_set_cursor(0, 7);
-    render_keyboard();
-    oled_set_cursor(0, 9);
-    render_prompt();
-    oled_set_cursor(0, 11);
-    render_mod_status();
-    oled_set_cursor(0, 13);
-    render_keylock_status(host_keyboard_leds());
-    oled_set_cursor(1, 15);
-    render_keylogger();
-    oled_set_cursor(0, 15);
-    render_keylogger_status();
+    if (get_current_wpm() != 000) {
+        update_log();
+        oled_set_cursor(0, 0);
+        render_wpm();
+        oled_set_cursor(0, 3);
+        render_qmk_logo();
+        oled_set_cursor(0, 7);
+        render_keyboard();
+        oled_set_cursor(0, 9);
+        render_prompt();
+        oled_set_cursor(0, 11);
+        render_mod_status();
+        oled_set_cursor(0, 13);
+        render_keylock_status(host_keyboard_leds());
+        oled_set_cursor(1, 15);
+        render_keylogger();
+        oled_set_cursor(0, 15);
+        render_keylogger_status();
+    } else {
+        oled_off();
+    }
 }
 
 void oled_task_user(void) {
