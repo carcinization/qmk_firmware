@@ -32,7 +32,7 @@ enum unicodemap_names {
 };
 
 enum {
-    MSGUI,
+    MSLGUI,
     HAP_SAD,
     QMK,
     DOCS
@@ -100,7 +100,7 @@ enum custom_keycodes {
 #define HAPSAD TD(HAP_SAD)
 #define DOCSTD TD(DOCS)
 #define QMKTD TD(QMK)
-#define MSGTD TD(MSGUI)
+#define MSGTD TD(MSLGUI)
 //---unicode---
 #define ZHAP X(SIDE)
 #define ARWUP X(UPAR)
