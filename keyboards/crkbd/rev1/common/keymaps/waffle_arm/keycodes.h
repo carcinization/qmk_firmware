@@ -89,7 +89,7 @@ enum custom_keycodes {
 #define CTLTZ CTL_T(KC_Z)
 #define CTLESC CTL_T(KC_ESC)
 #define CTLSLH CTL_T(KC_SLSH)
-#define CTLS S(KC_S)
+#define CTLS C(KC_S)
 //---mac---
 #define MPSCR G(S(KC_4))
 #define MACTAB G(KC_TAB)
