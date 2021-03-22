@@ -1,4 +1,4 @@
-/* Copyright 2019 Evy Dekkers
+/* Copyright 2020 marksard
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,31 +13,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "pockettype.h"
 
-void matrix_init_kb(void) {
-	led_init_ports();
+#pragma once
 
-	matrix_init_user();
-};
+// place overrides here
+#define TAPPING_TERM 200
+#define IGNORE_MOD_TAP_INTERRUPT
 
-void led_init_ports(void) {
-    // * Enable LED anodes (Vbus pin is replaced by B0 on some boards)
-    setPinOutput(B0);
-    writePinHigh(B0);
-
-    // * Set our LED pins as output and high
-    setPinOutput(F5);
-    writePinHigh(F5);
-
-    setPinOutput(F4);
-    writePinLow(F4);
-}
-
-/*bool led_update_kb(led_t led_state) {
-    if(led_update_user(led_state)) {
-        writePin(F5, !led_state.caps_lock);
-    }
-
-    return true;
-}*/
+#define TAPPING_LAYER_TERM 150 // Custom LT Tapping term
+#define TAPPING_TERM_PER_KEY

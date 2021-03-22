@@ -1,4 +1,4 @@
-/* Copyright 2019 Evy Dekkers
+/* Copyright 2020 @wafflekeebs/@waffle#6666
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,31 +13,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "pockettype.h"
 
-void matrix_init_kb(void) {
-	led_init_ports();
+#pragma once
 
-	matrix_init_user();
-};
+#include "quantum.h"
 
-void led_init_ports(void) {
-    // * Enable LED anodes (Vbus pin is replaced by B0 on some boards)
-    setPinOutput(B0);
-    writePinHigh(B0);
-
-    // * Set our LED pins as output and high
-    setPinOutput(F5);
-    writePinHigh(F5);
-
-    setPinOutput(F4);
-    writePinLow(F4);
+#define LAYOUT_split_3x5_3(\
+  k00, k01, k02, k03, k04,    k44, k43, k42, k41, k40, \
+  k10, k11, k12, k13, k14,    k54, k53, k52, k51, k50, \
+  k20, k21, k22, k23, k24,    k64, k63, k62, k61, k60, \
+            k32, k33, k34,    k74, k73, k72            \
+  ) \
+  { \
+    { k00, k01, k02, k03, k04 }, \
+    { k10, k11, k12, k13, k14 }, \
+    { k20, k21, k22, k23, k24 }, \
+    { KC_NO, KC_NO, k32, k33, k34 }, \
+    { k40, k41, k42, k43, k44 }, \
+    { k50, k51, k52, k53, k54 }, \
+    { k60, k61, k62, k63, k64 }, \
+    { KC_NO, KC_NO, k72, k73, k74 } \
 }
-
-/*bool led_update_kb(led_t led_state) {
-    if(led_update_user(led_state)) {
-        writePin(F5, !led_state.caps_lock);
-    }
-
-    return true;
-}*/

@@ -1,4 +1,4 @@
-/* Copyright 2019 Evy Dekkers
+/* Copyright 2020 @wafflekeebs/@waffle#6666
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,31 +13,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "pockettype.h"
 
-void matrix_init_kb(void) {
-	led_init_ports();
+#pragma once
 
-	matrix_init_user();
-};
+#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_SLEEP
 
-void led_init_ports(void) {
-    // * Enable LED anodes (Vbus pin is replaced by B0 on some boards)
-    setPinOutput(B0);
-    writePinHigh(B0);
+#ifdef MOUSEKEY_ENABLE
+#define MOUSEKEY_DELAY 300
+#define MOUSEKEY_INTERVAL 16
+#define MOUSEKEY_MAX_SPEED 5
+#endif
 
-    // * Set our LED pins as output and high
-    setPinOutput(F5);
-    writePinHigh(F5);
+#ifdef UNICODEMAP_ENABLE
+#define UNICODE_SELECTED_MODES UC_WINC, UC_MAC, UC_LNX
+#define UNICODE_CYCLE_PERSIST false
+#endif
 
-    setPinOutput(F4);
-    writePinLow(F4);
-}
+#ifdef AUTOSHIFT_ENABLE
+#define AUTO_SHIFT_MODIFIERS
+#define AUTO_SHIFT_TIMEOUT 170
+#define NO_AUTO_SHIFT_SPECIAL
+#define NO_AUTO_SHIFT_NUMERIC
+#endif
 
-/*bool led_update_kb(led_t led_state) {
-    if(led_update_user(led_state)) {
-        writePin(F5, !led_state.caps_lock);
-    }
+#define IGNORE_MOD_TAP_INTERRUPT
+#define PERMISSIVE_HOLD
+#define TAPPING_TERM 135
 
-    return true;
-}*/
+#ifdef COMBO_ENABLE
+  #define COMBO_COUNT 12
+  #define COMBO_TERM 50
+#endif

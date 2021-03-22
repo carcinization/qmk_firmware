@@ -1,4 +1,4 @@
-/* Copyright 2019 Evy Dekkers
+/* Copyright 2021 @Itswaffle/@waffle#6666
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,31 +13,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "pockettype.h"
 
-void matrix_init_kb(void) {
-	led_init_ports();
+#pragma once
 
-	matrix_init_user();
-};
+#include_next <mcuconf.h>
 
-void led_init_ports(void) {
-    // * Enable LED anodes (Vbus pin is replaced by B0 on some boards)
-    setPinOutput(B0);
-    writePinHigh(B0);
+// #undef STM32_HSE_ENABLED
+// #define STM32_HSE_ENABLED FALSE
 
-    // * Set our LED pins as output and high
-    setPinOutput(F5);
-    writePinHigh(F5);
+// #undef STM32_GPT_USE_TIM15
+// #define STM32_GPT_USE_TIM15                  FALSE
 
-    setPinOutput(F4);
-    writePinLow(F4);
-}
+//#undef STM32_GPT_USE_TIM3
+//#define STM32_GPT_USE_TIM3 FALSE
 
-/*bool led_update_kb(led_t led_state) {
-    if(led_update_user(led_state)) {
-        writePin(F5, !led_state.caps_lock);
-    }
+#undef STM32_PWM_USE_TIM3
+#define STM32_PWM_USE_TIM3 TRUE
 
-    return true;
-}*/
+#undef STM32_SERIAL_USE_USART1
+#define STM32_SERIAL_USE_USART1 TRUE
+
+//#undef STM32_PWM_TIM15_IRQ_PRIORITY
+//#define STM32_PWM_TIM15_IRQ_PRIORITY 16
