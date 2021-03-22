@@ -29,7 +29,8 @@
 //#define MASTER_LEFT
 //#define MASTER_RIGHT
 
-#define USE_SERIAL_PD2
+//#define USE_SERIAL_PD2
+#define USE_SERIAL_MULTI_TRANSACTION
 #define RANDICT //this literally adds 8000 bytes to your compiled firmware
 
 #ifdef RGBLIGHT_ENABLE
