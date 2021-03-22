@@ -142,13 +142,15 @@ void render_mod_gui(void) { // win symbol
 
 void render_prompt(void) {
     bool blink = (timer_read() % 1000) < 500;
-      if (layer_state_is(1)) {
-          oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
-      } else if (layer_state_is(2)) {
-          oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
-      } else {
-          oled_write_ln_P(blink ? PSTR("> _ ") : PSTR(">     "), false);
-      }
+        if (layer_state_is(1)) {
+            oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
+        } else if (layer_state_is(2)) {
+            oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
+        } else if (layer_state_is(3)) {
+            oled_write_ln_P(blink ? PSTR("> ad_") : PSTR("> ad "), false);
+        } else {
+            oled_write_ln_P(blink ? PSTR("> _ ") : PSTR(">     "), false);
+        }
 };
 
 void render_mod_status(void) {
