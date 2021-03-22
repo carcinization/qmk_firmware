@@ -27,8 +27,8 @@ RGBLIGHT_ENABLE = yes
 NKRO_ENABLE = yes
 HAPTIC_ENABLE = no
 #custom transport
-#SPLIT_TRANSPORT = custom
-#QUANTUM_LIB_SRC += users/drashna/drashna_transport.c\
+SPLIT_TRANSPORT = custom
+QUANTUM_LIB_SRC += users/drashna/drashna_transport.c\
 				   i2c_master.c\
 				   serial_usart.c
 #end
