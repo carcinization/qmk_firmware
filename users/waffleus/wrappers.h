@@ -74,7 +74,7 @@ ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
 #define _________________QAZRAISE1_________________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, /*KC_SCRIPT, KC_BLOCKS, KC_WIDE, KC_AUSSIE, KC_NOMODE*/KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define _________________QAZRAISE2_________________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, RGB_RMOD, RGB_MOD, RGB_HUD, RGB_HUI, RGB_TOG
 #define _________________QAZRAISE3_________________ KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9
-#define ____________QAZRAISE4_BIGSPACE_____________ KC_SCLN, KC_LGUI, UNIT, KC_RALT, KC_TRNS
+#define ____________QAZRAISE4_BIGSPACE_____________ KC_SCLN, KC_LGUI, /*UNIT*/KC_TRNS, KC_RALT, KC_TRNS
 #define ____________QAZRAISE4_SPLITSPACE___________ /*UNIT*/KC_TRNS, /*UNIT2*/KC_TRNS, KC_LGUI, KC_SCLN, KC_TRNS, KC_RGUI, /*UNIT3*/KC_TRNS, /*UNIT4*/KC_TRNS
 
 /*
