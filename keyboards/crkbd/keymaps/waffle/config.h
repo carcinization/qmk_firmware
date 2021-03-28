@@ -45,7 +45,7 @@
 #define MOUSEKEY_DELAY 300
 #define MOUSEKEY_INTERVAL 16
 #define MOUSEKEY_MAX_SPEED 5
-#define USE_I2C
+//#define USE_I2C
 #endif
 
 #ifdef BOOTMAGIC_ENABLE
@@ -93,5 +93,3 @@
   #define COMBO_COUNT 17
   #define COMBO_TERM 50
 #endif
-
-

@@ -68,13 +68,13 @@ ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
 #define _________________QAZLOWER1_________________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
 #define _________________QAZLOWER2_________________ SFEXM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, SFPRN
 #define _________________QAZLOWER3_________________ CTLESC, KC_TAB, KC_CAPS, KC_TILD, KC_GRV, KC_LEFT, KC_UP, KC_DOWN, KC_RGHT
-#define ___________QAZLOWER4_BIGSPACE______________ KC_SCLN, KC_LGUI, KC_TRNS, KC_RGUI, KC_SLSH,
+#define ___________QAZLOWER4_BIGSPACE______________ KC_SCLN, KC_LGUI, KC_TRNS, KC_RGUI, KC_SLSH
 #define ___________QAZLOWER4_SPLITSPACE____________ HAPSAD, KC_LALT, KC_LGUI, KC_TRNS, KC_SLSH, KC_RGUI, KC_RALT, /*WEEB*/KC_TRNS
 
 #define _________________QAZRAISE1_________________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, /*KC_SCRIPT, KC_BLOCKS, KC_WIDE, KC_AUSSIE, KC_NOMODE*/KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define _________________QAZRAISE2_________________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, RGB_RMOD, RGB_MOD, RGB_HUD, RGB_HUI, RGB_TOG
 #define _________________QAZRAISE3_________________ KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9
-#define ____________QAZRAISE4_BIGSPACE_____________ KC_SCLN, KC_LGUI, UNIT, KC_RALT, KC_TRNS
+#define ____________QAZRAISE4_BIGSPACE_____________ KC_SCLN, KC_LGUI, /*UNIT*/KC_TRNS, KC_RALT, KC_TRNS
 #define ____________QAZRAISE4_SPLITSPACE___________ /*UNIT*/KC_TRNS, /*UNIT2*/KC_TRNS, KC_LGUI, KC_SCLN, KC_TRNS, KC_RGUI, /*UNIT3*/KC_TRNS, /*UNIT4*/KC_TRNS
 
 /*
