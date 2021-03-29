@@ -1,6 +1,6 @@
 MCU = STM32F303
 CTPC = yes
-DEBUG_MATRIX_SCAN_RATE_ENABLE = no #Outputs matrix scan rate in QMK Toolbox
+DEBUG_MATRIX_SCAN_RATE_ENABLE = yes #Outputs matrix scan rate in QMK Toolbox
 SERIAL_DRIVER = usart
 WS2812_DRIVER = pwm
 #PWM needs patch to <https://github.com/qmk/qmk_firmware/blob/master/platforms/chibios/GENERIC_STM32_F303XC/configs/proton_c.mk>, otherwise defaults to bitbang.
@@ -26,12 +26,12 @@ SPLIT_KEYBOARD = yes
 RGBLIGHT_ENABLE = yes
 NKRO_ENABLE = yes
 HAPTIC_ENABLE = no
-
+#custom transport
+#SPLIT_TRANSPORT = custom
+#QUANTUM_LIB_SRC += users/drashna/drashna_transport.c\
+				   i2c_master.c\
+				   serial_usart.c
+#end
 ifdef POINTING_DEVICE_ENABLE
 	SRC += i2c_master.c
 endif
-
-ifeq ($strip $(WAFFLE)), yes)
-	OPT_DEFS += -DWAFFLE
-endif
-
