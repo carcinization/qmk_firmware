@@ -11,6 +11,7 @@
 #define MATRIX_COL_PINS { F6, F5, F4, B6, B4 }
 #define MATRIX_ROW_PINS_RIGHT { E6, C6, D4, B3 }
 #define MATRIX_COL_PINS_RIGHT { D7, B4, B5, B6, B2 }
+#define UNUSED_PINS
 #define USE_SERIAL
 #define SOFT_SERIAL_PIN D3
 #define RGB_DI_PIN D7
@@ -19,3 +20,4 @@
 #define DEBOUNCE 5
 #define LOCKING_RESYNC_ENABLE
 #define FORCE_NKRO
+#define SPLIT_USB_DETECT
