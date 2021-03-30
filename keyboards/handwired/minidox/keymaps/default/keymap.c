@@ -34,8 +34,7 @@ enum combos {
     NM_WHU,
     SD_MSD,
     KL_MSU,
-    XC_CLICK,
-    ADJMD
+    XC_CLICK
 };
 
 const uint16_t PROGMEM ru_combo[] = {KC_R, KC_U, COMBO_END};
@@ -52,7 +51,6 @@ const uint16_t PROGMEM nm_combo[] = {KC_N, KC_M, COMBO_END};
 const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM click_combo[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM adj_combo[] = {KC_Q, KC_M, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     [RU_ENT] = COMBO(ru_combo, KC_ENT),
@@ -69,23 +67,21 @@ combo_t key_combos[COMBO_COUNT] = {
     [SD_MSD] = COMBO(sd_combo, KC_MS_D),
     [KL_MSU] = COMBO(kl_combo, KC_MS_U),
     [XC_CLICK] = COMBO_ACTION(click_combo),
-    [ADJMD] = COMBO_ACTION(adj_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-    case XC_CLICK:
-        if (pressed) {
-            SEND_STRING(SS_DOWN(X_TAB)SS_TAP(X_ENTER)SS_UP(X_TAB)SS_TAP(X_ENTER));
-        }
-        break;
-
-    case ADJMD:
-        if (pressed) {
-            layer_on(_ADJUST);
-        }
-        break;
-  }
+    switch (combo_index) {
+        case XC_CLICK:
+            if (pressed) {
+                register_code(KC_TAB);
+                register_code(KC_ENT);
+                unregister_code(KC_TAB);
+                unregister_code(KC_ENT);
+                register_code(KC_ENT);
+                unregister_code(KC_ENT);
+            }
+            break;
+    }
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
