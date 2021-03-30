@@ -7,12 +7,12 @@
 #define PRODUCT         Minidox
 #define MATRIX_ROWS 8
 #define MATRIX_COLS 5
-#define MATRIX_ROW_PINS { }
-#define MATRIX_COL_PINS { }
+#define MATRIX_ROW_PINS { F7, B1, B3, B5 }
+#define MATRIX_COL_PINS { F6, F5, F4, B6, B4 }
 #define MATRIX_ROW_PINS_RIGHT { E6, C6, D4, B3 }
 #define MATRIX_COL_PINS_RIGHT { D7, B4, B5, B6, B2 }
 #define USE_SERIAL
-#define SOFT_SERIAL_PIN D2
+#define SOFT_SERIAL_PIN D3
 #define RGB_DI_PIN D7
 #define DIODE_DIRECTION COL2ROW
 #define USB_POLLING_INTERVAL_MS 1
