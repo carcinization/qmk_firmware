@@ -13,7 +13,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-//#include "waffleus.h"
 #include "combos.h"
 
 const uint16_t PROGMEM ru_combo[] = {KC_R, KC_U, COMBO_END};
