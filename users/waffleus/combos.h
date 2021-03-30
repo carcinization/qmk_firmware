@@ -1,4 +1,5 @@
 #pragma once
+#include "waffleus.h"
 
 enum combos {
   RU_ENT,

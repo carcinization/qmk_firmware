@@ -1,7 +1,3 @@
-SRC += waffleus.c \
-		combos.c \
-		tapdance.c
-
 BOOTMAGIC_ENABLE = lite
 EXTRAKEY_ENABLE = yes
 MOUSEKEY_ENABLE = yes
@@ -10,6 +6,11 @@ TAP_DANCE_ENABLE = yes
 AUTO_SHIFT_ENABLE = no
 LTO_ENABLE = yes
 UNICODEMAP_ENABLE = yes
+
+SRC += waffleus.c \
+		combos.c \
+		tapdance.c
+
 ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
     POINTING_DEVICE_ENABLE := yes
     OPT_DEFS += -DPIMORONI_TRACKBALL_ENABLE
