@@ -8,8 +8,8 @@ LTO_ENABLE = yes
 UNICODEMAP_ENABLE = yes
 
 SRC += waffleus.c \
-		combos.c \
-		tapdance.c
+		tapdance.c \
+		combos.c
 
 ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
     POINTING_DEVICE_ENABLE := yes
