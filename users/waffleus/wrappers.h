@@ -99,7 +99,7 @@ ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
 
 #define ________________MDOXRAISE1________________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  RGB_HUI, RGB_M_G, RGB_M_P, RGB_MOD, RGB_TOG
 #define ________________MDOXRAISE2________________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, RGB_HUD, RGB_M_SW, RGB_M_R, RGB_SAD, RGB_SAI
-#define ________________MDOXRAISE3________________ QMKTD, DOCSTD, HAPSAD, KC_TRNS, KC_TRNS/*ALT_TAB*/, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5
+#define ________________MDOXRAISE3________________ QMKTD, DOCSTD, HAPSAD, KC_TRNS, CMB_ON/*ALT_TAB*/, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5
 #define ________________MDOXRAISE4________________ KC_MS_D, KC_VOLD, KC_PGDN, KC_RALT, KC_BSPC, KC_TRNS
 
 /*

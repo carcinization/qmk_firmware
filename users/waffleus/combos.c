@@ -32,21 +32,21 @@ const uint16_t PROGMEM click_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM adj_combo[] = {KC_Q, KC_M, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-[RU_ENT] = COMBO(ru_combo, KC_ENT),
-[GH_QUOT] = COMBO(gh_combo, KC_QUOT),
-[VM_QUES] = COMBO(vm_combo, KC_QUES),
-[CM_DQUO] = COMBO(cm_combo, KC_DQUO),
-[TY_COLN] = COMBO(ty_combo, KC_COLN),
-[BN_UNDS] = COMBO(bn_combo, KC_UNDS),
-[FJ_MINS] = COMBO(fj_combo, KC_MINS),
-[DF_BTN1] = COMBO(df_combo, KC_BTN1),
-[JK_BTN2] = COMBO(jk_combo, KC_BTN2),
-[VB_WHD] = COMBO(vb_combo, KC_WH_D),
-[NM_WHU] = COMBO(nm_combo, KC_WH_U),
-[SD_MSD] = COMBO(sd_combo, KC_MS_D),
-[KL_MSU] = COMBO(kl_combo, KC_MS_U),
-[XC_CLICK] = COMBO_ACTION(click_combo),
-[ADJMD] = COMBO_ACTION(adj_combo),
+    [RU_ENT] = COMBO(ru_combo, KC_ENT),
+    [GH_QUOT] = COMBO(gh_combo, KC_QUOT),
+    [VM_QUES] = COMBO(vm_combo, KC_QUES),
+    [CM_DQUO] = COMBO(cm_combo, KC_DQUO),
+    [TY_COLN] = COMBO(ty_combo, KC_COLN),
+    [BN_UNDS] = COMBO(bn_combo, KC_UNDS),
+    [FJ_MINS] = COMBO(fj_combo, KC_MINS),
+    [DF_BTN1] = COMBO(df_combo, KC_BTN1),
+    [JK_BTN2] = COMBO(jk_combo, KC_BTN2),
+    [VB_WHD] = COMBO(vb_combo, KC_WH_D),
+    [NM_WHU] = COMBO(nm_combo, KC_WH_U),
+    [SD_MSD] = COMBO(sd_combo, KC_MS_D),
+    [KL_MSU] = COMBO(kl_combo, KC_MS_U),
+    [XC_CLICK] = COMBO_ACTION(click_combo),
+    [ADJMD] = COMBO_ACTION(adj_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
