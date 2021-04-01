@@ -42,7 +42,7 @@
  * |------+------+------+------+------+------|         |------+------+------+------+------+------|
  * | UN-M |   _  |   +  |   {  |   }  |   |  |         | WIDE | SCRI | REGI | ASOF | WEEB | CGNO |
  * |------+-------------+------+------+------|         |------+------+------+------+------+------|
- * |  RST |  F1  |  F2  | F3  |  F4  |  F5   |         | UNIT | UNI3 | UNI4 | RWRD | SPON |      |
+ * |  RST |  F1  |  F2  | F3  |  F4  |  F5   |         | UNIT | UNI3 | UNI4 | RWRD | SPON | ADJ  |
  * `-----------------------------------------|         |-----------------------------------------'
  *                      | PGDN|  MSD | VOLD  |         | BSPC |      |  ALT |
  *                      `-------------------'          '-------------------'
@@ -114,9 +114,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|-----------------------------------------------------|                    |---------------------------------------------------------------|
        UC_M_WC, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,                      KC_NOMODE, KC_BLOCKS, KC_AUSSIE,   KC_ASON,  UNIT2,   CG_SWAP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+------------------|
-       UC_M_MA, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,                      KC_WIDE,   KC_SCRIPT, KC_REGIONAL, KC_ASOFF, WEEB,    CG_NORM,
+       UC_M_LN, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,                      KC_WIDE,   KC_SCRIPT, KC_REGIONAL, KC_ASOFF, WEEB,    CG_NORM,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+------------------|
-       RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        UNIT,      UNIT3,     UNIT4,       RWORD,    SPONGE, _______,
+       RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        UNIT,      UNIT3,     UNIT4,       RWORD,    SPONGE, MO(_ADJUST),
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+------------------|
                                        KC_PGDN, KC_MS_D, KC_VOLD,             KC_BSPC, KC_TRNS, KC_RALT
                                       //|---------------------------|  |---------------------------------------|
