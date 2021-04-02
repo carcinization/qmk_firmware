@@ -32,7 +32,7 @@
 #define RGBLIGHT_ANIMATIONS
 #define RGB_DI_PIN A9
 #define RGBLED_NUM 4
-#define RGBLIGHT_LIMIT_VAL 200
+#define RGBLIGHT_LIMIT_VAL 50
 #define RGBLIGHT_SLEEP
 #endif
 
