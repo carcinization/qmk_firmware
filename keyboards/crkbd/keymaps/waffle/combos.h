@@ -15,6 +15,8 @@
  */
 
 #pragma once
+static uint16_t del_timer;
+del_timer = timer_read();
 
 enum combos {
   RU_ENT,
@@ -31,8 +33,8 @@ enum combos {
   SD_MSD,
   KL_MSU,
   XC_CLICK,
-  MACMD,
-  WINMD
+  RT_DEL,
+  MACMD
 };
 
 const uint16_t PROGMEM ru_combo[] = {KC_R, KC_U, COMBO_END};
@@ -49,8 +51,8 @@ const uint16_t PROGMEM nm_combo[] = {KC_N, KC_M, COMBO_END};
 const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM click_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM del_combo[] = {KC_R, KC_T, COMBO_END};
 const uint16_t PROGMEM mac_combo[] = {KC_Z, KC_P, COMBO_END};
-const uint16_t PROGMEM win_combo[] = {KC_Q, KC_M, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
 [RU_ENT] = COMBO(ru_combo, KC_ENT),
@@ -67,25 +69,35 @@ combo_t key_combos[COMBO_COUNT] = {
 [SD_MSD] = COMBO(sd_combo, KC_MS_D),
 [KL_MSU] = COMBO(kl_combo, KC_MS_U),
 [XC_CLICK] = COMBO_ACTION(click_combo),
+[RT_DEL] = COMBO_ACTION(del_combo),
 [MACMD] = COMBO_ACTION(mac_combo),
-[WINMD] = COMBO_ACTION(win_combo),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
     case XC_CLICK:
-      if (pressed) {
-        SEND_STRING(SS_DOWN(X_TAB)SS_TAP(X_ENTER)SS_UP(X_TAB)SS_TAP(X_ENTER));
-      }
-      break;
-
-    case MACMD:
         if (pressed) {
-            default_layer_set(1UL << _QWERTY);
+            register_code(KC_TAB);
+            register_code(KC_ENT);
+            unregister_code(KC_TAB);
+            unregister_code(KC_ENT);
+            register_code(KC_ENT);
+            unregister_code(KC_ENT);
         }
         break;
 
-    case WINMD:
+    case RT_DEL:
+        if (pressed) {
+            if (timer_elapsed(del_timer) > )
+                tap_code(KC_UP);
+                tap_code16(C(KC_A));
+                tap_code(KC_BSPC);
+                tap_code(KC_ENT);
+                tap_code(KC_ENT);
+        }
+        break;
+
+    case MACMD:
         if (pressed) {
             default_layer_set(1UL << _QWERTY);
         }
