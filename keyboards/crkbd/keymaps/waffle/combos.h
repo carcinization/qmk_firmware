@@ -15,8 +15,6 @@
  */
 
 #pragma once
-static uint16_t del_timer;
-del_timer = timer_read();
 
 enum combos {
   RU_ENT,
@@ -88,12 +86,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 
     case RT_DEL:
         if (pressed) {
-            if (timer_elapsed(del_timer) > )
-                tap_code(KC_UP);
-                tap_code16(C(KC_A));
-                tap_code(KC_BSPC);
-                tap_code(KC_ENT);
-                tap_code(KC_ENT);
+            SEND_STRING(SS_TAP(X_UP)SS_LCTL("a")"achoo"SS_TAP(X_ENT));
         }
         break;
 

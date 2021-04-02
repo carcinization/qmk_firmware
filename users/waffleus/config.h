@@ -56,7 +56,7 @@
 #endif
 
 #ifdef COMBO_ENABLE
-#define COMBO_COUNT 15
+#define COMBO_COUNT 16
 #define COMBO_TERM 50
 #endif
 
