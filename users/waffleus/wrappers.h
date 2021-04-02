@@ -1,6 +1,7 @@
 #pragma once
 #include "waffleus.h"
 #define LAYOUT_waffle(...) LAYOUT(__VA_ARGS__)
+#define LAYOUT_waffle_all(...) LAYOUT_all(__VA_ARGS__)
 #define LAYOUT_waffle_qaz(...) LAYOUT(__VA_ARGS__)
 #define LAYOUT_waffle_ortho(...) LAYOUT_ortho_4x12(__VA_ARGS__)
 

@@ -14,26 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
-
-enum combos {
-  RU_ENT,
-  GH_QUOT,
-  VM_QUES,
-  CM_DQUO,
-  TY_COLN,
-  BN_UNDS,
-  FJ_MINS,
-  DF_BTN1,
-  JK_BTN2,
-  VB_WHD,
-  NM_WHU,
-  SD_MSD,
-  KL_MSU,
-  XC_CLICK,
-  RT_DEL,
-  MACMD
-};
+#include "combos.h"
 
 const uint16_t PROGMEM ru_combo[] = {KC_R, KC_U, COMBO_END};
 const uint16_t PROGMEM gh_combo[] = {KC_G, KC_H, COMBO_END};
