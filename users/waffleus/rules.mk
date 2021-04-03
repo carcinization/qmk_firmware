@@ -9,7 +9,8 @@ UNICODEMAP_ENABLE = yes
 
 SRC += waffleus.c \
 		tapdance.c \
-		combos.c
+		combos.c \
+		pru.c
 
 ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
     POINTING_DEVICE_ENABLE := yes
