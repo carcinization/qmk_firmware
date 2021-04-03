@@ -13,7 +13,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "pru.h"
+#include "waffleus.h"
+//#include "pru.h"
 #include <stdio.h>
 
 uint16_t alt_tab_timer = 0;
@@ -122,7 +123,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
 
     }
-    return true;
+    //return true;
+    return process_record_keymap(keycode, record) && process_record_secrets(keycode, record);
 };
 
 void matrix_scan_user(void) {

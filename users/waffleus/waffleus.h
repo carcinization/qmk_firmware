@@ -2,6 +2,8 @@
 #include QMK_KEYBOARD_H
 #include "wrappers.h"
 #include "tapdance.h"
+#include "combos.h"
+#include "pru.h"
 
 enum layers {
     _QWERTY,

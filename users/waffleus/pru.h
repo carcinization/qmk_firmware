@@ -1,7 +1,7 @@
 #pragma once
 #include "waffleus.h"
 
-enum custom_keycodes {
+enum userspace_custom_keycodes {
     CP_PSTE = SAFE_RANGE,
 #ifdef UNICODEMAP_ENABLE
     UNIT,
@@ -15,3 +15,13 @@ enum custom_keycodes {
     ALT_TAB,
     MAKE
 };
+
+__attribute__ ((weak))
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
+
+__attribute__ ((weak))
+bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
