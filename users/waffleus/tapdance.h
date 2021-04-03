@@ -17,6 +17,7 @@ enum tapdance_types {
 
 enum custom_tapdances {
     MSLGUI,
+    MSRGUI,
     HAP_SAD,
     QMK,
     DOCS,

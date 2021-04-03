@@ -35,7 +35,7 @@ static tap msgui_tap_state = {
     .state = 0
 };
 
-void msgui_finished(qk_tap_dance_state_t *state, void *user_data) {
+void mslgui_finished(qk_tap_dance_state_t *state, void *user_data) {
     msgui_tap_state.state = cur_dance(state);
     switch (msgui_tap_state.state) {
         case SINGLE_TAP: register_code(KC_LGUI); break;
@@ -46,7 +46,7 @@ void msgui_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void msgui_reset(qk_tap_dance_state_t *state, void *user_data) {
+void mslgui_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (msgui_tap_state.state) {
         case SINGLE_TAP: unregister_code(KC_LGUI); break;
         case SINGLE_HOLD: unregister_code16(KC_MS_L); break;
@@ -56,6 +56,28 @@ void msgui_reset(qk_tap_dance_state_t *state, void *user_data) {
     }
     msgui_tap_state.state = 0;
 }
+
+/*void msrgui_finished(qk_tap_dance_state_t *state, void *user_data) {
+    msgui_tap_state = cur_dance(state);
+    switch (msgui_tap_state.state) {
+        case SINGLE_TAP: register_code(KC_RGUI); break;
+        case SINGLE_HOLD: register_code16(KC_MS_R); break;
+        case DOUBLE_TAP: register_code(KC_RGUI); break;
+        case DOUBLE_HOLD: register_code16(KC_MS_R); break;
+        case DOUBLE_SINGLE_TAP: tap_code(KC_RGUI); register_code(KC_RGUI);
+    }
+}
+
+void msrgui_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (msgui_tap_state.state) {
+        case SINGLE_TAP: unregister_code(KC_RGUI); break;
+        case SINGLE_HOLD: unregister_code16(KC_MS_R); break;
+        case DOUBLE_TAP: unregister_code(KC_RGUI); break;
+        case DOUBLE_HOLD: unregister_code16(KC_MS_R);
+        case DOUBLE_SINGLE_TAP: unregister_code(KC_RGUI);
+    }
+    msgui_tap_state.state = 0;
+}*/
 
 void dance_pep_finished(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
@@ -85,6 +107,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [HAP_SAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_pep_finished, NULL),
     [QMK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_qmk_finished, NULL),
     [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_doc_finished, NULL),
-    [MSLGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, msgui_finished, msgui_reset)
+    [MSLGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mslgui_finished, mslgui_reset),
+//    [MSRGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, msrgui_finished, msrgui_reset)
 };
-
