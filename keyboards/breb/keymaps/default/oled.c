@@ -513,15 +513,22 @@ static void render_felix(int FELIX_X, int FELIX_Y) {
             oled_write_raw_P(run[abs(1 - current_frame)], FELIX_SIZE);
         }
     }
-    if (timer_elapsed32(anim_timer) > FELIX_FRAME_DURATION) {
-        anim_timer = timer_read32();
-        animate_felix();
-    }
-    if (current_wpm > 0) {
+    if (get_current_wpm() != 000) {
         oled_on();
-        anim_sleep = timer_read32();
-    } else if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
-        oled_off();
+            if (timer_elapsed32(anim_timer) > FELIX_FRAME_DURATION) {
+                anim_timer = timer_read32();
+                animate_felix();
+            }
+            anim_sleep = timer_read32();
+    } else {
+        if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
+            oled_off();
+        } else {
+            if (timer_elapsed32(anim_timer) > FELIX_FRAME_DURATION) {
+                anim_timer = timer_read32();
+                animate_felix();
+            }
+        }
     }
 }
 #endif

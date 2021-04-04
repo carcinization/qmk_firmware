@@ -154,7 +154,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #ifdef RGBLIGHT_ENABLE
 void keyboard_post_init_user(void) {
   rgblight_enable_noeeprom();
-  rgblight_sethsv_noeeprom(HSV_MAGENTA);
+  rgblight_sethsv_noeeprom(HSV_ORANGE);
   rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 }
 #endif
