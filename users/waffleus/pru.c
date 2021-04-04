@@ -14,8 +14,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "waffleus.h"
-//#include "pru.h"
 #include <stdio.h>
+
+__attribute__ ((weak))
+bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
+  return true;
+}
 
 uint16_t alt_tab_timer = 0;
 bool is_alt_tab_active = false;
