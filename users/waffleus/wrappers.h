@@ -138,6 +138,6 @@ e::::::::e           x:::::xx:::::x         t::::::tttt:::::tr:::::r          a:
 #define ______________DEFAULTLOWER2_______________ SFEXM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, SFPRN
 #define ______________DEFAULTLOWER3_______________ CTLESC, KC_TAB, KC_CAPS, KC_TILD, KC_GRV, KC_LEFT, KC_UP, KC_DOWN, KC_RIGHT, KC_LCTL
 
-#define ______________DEFAULTRAISE1_______________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define ______________DEFAULTRAISE2_______________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define ______________DEFAULTRAISE1_______________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_TOG
+#define ______________DEFAULTRAISE2_______________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, RGB_M_SW, RGB_VAD, RGB_VAI, RGB_RMOD, RGB_RMOD
 #define ______________DEFAULTRAISE3_______________ QMKTD, DOCSTD, HAPSAD, STARX, ZHAP, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5
