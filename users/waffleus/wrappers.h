@@ -4,6 +4,7 @@
 #define LAYOUT_waffle_all(...) LAYOUT_all(__VA_ARGS__)
 #define LAYOUT_waffle_qaz(...) LAYOUT(__VA_ARGS__)
 #define LAYOUT_waffle_ortho(...) LAYOUT_ortho_4x12(__VA_ARGS__)
+#define LAYOUT_waffle_33(...) LAYOUT_33_big_space(__VA_ARGS__)
 
 /*
           _____                    _____                    _____                    _____                    _____
@@ -131,7 +132,7 @@ e::::::::e           x:::::xx:::::x         t::::::tttt:::::tr:::::r          a:
 
 #define ______________DEFAULTQWERTY1_______________ ALTQ, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, ALTP
 #define ______________DEFAULTQWERTY2_______________ SFA, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, SFL, KC_BSPC
-#define ______________DEFAULTQWERTY3_______________ CTLZ, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, CTLDOT
+#define ______________DEFAULTQWERTY3_______________ CTLZ, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, CTLDOT, CTLSLH
 
 #define ______________DEFAULTLOWER1_______________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
 #define ______________DEFAULTLOWER2_______________ SFEXM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, SFPRN
@@ -139,4 +140,4 @@ e::::::::e           x:::::xx:::::x         t::::::tttt:::::tr:::::r          a:
 
 #define ______________DEFAULTRAISE1_______________ KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS
 #define ______________DEFAULTRAISE2_______________ KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE
-#define ______________DEFAULTRAISE3_______________ KC_F1, KC_F2, KC_F3, KC_F4, KC_F5
+#define ______________DEFAULTRAISE3_______________ QMKTD, DOCSTD, HAPSAD, STARX, ZHAP, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5
