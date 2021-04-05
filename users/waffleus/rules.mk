@@ -12,9 +12,9 @@ SRC += waffleus.c \
 		combos.c \
 		pru.c
 
-#ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
-#	SRC += secrets.c
-#endif
+ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
+  SRC += secrets.c
+endif
 
 ifeq ($(strip $(NO_SECRETS)), yes)
 	OPT_DEFS += -DNO_SECRETS
