@@ -285,6 +285,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
 #endif
 
+#ifdef UNICODEMAP_ENABLE
       case UNIT:
         if (record->event.pressed) {
           send_unicode_string("(＾▽＾)");
@@ -312,6 +313,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
         }
         break;
+#endif
 
       case WEEB:
         if (record->event.pressed) {
@@ -319,13 +321,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
         }
         break;
-
+#ifdef RGBLIGHT_ENABLE
       case RGBRST:
         if (record->event.pressed) {
             eeconfig_update_rgblight_default();
             rgblight_enable();
         }
         break;
+#endif
 
 #ifdef RANDICT
       case RWORD:
