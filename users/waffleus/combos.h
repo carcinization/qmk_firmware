@@ -16,6 +16,6 @@ enum combos {
   SD_MSD,
   KL_MSU,
   XC_CLICK,
-  RT_DEL,
+  QP_ACHOO,
   MACMD
 };
