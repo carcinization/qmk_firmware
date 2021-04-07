@@ -1,6 +1,4 @@
-#include QMK_KEYBOARD_H
 #include "waffleus.h"
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_waffle(
         ________________CRKBDQWERTY1_______________,
