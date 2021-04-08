@@ -1,4 +1,8 @@
 #pragma once
+#undef VENDOR_ID
+#undef PRODUCT_ID
+#define VENDOR_ID 0x8F3C
+#define PRODUCT_ID 0x2741
 #define MASTER_RIGHT
 #define LAYER_STATE_8BIT
 #ifdef OLED_DRIVER_ENABLE
