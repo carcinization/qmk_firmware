@@ -5,6 +5,7 @@
 #include "combos.h"
 #include "pru.h"
 #include "rgb.h"
+#include "oled.h"
 //#include "secrets.h"
 
 enum layers {

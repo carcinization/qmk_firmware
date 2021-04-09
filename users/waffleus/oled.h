@@ -1,8 +1,6 @@
 #pragma once
 #include "waffleus.h"
-
 bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
-
 uint32_t anim_timer = 0;
 uint32_t anim_sleep = 0;
 uint8_t current_idle_frame = 0;
@@ -28,3 +26,4 @@ led_t led_usb_state;
 #define FELIX_WALK_SPEED 30
 #define FELIX_RUN_SPEED 50
 #define FELIX_SIZE 96
+//#define FELIX

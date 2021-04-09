@@ -1,5 +1,6 @@
 #include "waffleus.h"
 #include "quantum.h"
+#include "oled.c"
 
 bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {

@@ -1,5 +1,6 @@
 #include "oled.h"
 #include <stdio.h>
+#include "waffleus.h"
 
 void render_wpm(void) {
     char wpm_string[5];
@@ -321,7 +322,7 @@ static void render_bongo(void) {
     if (get_current_wpm() != 000) {
         oled_on();
 
-        if (timer_elapsed32(anim_timer) > BONGO_FRAME_DURATION) {
+        if (timer_elapsed32(anim_timer) > BONGO_FELIX_FRAME_DURATION) {
             anim_timer = timer_read32();
             animation_phase();
         }
@@ -331,7 +332,7 @@ static void render_bongo(void) {
         if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
             oled_off();
         } else {
-            if (timer_elapsed32(anim_timer) > BONGO_FRAME_DURATION) {
+            if (timer_elapsed32(anim_timer) > BONGO_FELIX_FRAME_DURATION) {
                 anim_timer = timer_read32();
                 animation_phase();
             }
@@ -339,66 +340,7 @@ static void render_bongo(void) {
     }
 }
 
-#if defined(KEYBOARD_crkbd_rev1_common)
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    if (!is_keyboard_master()){
-        return 2;
-    } else {
-        return 3;
-    }
-    return rotation;
-}
-
-void render_main(void) {
-    if (get_current_wpm() != 000) {
-        update_log();
-        oled_set_cursor(0, 0);
-        render_wpm();
-        oled_set_cursor(0, 3);
-        render_qmk_logo();
-        oled_set_cursor(0, 7);
-        render_keyboard();
-        oled_set_cursor(0, 9);
-        render_prompt();
-        oled_set_cursor(0, 11);
-        render_mod_status();
-        oled_set_cursor(0, 13);
-        render_keylock_status(host_keyboard_leds());
-        oled_set_cursor(1, 15);
-        render_keylogger();
-        oled_set_cursor(0, 15);
-        render_keylogger_status();
-    } else {
-        oled_off();
-    }
-}
-
-void render_secondary(void) {
-    switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
-            render_bongo();
-            break;
-        case _LOWER:
-            render_anim_num();
-            break;
-        case _RAISE:
-            render_anim_sym();
-            break;
-        case _ADJUST:
-            render_anim_sys();
-            break;
-    }
-}
-
-void oled_task_user(void) {
-    if (is_keyboard_master()) {
-        render_main();
-    } else {
-        render_secondary();
-    }
-}
-#endif
-
+#ifdef FELIX
 static void render_felix(int FELIX_X, int FELIX_Y) {
     static const char PROGMEM sit[2][FELIX_SIZE] = { {
 		0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xe0,0xfc,
@@ -491,9 +433,9 @@ static void render_felix(int FELIX_X, int FELIX_Y) {
             oled_write_raw_P(bark[abs(1 - current_frame)], FELIX_SIZE);
         } else if(isSneaking) {
             oled_write_raw_P(sneak[abs(1 - current_frame)], FELIX_SIZE);
-        } else if(current_wpm <= MIN_WALK_SPEED) {
+        } else if(current_wpm <= FELIX_WALK_SPEED) {
             oled_write_raw_P(sit[abs(1 - current_frame)], FELIX_SIZE);
-        } else if(current_wpm <= MIN_RUN_SPEED) {
+        } else if(current_wpm <= FELIX_RUN_SPEED) {
             oled_write_raw_P(walk[abs(1 - current_frame)], FELIX_SIZE);
         } else {
             oled_write_raw_P(run[abs(1 - current_frame)], FELIX_SIZE);
@@ -517,11 +459,66 @@ static void render_felix(int FELIX_X, int FELIX_Y) {
         }
     }
 }
+#endif
 
-bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        oled_timer = timer_read32();
-        add_keylog(keycode);
+#if defined(KEYBOARD_crkbd_rev1_common)
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    if (!is_keyboard_master()){
+        return 2;
+    } else {
+        return 3;
     }
-    return true;
+    return rotation;
 }
+
+void render_main(void) {
+    if (get_current_wpm() != 000) {
+        update_log();
+        oled_set_cursor(0, 0);
+        render_wpm();
+        oled_set_cursor(0, 3);
+        render_qmk_logo();
+        oled_set_cursor(0, 7);
+        render_keyboard();
+        oled_set_cursor(0, 9);
+        render_prompt();
+        oled_set_cursor(0, 11);
+        render_mod_status();
+        oled_set_cursor(0, 13);
+        render_keylock_status(host_keyboard_leds());
+        oled_set_cursor(1, 15);
+        render_keylogger();
+        oled_set_cursor(0, 15);
+        render_keylogger_status();
+    } else {
+        oled_off();
+    }
+}
+
+void render_secondary(void) {
+    switch (get_highest_layer(layer_state)) {
+        case _QWERTY:
+            render_bongo();
+            break;
+        case _LOWER:
+            render_anim_num();
+            break;
+        case _RAISE:
+            render_anim_sym();
+            break;
+        case _ADJUST:
+            render_anim_sys();
+            break;
+    }
+}
+
+void oled_task_user(void) {
+    if (is_keyboard_master()) {
+        render_main();
+    } else {
+        render_secondary();
+    }
+}
+#endif
+
+
