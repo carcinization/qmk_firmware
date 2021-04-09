@@ -40,6 +40,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case MAC_PSTE:
+            if (record->event.pressed) {
+                tap_code16(G(KC_C));
+            } else {
+                tap_code16(G(KC_V));
+            }
+            return false;
+
         case MT(MOD_LSFT, KC_F23):
             if (record->tap.count > 0) {
             if (record->event.pressed) {

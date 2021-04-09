@@ -24,6 +24,7 @@ enum unicodemap_names {
 //---layers---
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define ADJUST MO(_ADJUST)
 #define TGADJ TG(_ADJUST)
 #define LWRSPC LT(_LOWER, KC_SPC)
 //---general---

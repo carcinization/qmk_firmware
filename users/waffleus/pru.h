@@ -5,6 +5,7 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 
 enum userspace_custom_keycodes {
     CP_PSTE = SAFE_RANGE,
+    MAC_PSTE,
 #ifdef UNICODEMAP_ENABLE
     UNIT,
     UNIT2,

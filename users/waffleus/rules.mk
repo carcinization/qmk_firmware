@@ -38,11 +38,12 @@ endif
 ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
 MCU = atmega32u4
 BOOTLOADER = caterina
-RGBLIGHT_ENABLE = no
-OLED_DRIVER_ENABLE = yes
+RGBLIGHT_ENABLE = yes
+OLED_DRIVER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes
-WPM_ENABLE = yes
-UNICODEMAP_ENABLE = no
+WPM_ENABLE = no
+UNICODEMAP_ENABLE = yes
 POINTING_DEVICE_ENABLE = no
+VIA_ENABLE = yes
 endif

@@ -48,7 +48,7 @@
 #endif
 
 #ifdef SPLIT_KEYBOARD
-#define MASTER_LEFT
+#define EE_HANDS
 #define BOOTMAGIC_LITE_ROW 0
 #define BOOTMAGIC_LITE_COLUMN 0
 #define BOOTMAGIC_LITE_ROW_RIGHT 4
@@ -60,37 +60,13 @@
 #define COMBO_TERM 50
 #endif
 
-#ifdef PROTORNE
-#undef PRODUCT
-#undef MANUFACTURER
-#define MANUFACTURER Waffle
-#define PRODUCT Protorne
-#undef USE_I2C
-#undef SSD1306OLED
-
-//RGB using PWM on pin B0
-#define WS2812_PWM_DRIVER PWMD3  // default: PWMD2
-#define WS2812_PWM_CHANNEL 3  // default: 2
-#define WS2812_PWM_PAL_MODE 2  // Pin "alternate function" - default: 2
-#define WS2812_DMA_STREAM STM32_DMA1_STREAM3  // DMA Stream for TIMx_UP
-#define WS2812_DMA_CHANNEL 3  // DMA Channel for TIMx_UP
+#ifdef KEYBOARD_crkbd_rev1_common
+#define USE_SERIAL_PD2
 #undef RGBLED_NUM
-#undef RGB_DI_PIN
-#define RGBLIGHT_ANIMATIONS
-#define RGBLED_NUM 24
-#define RGB_DI_PIN B5
-#define RGBLED_SPLIT { 12, 12 }
-#define RGBLIGHT_LIMIT_VAL 150
+#undef RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 27
+#define RGBLIGHT_LIMIT_VAL 155
 #define RGBLIGHT_HUE_STEP 10
-#define RGBLIGHT_SAT_STEP 17
-#define RGBLIGHT_VAL_STEP 17
-#define RGBLIGHT_SLEEP
-//#define RGBLIGHT_LAYERS
-
-//Serial over USART config
-#undef SOFT_SERIAL_PIN
-#define SOFT_SERIAL_PIN D3  // USART TX pin
-#define SELECT_SOFT_SERIAL_SPEED 1 // or 0, 2, 3, 4, 5
-#define SERIAL_USART_DRIVER SD1 // USART driver of TX pin. default: SD1
-#define SERIAL_USART_TX_PAL_MODE 7 // Pin "alternate function" - default: 7
+#define RGBLIGHT_SAT_STEP 10
+#define RGBLIGHT_VAL_STEP 10
 #endif
