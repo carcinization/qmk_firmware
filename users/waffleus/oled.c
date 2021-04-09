@@ -15,7 +15,7 @@ void render_wpm(void) {
 char keylog_str[KEYLOG_LENGTH] = {};
 uint8_t keylog_str_idx = 0;
 uint16_t log_timer = 0;
-static uint32_t oled_timer = 0;
+uint32_t oled_timer = 0;
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',

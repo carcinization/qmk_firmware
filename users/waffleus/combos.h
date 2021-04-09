@@ -1,7 +1,7 @@
 #pragma once
 #include "waffleus.h"
 
-enum combos {
+enum userspace_combos {
   RU_ENT,
   GH_QUOT,
   VM_QUES,
@@ -16,6 +16,6 @@ enum combos {
   SD_MSD,
   KL_MSU,
   XC_CLICK,
-  QP_ACHOO,
+  WO_ACHOO,
   MACMD
 };
