@@ -4,8 +4,12 @@
 #include "tapdance.h"
 #include "combos.h"
 #include "pru.h"
+#ifdef RGBLIGHT_ENABLE
 #include "rgb.h"
+#endif
+#ifdef OLED_DRIVER_ENABLE
 #include "oled.h"
+#endif
 //#include "secrets.h"
 
 enum layers {

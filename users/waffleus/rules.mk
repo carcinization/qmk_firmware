@@ -11,7 +11,7 @@ ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
 MCU = atmega32u4
 BOOTLOADER = caterina
 RGBLIGHT_ENABLE = yes
-OLED_DRIVER_ENABLE = yes
+OLED_DRIVER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes
 WPM_ENABLE = no
