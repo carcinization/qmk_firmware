@@ -4,6 +4,7 @@
 #include "tapdance.h"
 #include "combos.h"
 #include "pru.h"
+#include "rgb.h"
 //#include "secrets.h"
 
 enum layers {

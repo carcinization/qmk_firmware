@@ -6,6 +6,7 @@ TAP_DANCE_ENABLE = yes
 AUTO_SHIFT_ENABLE = no
 LTO_ENABLE = yes
 UNICODEMAP_ENABLE = yes
+RGBLIGHT_ENABLE = yes
 
 SRC += waffleus.c \
 		tapdance.c \
@@ -35,6 +36,10 @@ ifeq ($(strip $(OLED_DRIVER_ENABLE)), yes)
 	SRC += oled.c
 endif
 
+ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
+	SRC += rgb.c
+endif
+
 ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
 MCU = atmega32u4
 BOOTLOADER = caterina
@@ -45,5 +50,5 @@ LTO_ENABLE = yes
 WPM_ENABLE = no
 UNICODEMAP_ENABLE = yes
 POINTING_DEVICE_ENABLE = no
-VIA_ENABLE = yes
+VIA_ENABLE = no
 endif
