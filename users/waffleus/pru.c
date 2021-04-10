@@ -14,7 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "waffleus.h"
-#include <stdio.h>
 uint16_t alt_tab_timer = 0;
 bool is_alt_tab_active = false;
 

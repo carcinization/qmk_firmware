@@ -1,14 +1,8 @@
 #include "waffleus.h"
 #include "quantum.h"
+
 #ifdef OLED_DRIVER_ENABLE
 #include "oled.c"
-bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        oled_timer = timer_read32();
-        add_keylog(keycode);
-    }
-    return true;
-}
 #endif
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {

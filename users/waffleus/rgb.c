@@ -1,5 +1,4 @@
 #include "rgb.h"
-
 bool process_record_user_rgblight(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case CYAN:
