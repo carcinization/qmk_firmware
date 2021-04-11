@@ -1,10 +1,6 @@
 #include "waffleus.h"
 #include "quantum.h"
 
-#ifdef OLED_DRIVER_ENABLE
-#include "oled.c"
-#endif
-
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LWRSPC:
