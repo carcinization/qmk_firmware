@@ -18,7 +18,8 @@ WPM_ENABLE = yes
 UNICODEMAP_ENABLE = yes
 POINTING_DEVICE_ENABLE = no
 VIA_ENABLE = no
-KEYLOGGER_ENABLE = yes
+KEYLOGGER_ENABLE = no
+NO_SECRETS = yes
 endif
 
 SRC += waffleus.c \
@@ -26,9 +27,9 @@ SRC += waffleus.c \
 		combos.c \
 		pru.c
 
-#ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
-#  SRC += secrets.c
-#endif
+ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
+  SRC += secrets.c
+endif
 
 ifeq ($(strip $(NO_SECRETS)), yes)
 	OPT_DEFS += -DNO_SECRETS

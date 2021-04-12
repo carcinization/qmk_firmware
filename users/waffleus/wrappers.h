@@ -49,7 +49,7 @@
 #define _______________CRKBDADJUST1________________ RGB_TOG, RGB_M_P, RGB_M_G, RGB_HUD, RGB_HUI, RGB_SPI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET
 #define _______________CRKBDADJUST2________________ RGB_MOD, RGB_M_B, CYAN, RGB_SAD, RGB_SAI, RGB_SPD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define _______________CRKBDADJUST3________________ RGB_RMOD, RGB_M_R, RGB_M_SW, RGB_VAD, RGB_VAI, RGBRST, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define _______________CRKBDADJUST4________________ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define _______________CRKBDADJUST4________________ KC_SECRET_1, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 
 /*
 ________/\\\_______        _____/\\\\\\\\\____        __/\\\\\\\\\\\\\\\_
