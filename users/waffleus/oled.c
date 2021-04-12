@@ -487,6 +487,8 @@ void render_secondary(void) {
     }
 }
 
+
+
 void oled_task_user(void) {
     if (is_master) {
         if (timer_elapsed32(oled_timer) > 30000) {

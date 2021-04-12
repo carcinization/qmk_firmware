@@ -58,7 +58,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
     }
 }
-#endif 
+#endif
 
 #ifdef BOOTLOADER_nanoboot
 void bootloader_jump(void) {
