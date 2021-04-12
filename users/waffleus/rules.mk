@@ -11,7 +11,7 @@ ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
 MCU = atmega32u4
 BOOTLOADER = atmel-dfu
 RGBLIGHT_ENABLE = yes
-OLED_DRIVER_ENABLE = no
+OLED_DRIVER_ENABLE = yes
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes
 WPM_ENABLE = yes
@@ -19,7 +19,7 @@ UNICODEMAP_ENABLE = yes
 POINTING_DEVICE_ENABLE = no
 VIA_ENABLE = no
 KEYLOGGER_ENABLE = no
-NO_SECRETS = yes
+#NO_SECRETS = no
 endif
 
 SRC += waffleus.c \
@@ -27,13 +27,13 @@ SRC += waffleus.c \
 		combos.c \
 		pru.c
 
-ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
-  SRC += secrets.c
-endif
+#ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
+#  SRC += secrets.c
+#endif
 
-ifeq ($(strip $(NO_SECRETS)), yes)
-	OPT_DEFS += -DNO_SECRETS
-endif
+#ifeq ($(strip $(NO_SECRETS)), yes)
+#	OPT_DEFS += -DNO_SECRETS
+#endif
 
 ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
     POINTING_DEVICE_ENABLE := yes

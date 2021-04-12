@@ -10,7 +10,7 @@
 #ifdef OLED_DRIVER_ENABLE
 #include "oled.h"
 #endif
-#include "secrets.h"
+//#include "secrets.h"
 
 enum layers {
     _QWERTY,

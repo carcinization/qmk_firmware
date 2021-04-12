@@ -20,6 +20,46 @@ const uint32_t PROGMEM unicode_map[] = {
 };
 #endif
 
+#ifdef ENOCODER_ENABLE
+void encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        if (IS_LAYER_ON(_ADJUST)) {
+            tap_code((clockwise == true) ? KC_LEFT : KC_RGHT);
+        } else if (IS_LAYER_ON(_LOWER)) {
+            tap_code((clockwise == true) ? KC_MNXT : KC_MPRV);
+        } else if (IS_LAYER_ON(_RAISE)) {
+            tap_code((clockwise == true) ? KC_PGDN : KC_PGUP);
+        } else {
+            tap_code((clockwise == true) ? KC_VOLU : KC_VOLD);
+        }
+    } else if (index == 1) {
+        if (IS_LAYER_ON(_ADJUST)) {
+            tap_code16((clockwise == true) ? KC_TRNS : KC_TRNS);
+        } else if (IS_LAYER_ON(_LOWER)) {
+            tap_code((clockwise == true) ? C(KC_TAB) : S(C(KC_TAP)));
+        } else if (IS_LAYER_ON(_RAISE)) {
+            if (clockwise) {
+                tap_code(KC_F3);
+            } else {
+                tap_code16(S(KC_F3));
+            }
+        } else {
+            if (clockwise) {
+                if (!is_alt_tab_active) {
+                    is_alt_tab_active = true;
+                    register_code(KC_LALT);
+                }
+                alt_tab_timer = timer_read();
+                tap_code16(KC_TAB);
+            } else {
+                alt_tab_timer = timer_read();
+                tap_code16(S(KC_TAB));
+            }
+        }
+    }
+}
+#endif 
+
 #ifdef BOOTLOADER_nanoboot
 void bootloader_jump(void) {
     /* nanoBoot sets up 2 registers (r2,r3), copies then clears the MCUSR register,

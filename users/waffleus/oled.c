@@ -84,6 +84,8 @@ void render_keylock_status(uint8_t led_usb_state) {
         }
 }
 
+#define KEYLOG_LENGTH 5
+uint8_t keylogs_str_idx = 0;
 static char keylog_str[KEYLOG_LENGTH + 1] = {"\n"};
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
