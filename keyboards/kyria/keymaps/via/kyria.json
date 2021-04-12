@@ -1,7 +1,7 @@
 {
     "name": "Kyria",
-    "vendorId": "0x2937",
-    "productId": "0x9827",
+    "vendorId": "0x8F3C",
+    "productId": "0x2741",
     "lighting": {
         "extends": "qmk_rgblight"
     },
