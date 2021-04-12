@@ -487,7 +487,15 @@ void render_secondary(void) {
     }
 }
 
-
+#ifdef KEYBOARD_crkbd_rev1_common
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    if (!is_keyboard_master()) {
+        return 2;
+    } else {
+        return 3;
+    }
+    return rotation;
+}
 
 void oled_task_user(void) {
     if (is_master) {
@@ -502,3 +510,4 @@ void oled_task_user(void) {
         render_secondary();
     }
 }
+#endif

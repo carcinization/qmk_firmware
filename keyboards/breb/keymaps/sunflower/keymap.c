@@ -151,20 +151,6 @@ void oled_render_layer_state(void) {
         case _NUM:
             oled_write_raw_P(num_logo, LOGO_SIZE);
             break;
-        /*case _GREEK:
-            oled_write_raw_P(greek_logo, LOGO_SIZE);
-            break;
-        case _MATH:
-            oled_write_raw_P(math_logo, LOGO_SIZE);
-            break;
-        case _GAME:
-	        oled_scroll_off();
-            oled_write_raw_P(game_logo, LOGO_SIZE);
-            break;
-        case _WPN:
-            oled_write_raw_P(game_logo, LOGO_SIZE);
-	        oled_scroll_right();
-			break;*/
         case _DICE:
 			oled_set_cursor(2, 4);
 			oled_write(roll_str, false);
