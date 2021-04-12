@@ -12,3 +12,7 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
 #define FELIX_SIZE 96
 #define MIN_WALK_SPEED 30
 #define MIN_RUN_SPEED 45
+#define LAYER_FRAME_DURATION 250
+#define LAYER_TAP_FRAMES 3
+#define LAYER_SIZE 520
+#define XANIM_SIZE 650
