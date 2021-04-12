@@ -8,4 +8,7 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
 #define BONGO_TAP_FRAMES 2
 #define BONGO_IDLE_SPEED 30
 #define BONGO_TAP_SPEED 40
-#define BONGO_FRAME_DURATION 200
+#define BONGO_FELIX_FRAME_DURATION 200
+#define FELIX_SIZE 96
+#define MIN_WALK_SPEED 30
+#define MIN_RUN_SPEED 45
