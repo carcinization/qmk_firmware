@@ -2,6 +2,9 @@
 #include "waffleus.h"
 
 enum userspace_combos {
+#ifdef OLED_DRIVER_ENABLE
+    FLWR_RESET,
+#endif
     RU_ENT,
     GH_QUOT,
     VM_QUES,

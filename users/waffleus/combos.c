@@ -15,6 +15,10 @@
  */
 
 #include "combos.h"
+#ifdef OLED_DRIVER_ENABLE
+static int num_keypresses = 0;
+static int current_frame = 0;
+#endif
 
 const uint16_t PROGMEM ru_combo[] = {KC_R, KC_U, COMBO_END};
 const uint16_t PROGMEM gh_combo[] = {KC_G, KC_H, COMBO_END};
@@ -32,8 +36,14 @@ const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM click_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM ach_combo[] = {KC_W, KC_O, COMBO_END};
 const uint16_t PROGMEM mac_combo[] = {KC_Z, KC_P, COMBO_END};
+#ifdef OLED_DRIVER_ENABLE
+const uint16_t PROGMEM flwr_combo[] = {KC_SPC, KC_ENT, COMBO_END};
+#endif
 
 combo_t key_combos[COMBO_COUNT] = {
+#ifdef OLED_DRIVER_ENABLE
+[FLWR_RESET] = COMBO_ACTION(flwr_combo),
+#endif
 [RU_ENT] = COMBO(ru_combo, KC_ENT),
 [GH_QUOT] = COMBO(gh_combo, KC_QUOT),
 [VM_QUES] = COMBO(vm_combo, KC_QUES),
@@ -76,5 +86,14 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             default_layer_set(1UL << _QWERTY);
         }
         break;
+
+#ifdef OLED_DRIVER_ENABLE
+    case FLWR_RESET:
+        if (pressed) {
+            num_keypresses = 0;
+            current_frame = 0;
+        }
+        break;
+#endif
   }
 }

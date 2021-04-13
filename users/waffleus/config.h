@@ -64,7 +64,11 @@
 #endif
 
 #ifdef COMBO_ENABLE
-#define COMBO_COUNT 16
+    #ifdef OLED_DRIVER_ENABLE
+        #define COMBO_COUNT 17
+    #else 
+        #define COMBO_COUNT 16
+    #endif
 #define COMBO_TERM 50
 #endif
 

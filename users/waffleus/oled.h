@@ -16,3 +16,6 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record);
 #define LAYER_TAP_FRAMES 3
 #define LAYER_SIZE 520
 #define XANIM_SIZE 650
+#define FLOWER_FRAMES 7
+#define FLOWER_SIZE 512
+#define GROW_RATE 300
