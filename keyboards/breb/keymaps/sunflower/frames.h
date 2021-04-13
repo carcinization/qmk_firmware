@@ -1,7 +1,7 @@
 #define ANIM_FRAMES 7
 #define DICE_FRAMES 7
 #define ANIM_SIZE 512
-#define GROW_RATE 1000
+#define GROW_RATE 2
 #define LOGO_SIZE 128
 
 static const char PROGMEM plant_anim[ANIM_FRAMES][ANIM_SIZE] = {

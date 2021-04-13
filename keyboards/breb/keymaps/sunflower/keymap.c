@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-uint16_t roll(uint16_t N);
+//uint16_t roll(uint16_t N);
 static int num_keypresses = 0;
 static int current_frame = 0;
-uint8_t die_idx = 0;
-uint16_t roll_result = 1;
+//uint8_t die_idx = 0;
+//uint16_t roll_result = 1;
 enum custom_keycodes {
-	NEXT_DIE = SAFE_RANGE,
-	ROLL,
+	TESTTTTTT = SAFE_RANGE,
+//	ROLL,
 };
 enum combos {
     FLWR_RESET,
@@ -28,10 +28,10 @@ combo_t key_combos[COMBO_COUNT] = {
 	[FLWR_RESET] = COMBO_ACTION(flwr_combo),
 	[FLWR_GROW] = COMBO_ACTION(flwr_grow),
 };
-const uint16_t dice[7] = {2, 4, 6, 8, 10, 12, 20};
+//const uint16_t dice[7] = {2, 4, 6, 8, 10, 12, 20};
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_BASE] = LAYOUT_smol(
-     KC_A, KC_B, TG(_DICE)
+     KC_A, KC_B, KC_C
  ),
  [_SYM] = LAYOUT_smol(
      TG(1), KC_A, KC_B
@@ -40,11 +40,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      RGB_TOG, TG(2), RGB_RMOD
  ),
  [_DICE] = LAYOUT_smol(
-     KC_1, KC_3, TG(_DICE)
+     KC_TRNS, KC_TRNS, TG(_DICE)
  )
 };
-uint8_t mod_state;
-char roll_str[5] = {};
+//uint8_t mod_state;
+//char roll_str[5] = {};
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
 		num_keypresses = num_keypresses + 1;
@@ -54,10 +54,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			}
 		}
     }
-    mod_state = get_mods();
+    //mod_state = get_mods();
     switch (keycode) {
+        case TESTTTTTT:
+            if (record->event.pressed) {
+                SEND_STRING("hello");
+            }
+            break;
 
-    case KC_BSPC:
+
+    /*case KC_BSPC:
         {
         static bool delkey_registered;
         if (record->event.pressed) {
@@ -101,11 +107,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			roll_result = roll(dice[die_idx]);
 			snprintf(roll_str, sizeof(roll_str), "%d ", roll_result);
 		}
-		}
+		}*/
     }
     return true;
 };
-uint16_t roll(uint16_t n) {
+/*uint16_t roll(uint16_t n) {
   if ((n - 1) >= RAND_MAX) {
     return rand();
   } else {
@@ -115,7 +121,7 @@ uint16_t roll(uint16_t n) {
     while ((r = rand()) >= end);
     return (r % n) + 1;
   }
-}
+}*/
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   srand(time(0));
@@ -138,7 +144,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 			break;
 	}
 }
-char die_str[4] = {};
+/*char die_str[4] = {};
 void oled_render_layer_state(void) {
 	oled_set_cursor(0, 6);
     switch (get_highest_layer(layer_state)) {
@@ -161,7 +167,7 @@ void oled_render_layer_state(void) {
 			oled_write(die_str, false);
             break;
     }
-}
+}*/
 void oled_render_animation_phase(void) {
 	oled_write_raw_P(plant_anim[current_frame], ANIM_SIZE);
 }
