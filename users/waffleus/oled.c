@@ -138,6 +138,20 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
         oled_timer = timer_read32();
         add_keylog(keycode);
     }
+    switch (keycode) {
+        case KC_SPC:
+            if (record->event.pressed) {
+                isJumping = true;
+                showedJump = false;
+            } else {
+                isJumping = false;
+            }
+            break;
+        case KC_LCTL:
+        case KC_RCTL:
+            isSneaking = record->event.pressed;
+        break;
+    }
     return true;
 }
 
