@@ -1,4 +1,5 @@
 #include "rgb.h"
+const uint8_t RGBLED_GRADIENT_RANGES[] PROGMEM = {127, 127, 148, 0, 0};
 bool process_record_user_rgblight(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case CYAN:
