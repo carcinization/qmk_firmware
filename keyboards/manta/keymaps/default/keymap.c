@@ -1,0 +1,211 @@
+ 	#include "manta.h"
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(1, KC_B):
+            return TAPPING_TERM + 100;
+        case LT(2, KC_K):
+            return TAPPING_TERM + 100;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
+enum combos {
+  QW_ESC,
+  QF_TAB,
+  BSPCSPC_ENTER,
+  JL_QUOT,
+  ZSLSH_UNDO,
+  XDOT_CUT,
+  CCOM_COPY,
+  VM_PASTE,
+  JY_DQUO,
+  COMDOT_SCLN,
+  COMBSPC_COLN,
+  CAD_CAD,
+  BSPCLSFT_DEL,
+  ZR_SELECT,
+  PV_CLEFT,
+  LM_CRIGHT,
+};
+
+const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
+const uint16_t PROGMEM qf_combo[] = {KC_Q, KC_F, COMBO_END};
+const uint16_t PROGMEM BSPCSPC_combo[] = {KC_SPC, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM jl_combo[] = {KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM zslsh_combo[] = {KC_Z, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM xdot_combo[] = {KC_X, KC_DOT, COMBO_END};
+const uint16_t PROGMEM ccom_combo[] = {KC_C, KC_COMM, COMBO_END};
+const uint16_t PROGMEM vm_combo[] = {KC_V, KC_M, COMBO_END};
+const uint16_t PROGMEM jy_combo[] = {KC_J, KC_Y, COMBO_END};
+const uint16_t PROGMEM comdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combspc_combo[] = {KC_COMM, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM cad_combo[] = {KC_C, KC_A, KC_D, COMBO_END};
+const uint16_t PROGMEM bspclsft_combo[] = {KC_BSPC, KC_LSFT, COMBO_END};
+const uint16_t PROGMEM zr_combo[] = {KC_Z, KC_R, COMBO_END};
+const uint16_t PROGMEM pv_combo[] = {KC_P, KC_V, COMBO_END};
+const uint16_t PROGMEM lm_combo[] = {KC_L, KC_M, COMBO_END};
+
+
+
+combo_t key_combos[COMBO_COUNT] = {
+  [QW_ESC] = COMBO(qw_combo, KC_ESC),
+  [QF_TAB] = COMBO(qf_combo, KC_TAB),
+  [BSPCSPC_ENTER] = COMBO(BSPCSPC_combo, KC_ENT),
+  [JL_QUOT] = COMBO(jl_combo, KC_QUOT),
+  [ZSLSH_UNDO] = COMBO_ACTION(zslsh_combo),
+  [XDOT_CUT] = COMBO_ACTION(xdot_combo),
+  [CCOM_COPY] = COMBO_ACTION(ccom_combo),
+  [VM_PASTE] = COMBO_ACTION(vm_combo),
+  [JY_DQUO] = COMBO(jy_combo, KC_DQUO),
+  [COMDOT_SCLN] = COMBO(comdot_combo, KC_SCLN),
+  [COMBSPC_COLN] = COMBO(combspc_combo, KC_COLN),
+  [CAD_CAD] = COMBO_ACTION(cad_combo),
+  [BSPCLSFT_DEL] = COMBO(bspclsft_combo, KC_DEL),
+  [ZR_SELECT] = COMBO_ACTION(zr_combo),
+  [PV_CLEFT] = COMBO_ACTION(pv_combo),
+  [LM_CRIGHT] = COMBO_ACTION(lm_combo),
+  
+  
+  
+};
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case ZSLSH_UNDO:
+      if (pressed) {
+        tap_code16(LCTL(KC_Z));
+      }
+      break;
+	case XDOT_CUT:
+	  if (pressed) {
+		  tap_code16(LCTL(KC_X));
+	  }
+	  break;
+	case CCOM_COPY:
+	  if (pressed) {
+		  tap_code16(LCTL(KC_C));
+	  }
+	  break;
+    case VM_PASTE:
+      if (pressed) {
+        tap_code16(LCTL(KC_V));
+      }
+	  break;
+	case CAD_CAD:
+	  if (pressed) {
+		  tap_code16(C(A(KC_DEL)));
+	  }
+      break;
+	case ZR_SELECT:
+	  if (pressed) {
+		  tap_code16(C(KC_A));
+	  }
+	  break;
+	case PV_CLEFT:
+	  if (pressed) {
+		  tap_code16(LCTL(KC_LEFT));
+	  }
+	  break;
+	case LM_CRIGHT:
+	  if (pressed) {
+		  tap_code16(LCTL(KC_RGHT));
+	  }
+	  break;
+  }
+}
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+	KEYMAP(
+		KC_Q, KC_W, KC_F, KC_P, KC_G, KC_J, KC_L, KC_U, KC_Y, KC_BSPC,
+		KC_A, KC_R, KC_S, KC_T, KC_D, KC_H, KC_N, KC_E, KC_I, KC_O,
+		KC_Z, KC_X, KC_C, KC_V, LT(1, KC_B), KC_SPC, KC_LSFT, LT(2, KC_K), KC_M, KC_COMM, KC_DOT, RCTL_T(KC_SLSH)),
+
+	KEYMAP(
+		KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0,
+		KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R, KC_TRNS, KC_MINS, KC_EQL, KC_TRNS, KC_SCLN, KC_QUOT,
+		KC_TAB, KC_LBRC, KC_RBRC, KC_BSLS, KC_TRNS, KC_TRNS, KC_TRNS, MO(2), KC_WH_U, KC_WH_D, KC_BTN1, KC_BTN2),
+
+	KEYMAP(
+		KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
+		KC_LEFT, KC_UP, KC_DOWN, KC_RGHT, KC_COLN, KC_LPRN, KC_RPRN, KC_TRNS, KC_COLN, KC_DQUO,
+		KC_TRNS, KC_LCBR, KC_RCBR, KC_PIPE, MO(3), KC_TRNS, KC_TRNS, KC_TRNS, KC_QUES, KC_LABK, KC_RABK, RCTL(KC_PSCR)),
+
+	KEYMAP(
+		KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10,
+		RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG, KC_MUTE, KC_VOLD, KC_VOLU, KC_BRID, KC_BRIU,
+		RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+
+	KEYMAP(
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
+
+};
+
+void matrix_init_user(void) {
+}
+
+void matrix_scan_user(void) {
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+	return true;
+}
+
