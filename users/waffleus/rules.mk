@@ -6,6 +6,7 @@ TAP_DANCE_ENABLE = yes
 AUTO_SHIFT_ENABLE = no
 LTO_ENABLE = yes
 UNICODEMAP_ENABLE = yes
+RANDICT = no
 
 ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
 MCU = atmega32u4
@@ -52,4 +53,9 @@ endif
 
 ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
 	SRC += rgb.c
+endif
+
+ifeq ($(strip $(RANDICT)), yes)
+	OPT_DEFS += -DRANDICT
+	SRC += users/ridingqwerty/dict.h
 endif

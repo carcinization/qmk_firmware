@@ -12,6 +12,7 @@ enum userspace_combos {
     TY_COLN,
     BN_UNDS,
     FJ_MINS,
+    CV_SCLN,
     DF_BTN1,
     JK_BTN2,
     VB_WHD,

@@ -14,6 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "waffleus.h"
+#ifdef RANDICT
+#include "users/ridingqwerty/randict.h"
+#endif 
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
 __attribute__((weak)) bool process_record_secrets(uint16_t keycode, keyrecord_t *record) { return true; }
 uint16_t alt_tab_timer = 0;

@@ -132,11 +132,6 @@
 #    define RGB_MATRIX_SPD_STEP 10
 #endif
 
-#ifdef COMBO_ENABLE
-#   define COMBO_COUNT 8
-#   define COMBO_TERM 50
-#endif
-
 #ifdef AUTOSHIFT_ENABLE
 #define AUTO_SHIFT_MODIFIERS
 #define AUTO_SHIFT_TIMEOUT 170
