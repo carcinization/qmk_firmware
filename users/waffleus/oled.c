@@ -188,9 +188,7 @@ void render_main(void) {
         render_keylogger();
         oled_set_cursor(0, 15);
         render_keylogger_status();
-    } else {
-        oled_off();
-    }
+    } else { oled_off(); }
 }
 
 static void render_bongo(void) {
@@ -766,7 +764,7 @@ void oled_task_user(void) {
         }
         render_main();
     } else {
-        flower_anim();
+        //render_bongo();
     }
 }
 #endif

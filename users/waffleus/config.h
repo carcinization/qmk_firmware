@@ -75,7 +75,7 @@
 #ifdef KEYBOARD_crkbd_rev1_common
 #define USE_SERIAL_PD2
 #undef RGBLED_NUM
-#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_EFFECT_TWINKLE
 #define RGBLED_NUM 27
 #define RGBLIGHT_LIMIT_VAL 155
 #endif

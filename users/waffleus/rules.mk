@@ -10,10 +10,10 @@ RANDICT = no
 
 ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
 MCU = atmega32u4
-BOOTLOADER = atmel-dfu
+BOOTLOADER = caterina
 RGBLIGHT_ENABLE = yes
-OLED_DRIVER_ENABLE = no
-EXTRAKEY_ENABLE = yes
+OLED_DRIVER_ENABLE = yes
+EXTRAKEY_ENABLE = no
 LTO_ENABLE = yes
 WPM_ENABLE = yes
 UNICODEMAP_ENABLE = no
