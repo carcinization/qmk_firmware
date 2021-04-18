@@ -2,8 +2,8 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = { [_QWERTY] = LAYOUT_kc(
     Q, W, E, R, T,
     A, S, D, F, G,
-    SAI, VAD, VAI, V, B,
-    SAD, HUD, HUI, TOG, MOD
+    SAI, VAD, VAI, M_P, MOD,
+    SAD, HUD, HUI, TOG, RMOD
 ) };
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return 2; }
 static void render_logo(void) {
