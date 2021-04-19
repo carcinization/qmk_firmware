@@ -41,7 +41,7 @@ enum unicodemap_names {
 #define SFPRN MT(MOD_RSFT, KC_F24)
 #define ALTQ ALT_T(KC_Q)
 #define ALTP ALT_T(KC_P)
-//---windows/linux---
+//---linux/windows---
 #define GPSCR G(KC_PSCR)
 #define CTLZ CTL_T(KC_Z)
 #define CTLESC CTL_T(KC_ESC)
