@@ -45,7 +45,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 void keyboard_post_init_user(void) {
     rgblight_enable_noeeprom();
-    rgblight_sethsv_noeeprom(0, 220, 255);
+    rgblight_sethsv_noeeprom(HSV_CYAN);
     rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 #ifdef RGBLIGHT_LAYERS
     rgblight_layers = my_rgb_layers;
