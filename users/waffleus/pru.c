@@ -13,10 +13,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "waffleus.h"
 #ifdef RANDICT
-#include "users/ridingqwerty/randict.h"
-#endif 
+#include "users/ridingqwerty/dict.h"
+uint16_t rand_key;
+bool randword_seed = false;
+bool random_word(void){
+    bool rbool = rand() & 1;
+    return rbool;
+}
+#endif
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
 __attribute__((weak)) bool process_record_secrets(uint16_t keycode, keyrecord_t *record) { return true; }
 uint16_t alt_tab_timer = 0;
@@ -98,6 +105,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 eeconfig_update_rgblight_default();
                 rgblight_enable();
+            }
+            break;
+#endif
+#ifdef RANDICT
+        case RWORD:
+            if (randword_seed == false) {
+                randword_seed = true;
+                srand(timer_read32());
+            }
+            rand_key = rand() % NUMBER_OF_WORDS;
+            if (record->event.pressed) {
+                send_string(dict[rand_key]);
+                tap_code(KC_SPC);
             }
             break;
 #endif
