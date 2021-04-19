@@ -22,4 +22,7 @@
    [HAS] = 0x262D,
    [STAR] = 0x2605,
    [VIB] = 0x0950,
+   [NUCLEAR] = 0x9762,
+   [SUNGLASS] = 0x128526,
+   [LIGHTNING] = 0x128498,
 };

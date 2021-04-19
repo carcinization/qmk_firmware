@@ -28,7 +28,10 @@ enum unicodemap_names {
     UPAR,
     HAS,
     STAR,
-    VIB
+    VIB,
+    NUCLEAR,
+    SUNGLASS,
+    LIGHTNING
 };
 
 enum {
@@ -56,7 +59,6 @@ enum custom_keycodes {
   UNIT2,
   UNIT3,
   UNIT4,
-  WEEB,
   RGBRST,
   RWORD,
   SPONGE,
@@ -76,7 +78,8 @@ enum custom_keycodes {
 //---layers---
 #define LOWER MO(1)
 #define RAISE MO(2)
-#define TGADJ TG(4)
+#define ADJUST MO(3)
+#define TGADJ TG(3)
 //---general---
 #define SFA SFT_T(KC_A)
 #define SFCLN SFT_T(KC_SCLN)
@@ -105,3 +108,6 @@ enum custom_keycodes {
 #define ZHAP X(SIDE)
 #define ARWUP X(UPAR)
 #define STARX X(STAR)
+#define NUKE X(NUCLEAR)
+#define SUNGL X(SUNGLASS)
+#define ZAP X(LIGHTNING)

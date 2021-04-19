@@ -302,25 +302,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
       case UNIT3:
         if (record->event.pressed) {
-        send_unicode_string("(╯°□°）╯︵ ┻━┻");
+        send_unicode_string("┬──┬ ノ( ゜-゜ノ)");
         } else {
         }
         break;
-
       case UNIT4:
         if (record->event.pressed) {
-          send_unicode_string("┬──┬ ノ( ゜-゜ノ)");
+          send_unicode_string("(╯°□°）╯︵ ┻━┻");
         } else {
         }
         break;
 #endif
 
-      case WEEB:
-        if (record->event.pressed) {
-          SEND_STRING(":WeebsDie1"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":WeebsDie2"SS_TAP(X_ENTER)SS_TAP(X_BSPC)":WeebsDie3"SS_TAP(X_ENTER)SS_TAP(X_BSPC)SS_TAP(X_ENTER));
-        } else {
-        }
-        break;
 #ifdef RGBLIGHT_ENABLE
       case RGBRST:
         if (record->event.pressed) {
