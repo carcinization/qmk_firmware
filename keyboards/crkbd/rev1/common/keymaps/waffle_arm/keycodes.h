@@ -23,7 +23,7 @@ enum layers {
     _ADJUST,
 };
 
-enum unicodemap_names {
+enum unicode_names {
     SIDE,
     UPAR,
     HAS,
@@ -35,10 +35,10 @@ enum unicodemap_names {
 };
 
 enum {
-    MSLGUI,
     HAP_SAD,
     QMK,
-    DOCS
+    DOCS,
+    MSLGUI,
 };
 
 enum typing_mode {
@@ -61,9 +61,6 @@ enum custom_keycodes {
   UNIT4,
   RGBRST,
   RWORD,
-  SPONGE,
-  ALT_TAB,
-  MAKE,
   KC_NOMODE,
   KC_REGIONAL,
   KC_WIDE,
@@ -72,7 +69,10 @@ enum custom_keycodes {
   KC_AUSSIE,
   KC_ZALGO,
   KC_WOWMODE,
-  KC_D3MODE
+  KC_D3MODE,
+  SPONGE,
+  ALT_TAB,
+  MAKE,
 };
 
 //---layers---

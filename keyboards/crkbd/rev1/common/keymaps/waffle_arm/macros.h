@@ -379,8 +379,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #elif defined(BOOLOADER_CATERINA)
                           ":avrdude"
 #endif
-                          SS_TAP(X_ENTER)SS_DELAY(5000));
-                          reset_keyboard();
+                          SS_TAP(X_ENTER));
             }
             return false;
             break;
