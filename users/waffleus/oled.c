@@ -762,9 +762,8 @@ void oled_task_user(void) {
         } else {
             oled_on();
         }
-        render_main();
+        render_cat();
     } else {
-        //render_bongo();
     }
 }
 #endif

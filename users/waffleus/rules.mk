@@ -19,8 +19,6 @@ WPM_ENABLE = yes
 UNICODEMAP_ENABLE = no
 POINTING_DEVICE_ENABLE = no
 VIA_ENABLE = no
-KEYLOGGER_ENABLE = no
-#NO_SECRETS = no
 endif
 
 SRC += waffleus.c \
