@@ -146,8 +146,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #elif defined(BOOTLOADER_USBASP)
                         ":usbasp"
 #endif
-                        SS_TAP(X_ENTER)SS_DELAY(500));
-                        reset_keyboard();
+                        SS_TAP(X_ENTER));
             }
             return false;
             break;

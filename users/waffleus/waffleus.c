@@ -21,7 +21,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #endif
 
 #ifdef ENOCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
+__attribute__ ((weak)) void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (IS_LAYER_ON(_ADJUST)) {
             tap_code((clockwise == true) ? KC_LEFT : KC_RGHT);
