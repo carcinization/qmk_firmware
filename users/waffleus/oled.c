@@ -764,7 +764,7 @@ void oled_task_user(void) {
         }
         render_main();
     } else {
-        //render_bongo();
+        flower_anim();
     }
 }
 #endif
