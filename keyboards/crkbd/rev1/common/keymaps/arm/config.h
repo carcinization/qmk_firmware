@@ -1,20 +1,26 @@
 #pragma once
-#define MASTER_LEFT
+#include "config_common.h"
+#undef PRODUCT
+#undef MANUFACTURER
+#define MANUFACTURER Waffles
+#define PRODUCT Protorne Keyboard
 #undef USE_I2C
-#undef SDD1306OLED
+#undef SSD1306OLED
+#define MASTER_LEFT
 #define USE_SERIAL_PD2
 #ifdef RGBLIGHT_ENABLE
 #undef RGBLED_NUM
-#define RGBLED_NUM 24
-#define RGBLED_SPLIT { 12, 12 }
 #undef RGB_DI_PIN
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 42
 #define RGB_DI_PIN B5
+#define RGBLED_SPLIT { 21, 21 }
 #define RGBLIGHT_LIMIT_VAL 175
-#endif //rgb
+#endif
 #ifdef OLED_DRIVER_ENABLE
-#define OLED_TIMEOUT 30000
+#define OLED_TIMEOUT 50000
 #define OLED_FONT_H "keyboards/crkbd/rev1/common/keymaps/arm/glcdfont.c"
-#endif //oled
+#endif
 #define WS2812_PWM_DRIVER PWMD3
 #define WS2812_PWM_CHANNEL 3
 #define WS2812_PWM_PAL_MODE 2
@@ -25,3 +31,7 @@
 #define SELECT_SOFT_SERIAL_SPEED 1
 #define SERIAL_USART_DRIVER SD1
 #define SERIAL_USART_TX_PAL_MODE 7
+#define ENCODERS_PAD_A { B2 }
+#define ENCODERS_PAD_B { B6 }
+#define ENCODERS_PAD_A_RIGHT { B2 }
+#define ENCODERS_PAD_B_RIGHT { B6 }
