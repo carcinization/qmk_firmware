@@ -21,6 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         KC_LGUI, _______,  KC_SPC, KC_ENT, _______, KC_RALT )
 };
+layer_state_t layer_state_set_user(layer_state_t state) { return update_tri_layer_state(state, 1, 2, 3); }
 #ifdef RGBLIGHT_ENABLE
 void keyboard_post_init_user(void) {
     rgblight_enable_noeeprom();

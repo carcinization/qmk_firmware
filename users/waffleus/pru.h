@@ -10,8 +10,10 @@ enum userspace_custom_keycodes {
 #ifdef UNICODEMAP_ENABLE
     UNIT,
     UNIT2,
-    UNIT3,
-    UNIT4,
+    TABLE1,
+    TABLE2,
+    LENNY,
+    DANCE,
 #endif
 #ifdef RGBLIGHT_ENABLE
     RGBRST,

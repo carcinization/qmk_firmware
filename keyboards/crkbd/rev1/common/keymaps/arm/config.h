@@ -13,8 +13,10 @@
 #undef RGB_DI_PIN
 #define RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 42
-#define RGB_DI_PIN B5
 #define RGBLED_SPLIT { 21, 21 }
+//#define RGBLED_NUM 24
+//#define RGBLED_SPLIT { 12, 12 }
+#define RGB_DI_PIN B5
 #define RGBLIGHT_LIMIT_VAL 175
 #endif
 #ifdef OLED_DRIVER_ENABLE
