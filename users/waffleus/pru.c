@@ -76,14 +76,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) { send_unicode_string("(＾▽＾)"); } break;
         case UNIT2:
             if (record->event.pressed) { send_unicode_string("≧ω≦"); } break;
-        case TABLE1:
+        case TABLE1: // ┬──┬ ノ( ゜-゜ノ)
             if (record->event.pressed) { send_unicode_hex_string("252C 2500 2500 252C 0020 30CE 0028 0020 309C 002D 309C 30CE 0029"); } break;
-        case TABLE2:
+        case TABLE2: // (╯°□°)╯︵┻━┻
             if (record->event.pressed) { send_unicode_hex_string("0028 256F 00b0 25A1 00B0 0029 256F FE35 253B 2501 253B"); } break;
-        case LENNY:
-            if (reocrd->event.pressed) { send_unicode_hex_string("0028 0020 0361 00B0 0020 035C 0296 0020 0361 00b0 0029"); } break;
-        case DANCE:
-            if (reocrd->event.pressed) { send_unicode_hex_string("0F3C 0020 3064 0020 25D5 005F 25D5 0020 0F3D 3064"); } break;
+        case LENNY: // ( ͡° ͜ʖ ͡°)
+            if (record->event.pressed) { send_unicode_hex_string("0028 0020 0361 00B0 0020 035C 0296 0020 0361 00b0 0029"); } break;
+        case DANCE: // ༼ つ ◕_◕ ༽つ
+            if (record->event.pressed) { send_unicode_hex_string("0F3C 0020 3064 0020 25D5 005F 25D5 0020 0F3D 3064"); } break;
 #endif
 #ifdef RGBLIGHT_ENABLE
         case RGBRST:
