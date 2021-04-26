@@ -37,7 +37,7 @@ enum typing_mode {
     TM_AUSSIE,
     TM_ZALGO,
 };
-#endif 
+#endif
 
 //---layers---
 #define LOWER MO(_LOWER)
@@ -75,6 +75,6 @@ enum typing_mode {
 #define QMKTD TD(QMK)
 #define MSLGTD TD(MSLGUI)
 //---unicode---
-#define ZHAP X(SIDE)
+#define HAP X(SIDE)
 #define ARWUP X(UPAR)
 #define STARX X(STAR)
