@@ -50,6 +50,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case ROFL:
+            if (record->event.pressed) {
+                SEND_STRING("```Incoming ROFLCOPTER!"SS_TAP(X_ENT)SS_TAP(X_ENT)
+                            "   ROFL:ROFL:ROFL:ROFL"SS_TAP(X_ENT)
+                            "         ___^___ _"SS_TAP(X_ENT)
+                            " L    __/      []  \\ "SS_TAP(X_ENT)
+                            "LOL===__            \\ "SS_TAP(X_ENT)
+                            " L      \\___ ___ ___ ]"SS_TAP(X_ENT)
+                            "           I   I"SS_TAP(X_ENT)
+                            "         ----------/```"SS_TAP(X_ENT));
+            }
+            break;
+
         case MT(MOD_LSFT, KC_F23):
             if (record->tap.count > 0) {
             if (record->event.pressed) {

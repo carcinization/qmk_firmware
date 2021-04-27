@@ -8,7 +8,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_LOWER] = LAYOUT_waffle_yoink(
-        DOCSTD,  ______________DEFAULTLOWER1_______________,    ZHAP,  KC_MUTE,
+        DOCSTD,  ______________DEFAULTLOWER1_______________,    ROFL,  KC_MUTE,
         KC_TRNS, ______________DEFAULTLOWER2_______________,          KC_TRNS,
         HAPSAD, ______________DEFAULTLOWER3_______________, RGB_M_P,          KC_TRNS,
         KC_LCTL, KC_LALT, KC_LGUI, KC_TRNS, KC_SLSH, KC_RGUI, KC_RCTL, RGB_RMOD, RGB_M_SN, RGB_MOD
