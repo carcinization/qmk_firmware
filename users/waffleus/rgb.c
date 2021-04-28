@@ -31,17 +31,11 @@ bool process_record_user_rgblight(uint16_t keycode, keyrecord_t *record) {
 }
 
 #ifdef RGBLIGHT_LAYERS
-const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 12, HSV_PURPLE}
-);
+const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS( {0, 12, HSV_PURPLE} );
 
-const rgblight_segment_t PROGMEM my_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 12, HSV_YELLOW}
-);
+const rgblight_segment_t PROGMEM my_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS( {0, 12, HSV_YELLOW} );
 
-const rgblight_segment_t PROGMEM my_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 12, HSV_PINK}
-);
+const rgblight_segment_t PROGMEM my_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS( {0, 12, HSV_PINK} );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     my_lower_layer,

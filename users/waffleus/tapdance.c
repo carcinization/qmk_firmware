@@ -87,5 +87,4 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [QMK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_qmk_finished, NULL),
     [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_doc_finished, NULL),
     [MSLGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mslgui_finished, mslgui_reset),
-//    [MSRGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, msrgui_finished, msrgui_reset)
 };

@@ -65,22 +65,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case MT(MOD_LSFT, KC_F23):
             if (record->tap.count > 0) {
-            if (record->event.pressed) {
-                register_code16(KC_EXLM);
-            } else {
-                unregister_code16(KC_EXLM);
-            }
+            if (record->event.pressed) { register_code16(KC_EXLM); } else { unregister_code16(KC_EXLM); }
             return false;
             }
             break;
 
         case MT(MOD_RSFT, KC_F24):
             if (record->tap.count > 0) {
-            if (record->event.pressed) {
-                register_code16(KC_RPRN);
-            } else {
-                unregister_code16(KC_RPRN);
-            }
+            if (record->event.pressed) { register_code16(KC_RPRN); } else { unregister_code16(KC_RPRN); }
             return false;
             }
             break;
