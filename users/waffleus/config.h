@@ -1,4 +1,4 @@
-/* Copyright 2021 @Itswaffle/@waffle#6666
+/* Copyright 2021 @waffle#6666
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,11 +25,11 @@
 #define TAPPING_TERM_PER_KEY
 
 #ifdef RGBLIGHT_ENABLE
-/*#define RGBLIGHT_HUE_STEP 10
+#define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 10
-#define RGBLIGHT_VAL_STEP 10*/
+#define RGBLIGHT_VAL_STEP 10
 #define RGBLIGHT_SLEEP
-//#define RGBLIGHT_LAYERS
+#define RGBLIGHT_LAYERS
 #endif
 
 #ifdef OLED_DRIVER_ENABLE

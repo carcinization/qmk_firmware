@@ -1,4 +1,4 @@
-/* Copyright 2021 @Itswaffle/@waffle#6666
+/* Copyright 2021 @waffle#6666
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,37 +65,31 @@ combo_t key_combos[COMBO_COUNT] = {
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-    case XC_CLICK:
-        if (pressed) {
-            register_code(KC_TAB);
-            register_code(KC_ENT);
-            unregister_code(KC_TAB);
-            unregister_code(KC_ENT);
-            register_code(KC_ENT);
-            unregister_code(KC_ENT);
-        }
-        break;
+    switch(combo_index) {
+        case XC_CLICK:
+            if (pressed) {
+                register_code(KC_TAB);
+                register_code(KC_ENT);
+                unregister_code(KC_TAB);
+                unregister_code(KC_ENT);
+                register_code(KC_ENT);
+                unregister_code(KC_ENT);
+            }
+            break;
 
-    case WO_ACHOO:
-        if (pressed) {
-            SEND_STRING(SS_TAP(X_UP)SS_LCTL("a")"achoo"SS_TAP(X_ENT));
-        }
-        break;
+        case WO_ACHOO:
+            if (pressed) { SEND_STRING(SS_TAP(X_UP)SS_LCTL("a")"achoo"SS_TAP(X_ENT)); } break;
 
-    case MACMD:
-        if (pressed) {
-            default_layer_set(1UL << _QWERTY);
-        }
-        break;
+        case MACMD:
+            if (pressed) { default_layer_set(1UL << _QWERTY); } break;
 
 #ifdef OLED_DRIVER_ENABLE
-    case FLWR_RESET:
-        if (pressed) {
-            num_keypresses = 0;
-            current_frame = 0;
-        }
-        break;
+        case FLWR_RESET:
+            if (pressed) {
+                num_keypresses = 0;
+                current_frame = 0;
+            }
+            break;
 #endif
-  }
+    }
 }
