@@ -31,13 +31,6 @@ enum userspace_custom_keycodes {
     TABLE2,
     LENNY,
     DANCE,
-    KC_NOMODE,
-    KC_REGIONAL,
-    KC_WIDE,
-    KC_BLOCKS,
-    KC_FANCY,
-    KC_AUSSIE,
-    KC_ZALGO,
 #endif
 #ifdef RGBLIGHT_ENABLE
     RGBRST,

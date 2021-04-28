@@ -43,16 +43,6 @@ enum unicodemap_names {
     STAR,
     VIB
 };
-
-enum typing_mode {
-    TM_NOMODE,
-    TM_REGIONAL,
-    TM_WIDE,
-    TM_BLOCKS,
-    TM_FANCY,
-    TM_AUSSIE,
-    TM_ZALGO,
-};
 #endif
 
 //---layers---
