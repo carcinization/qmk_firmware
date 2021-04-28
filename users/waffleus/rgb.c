@@ -17,7 +17,7 @@
 #include "rgb.h"
 #ifdef RGBLIGHT_EFFECT_STATIC_GRADIENT
 const uint8_t RGBLED_GRADIENT_RANGES[] PROGMEM = {127, 127, 148, 0, 0};
-#endif 
+#endif
 bool process_record_user_rgblight(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case CYAN:
@@ -32,11 +32,8 @@ bool process_record_user_rgblight(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef RGBLIGHT_LAYERS
 const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS( {0, 12, HSV_PURPLE} );
-
 const rgblight_segment_t PROGMEM my_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS( {0, 12, HSV_YELLOW} );
-
 const rgblight_segment_t PROGMEM my_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS( {0, 12, HSV_PINK} );
-
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     my_lower_layer,
     my_raise_layer,
@@ -50,6 +47,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 #endif
+
+void keyboard_post_init_user(void) {
+  rgblight_enable_noeeprom();
+  rgblight_sethsv_noeeprom(HSV_CYAN);
+  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+}
 
 void keyboard_post_init_rgblight(void) {
 #ifdef RGBLIGHT_LAYERS

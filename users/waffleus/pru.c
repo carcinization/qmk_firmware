@@ -35,19 +35,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
     switch (keycode) {
         case CP_PSTE:
-            if (record->event.pressed) {
-                tap_code16(C(KC_C));
-            } else {
-                tap_code16(C(KC_V));
-            }
+            if (record->event.pressed) { tap_code16(C(KC_C)); } else { tap_code16(C(KC_V)); }
             return false;
 
         case MAC_PSTE:
-            if (record->event.pressed) {
-                tap_code16(G(KC_C));
-            } else {
-                tap_code16(G(KC_V));
-            }
+            if (record->event.pressed) { tap_code16(G(KC_C)); } else { tap_code16(G(KC_V)); }
             return false;
 
         case ROFL:

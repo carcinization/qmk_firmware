@@ -77,6 +77,7 @@ enum typing_mode {
 #define CTLDOT CTL_T(KC_DOT)
 #define CTLS C(KC_S)
 #define CTLRGHT CTL_T(KC_RIGHT)
+#define CLIPST C(S(KC_V))
 //---mac---
 #define MPSCR G(S(KC_4))
 #define MACTAB G(KC_TAB)

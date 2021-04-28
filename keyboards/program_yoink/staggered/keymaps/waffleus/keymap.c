@@ -4,7 +4,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QMKTD,   ______________DEFAULTQWERTY1_______________,    STARX,            KC_MPLY,
         ALT_TAB,    ______________DEFAULTQWERTY2_______________,             KC_MNXT,
         CP_PSTE,    ______________DEFAULTQWERTY3_______________,            KC_UP,   KC_MPRV,
-        KC_LCTL, KC_LALT, KC_LGUI, LWRSPC, RAISE, KC_RGUI, KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
+        CLIPST, KC_LALT, KC_LGUI, LWRSPC, RAISE, KC_LGUI, CLIPST, KC_LEFT, KC_DOWN, KC_RGHT
     ),
 
     [_LOWER] = LAYOUT_waffle_yoink(
@@ -21,12 +21,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LALT, KC_LGUI, KC_SCLN, KC_TRNS, KC_RGUI, KC_RCTL, KC_TRNS, RGB_VAD, KC_TRNS
     )
 };
-
-void keyboard_post_init_user(void) {
-  rgblight_enable_noeeprom();
-  rgblight_sethsv_noeeprom(HSV_CYAN);
-  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-}
 
 void encoder_update_user(uint8_t index, bool clockwise) {
     switch (biton32(layer_state)) {
