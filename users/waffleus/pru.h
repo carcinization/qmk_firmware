@@ -38,10 +38,5 @@ enum userspace_custom_keycodes {
     RWORD,
 #endif
     ALT_TAB,
-    MAKE,
-    KC_SECRET_1,
-    KC_SECRET_2,
-    KC_SECRET_3,
-    KC_SECRET_4,
-    KC_SECRET_5
+    MAKE 
 };

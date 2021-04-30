@@ -739,7 +739,7 @@ void oled_task_user(void) {
         }
         render_main();
     } else {
-        render_main();
+        render_cat();
     }
 }
 #endif

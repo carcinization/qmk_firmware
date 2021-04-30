@@ -36,7 +36,7 @@
 #endif
 
 #ifdef OLED_DRIVER_ENABLE
-#define OLED_TIMEOUT 30000
+#define OLED_TIMEOUT 50000
 #define OLED_FONT_H "users/waffleus/oledfonts.c"
 #endif
 
@@ -75,10 +75,10 @@
 #define COMBO_TERM 50
 #endif
 
-#ifdef KEYBOARD_crkbd_rev1_common
+/*#ifdef KEYBOARD_crkbd_rev1_common
 #define USE_SERIAL_PD2
 #undef RGBLED_NUM
 #define RGBLIGHT_EFFECT_TWINKLE
 #define RGBLED_NUM 27
 #define RGBLIGHT_LIMIT_VAL 155
-#endif
+#endif*/
