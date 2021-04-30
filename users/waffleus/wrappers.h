@@ -58,7 +58,7 @@
 #define ________________CRKBDLOWER3________________ KC_NLCK, CMDESC, KC_TAB, KC_CAPS, KC_TILD, KC_GRV, KC_LEFT, KC_UP, KC_DOWN, KC_RGHT, KC_RGUI, CMDS
 #define ________________CRKBDLOWER4________________ KC_LGUI, KC_TRNS, KC_SPC, KC_VOLU, KC_MS_U, KC_PGUP
 
-#define ________________CRKBDRAISE1________________ UC_M_WC, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  CG_NORM, CG_SWAP, /*UNIT, UNIT2, UNIT3, UNIT4*/KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define ________________CRKBDRAISE1________________ UC_M_WC, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  CG_NORM, CG_SWAP, STARX, TABLE1, TABLE2, ROFL
 #define ________________CRKBDRAISE2________________ UC_M_MA, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_ASON, KC_ASOFF, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ________________CRKBDRAISE3________________ UC_M_LN, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, ADJUST
 #define ________________CRKBDRAISE4________________ KC_PGDN, KC_MS_D, KC_VOLD, KC_BSPC, KC_TRNS, KC_RALT

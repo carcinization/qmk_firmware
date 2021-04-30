@@ -16,7 +16,7 @@ OLED_DRIVER_ENABLE = yes
 EXTRAKEY_ENABLE = no
 LTO_ENABLE = yes
 WPM_ENABLE = yes
-UNICODEMAP_ENABLE = no
+UNICODEMAP_ENABLE = yes
 POINTING_DEVICE_ENABLE = no
 VIA_ENABLE = no
 KEYLOGGER_ENABLE = no
@@ -30,7 +30,7 @@ SRC += waffleus.c \
 ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
     POINTING_DEVICE_ENABLE := yes
     OPT_DEFS += -DPIMORONI_TRACKBALL_ENABLE
-    SRC += pimoroni_trackball.c
+    SRC += users/drashna/pimoroni_trackball.c
     QUANTUM_LIB_SRC += i2c_master.c
 endif
 
@@ -48,5 +48,4 @@ endif
 
 ifeq ($(strip $(RANDICT)), yes)
 	OPT_DEFS += -DRANDICT
-	SRC += users/ridingqwerty/dict.h
 endif
