@@ -6,7 +6,7 @@ TAP_DANCE_ENABLE = yes
 AUTO_SHIFT_ENABLE = no
 LTO_ENABLE = yes
 UNICODEMAP_ENABLE = yes
-RANDICT = no
+RANDICT = yes
 
 ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
 MCU = atmega32u4
@@ -20,21 +20,12 @@ UNICODEMAP_ENABLE = no
 POINTING_DEVICE_ENABLE = no
 VIA_ENABLE = no
 KEYLOGGER_ENABLE = no
-#NO_SECRETS = no
 endif
 
 SRC += waffleus.c \
 		tapdance.c \
 		combos.c \
 		pru.c
-
-#ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
-#  SRC += secrets.c
-#endif
-
-#ifeq ($(strip $(NO_SECRETS)), yes)
-#	OPT_DEFS += -DNO_SECRETS
-#endif
 
 ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
     POINTING_DEVICE_ENABLE := yes
