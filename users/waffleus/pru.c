@@ -24,8 +24,6 @@ bool random_word(void){
     return rbool;
 }
 #endif
-__attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
-__attribute__((weak)) bool process_record_secrets(uint16_t keycode, keyrecord_t *record) { return true; }
 uint16_t alt_tab_timer = 0;
 bool is_alt_tab_active = false;
 
@@ -135,7 +133,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
     }
-    return process_record_keymap(keycode, record) && process_record_secrets(keycode, record);
+    return true;
 };
 
 void matrix_scan_user(void) {

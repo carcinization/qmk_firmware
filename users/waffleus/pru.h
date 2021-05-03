@@ -16,8 +16,6 @@
 
 #pragma once
 #include "waffleus.h"
-bool process_record_secrets(uint16_t keycode, keyrecord_t *record);
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 
 enum userspace_custom_keycodes {
     CP_PSTE = SAFE_RANGE,
@@ -38,5 +36,5 @@ enum userspace_custom_keycodes {
     RWORD,
 #endif
     ALT_TAB,
-    MAKE 
+    MAKE
 };
