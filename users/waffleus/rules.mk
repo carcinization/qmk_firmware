@@ -6,7 +6,7 @@ TAP_DANCE_ENABLE = yes
 AUTO_SHIFT_ENABLE = no
 LTO_ENABLE = yes
 UNICODEMAP_ENABLE = yes
-RANDICT = no
+RANDICT = yes
 
 #ifeq ($(strip $(KEYBOARD)), crkbd/rev1/common)
 #MCU = atmega32u4
