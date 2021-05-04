@@ -64,7 +64,6 @@ enum unicodemap_names {
 #define CTLESC CTL_T(KC_ESC)
 #define CTLSLH CTL_T(KC_SLSH)
 #define CTLDOT CTL_T(KC_DOT)
-#define CTLS C(KC_S)
 #define CTLRGHT CTL_T(KC_RIGHT)
 #define CLIPST C(S(KC_V))
 //---mac---
@@ -73,8 +72,8 @@ enum unicodemap_names {
 #define CMDZ CMD_T(KC_Z)
 #define CMDESC CMD_T(KC_ESC)
 #define CMDSLSH CMD_T(KC_SLSH)
-#define CMDS G(KC_S)
 #define CMDRGHT CMD_T(KC_RIGHT)
+#define CMDOT CMD_T(KC_DOT)
 //---tap dance---
 #define HAPSAD TD(HAP_SAD)
 #define DOCSTD TD(DOCS)
