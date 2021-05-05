@@ -16,8 +16,7 @@
 
 #include "waffleus.h"
 #include <stdio.h>
-uint32_t oled_timer = 0;
-static uint16_t log_timer = 0;
+static uint32_t oled_timer      = 0;
 static int num_keypresses = 0;
 static int flower_frame = 0;
 uint8_t current_idle_frame = 0;
@@ -31,6 +30,9 @@ bool isSneaking = false;
 bool isJumping = false;
 bool showedJump = true;
 bool anim_phase = false;
+char keylog_str[KEYLOG_LEN] = {};
+uint8_t  keylogs_str_idx = 0;
+uint16_t log_timer = 0;
 
 void render_wpm(void) {
     char wpm_wring[5];
@@ -97,34 +99,28 @@ void render_keylock_status(uint8_t led_usb_state) {
         } else {                                                    oled_write_ln_P(blink ? PSTR("% _  ") : PSTR("%     "), false); }
 }
 
-#define KEYLOG_LENGTH 5
-uint8_t keylogs_str_idx = 0;
-static char keylog_str[KEYLOG_LENGTH + 1] = {"\n"};
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
     'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
-    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '
-};
+    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
 void add_keylog(uint16_t keycode) {
-    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX) || (keycode >= QK_MODS && keycode <= QK_MODS_MAX)) {
-        keycode = keycode & 0xFF;
-    } else if (keycode > 0xFF) {
-        keycode = 0;
-    }
-
-    for (uint8_t i = (KEYLOG_LENGTH - 1); i > 0; --i) {
-        keylog_str[i] = keylog_str[i - 1];
-    }
-
-    if (keycode < (sizeof(code_to_name) / sizeof(char))) {
-        keylog_str[0] = pgm_read_byte(&code_to_name[keycode]);
-    }
-
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) { keycode = keycode & 0xFF; }
+    for (uint8_t i = KEYLOG_LEN - 1; i > 0; i--) { keylog_str[i] = keylog_str[i - 1]; }
+    if (keycode < 60) { keylog_str[0] = code_to_name[keycode]; }
+    keylog_str[KEYLOG_LEN - 1] = 0;
     log_timer = timer_read();
+}
+
+void update_log(void) { if (timer_elapsed(log_timer) > 750) { add_keylog(0); } }
+void render_keylogger(void) { oled_write(keylog_str, false); }
+
+void render_keylogger_status(void) {
+    bool blink = (timer_read() % 1000) < 500;
+    oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
 }
 
 bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
@@ -132,11 +128,7 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
         oled_timer = timer_read32();
         add_keylog(keycode);
         num_keypresses = num_keypresses + 1;
-        if (flower_frame < (FLOWER_FRAMES - 1)) {
-            if (num_keypresses % GROW_RATE == 0) {
-                flower_frame = flower_frame + 1;
-            }
-        }
+        if (flower_frame < (FLOWER_FRAMES - 1)) { if (num_keypresses % GROW_RATE == 0) { flower_frame = flower_frame + 1; } }
     }
     return true;
     switch (keycode) {
@@ -154,15 +146,6 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
         break;
     }
     return true;
-}
-
-void update_log(void) { if (timer_elapsed(log_timer) > 750) { add_keylog(0); } }
-
-void render_keylogger(void) { oled_write(keylog_str, false); }
-
-void render_keylogger_status(void) {
-    bool blink = (timer_read() % 1000) < 500;
-    oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
 }
 
 void render_main(void) {
