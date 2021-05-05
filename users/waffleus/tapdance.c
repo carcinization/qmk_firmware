@@ -83,8 +83,8 @@ void dance_doc_finished(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [HAP_SAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_pep_finished, NULL),
-    [QMK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_qmk_finished, NULL),
-    [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_doc_finished, NULL),
+    [HAP_SAD] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dance_pep_finished, NULL, 220),
+    [QMK] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dance_qmk_finished, NULL, 220),
+    [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dance_doc_finished, NULL, 220),
     [MSLGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mslgui_finished, mslgui_reset),
 };

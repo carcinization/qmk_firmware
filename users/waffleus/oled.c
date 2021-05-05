@@ -708,7 +708,7 @@ void flower_anim(void) { oled_write_raw_P(plant_anim[current_frame], FLOWER_SIZE
 
 #ifdef KEYBOARD_crkbd_rev1_common
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    if (!is_keyboard_master()) { return 2; } else { return 3; }
+    if (!is_keyboard_master()) { return 3; } else { return 2; }
     return rotation;
 }
 
@@ -720,9 +720,9 @@ void oled_task_user(void) {
         } else {
             oled_on();
         }
-        render_main();
+        render_secondary();
     } else {
-        render_cat();
+        render_main();
     }
 }
 #endif
