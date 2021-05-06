@@ -81,6 +81,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) { send_unicode_hex_string("0028 0020 0361 00B0 0020 035C 0296 0020 0361 00b0 0029"); } break;
         case DANCE: // ༼ つ ◕_◕ ༽つ
             if (record->event.pressed) { send_unicode_hex_string("0F3C 0020 3064 0020 25D5 005F 25D5 0020 0F3D 3064"); } break;
+        case SHRUG: //¯\_(ツ)_/¯
+            if (record->event.pressed) { send_unicode_hex_string("00AF 005C 005F 0028 30C4 0029 005F 002F 00AF"); } break;
 #endif
 #ifdef RGBLIGHT_ENABLE
         case RGBRST:
@@ -121,12 +123,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP
 #if (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
                         ":dfu"
-#elif defined(BOOTLOADER_HALFKAY)
-                        ":teensy"
 #elif defined(BOOLOADER_CATERINA)
                         ":avrdude"
-#elif defined(BOOTLOADER_USBASP)
-                        ":usbasp"
 #endif
                         SS_TAP(X_ENTER));
             }

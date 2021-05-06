@@ -28,6 +28,7 @@ enum userspace_custom_keycodes {
     TABLE2,
     LENNY,
     DANCE,
+    SHRUG,
 #endif
 #ifdef RGBLIGHT_ENABLE
     RGBRST,
