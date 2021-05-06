@@ -79,6 +79,7 @@ enum unicodemap_names {
 #define DOCSTD TD(DOCS)
 #define QMKTD TD(QMK)
 #define MSLGTD TD(MSLGUI)
+#define GCPTD TD(GCLIPST)
 //---unicode---
 #define HAP X(SIDE)
 #define ARWUP X(UPAR)

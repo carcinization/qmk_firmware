@@ -31,14 +31,14 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
     } else return 8;
 }
 
-static tap msgui_tap_state = {
+static tap cur_tap_state = {
     .is_press_action = true,
     .state = 0
 };
 
 void mslgui_finished(qk_tap_dance_state_t *state, void *user_data) {
-    msgui_tap_state.state = cur_dance(state);
-    switch (msgui_tap_state.state) {
+    cur_tap_state.state = cur_dance(state);
+    switch (cur_tap_state.state) {
         case SINGLE_TAP: register_code(KC_LGUI); break;
         case SINGLE_HOLD: register_code16(KC_MS_L); break;
         case DOUBLE_TAP: register_code(KC_LGUI); break;
@@ -48,14 +48,36 @@ void mslgui_finished(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 void mslgui_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (msgui_tap_state.state) {
+    switch (cur_tap_state.state) {
         case SINGLE_TAP: unregister_code(KC_LGUI); break;
         case SINGLE_HOLD: unregister_code16(KC_MS_L); break;
         case DOUBLE_TAP: unregister_code(KC_LGUI); break;
         case DOUBLE_HOLD: unregister_code16(KC_MS_L);
         case DOUBLE_SINGLE_TAP: unregister_code(KC_LGUI);
     }
-    msgui_tap_state.state = 0;
+    cur_tap_state.state = 0;
+}
+
+void gclipst_finished(qk_tap_dance_state_t *state, void *user_data) {
+    cur_tap_state.state = cur_dance(state);
+    switch (cur_tap_state.state) {
+        case SINGLE_TAP: register_code16(C(S(KC_V))); break;
+        case SINGLE_HOLD: register_code16(KC_MS_R); break;
+        case DOUBLE_TAP: register_code16(C(S(KC_V))); break;
+        case DOUBLE_HOLD: register_code16(KC_MS_R); break;
+        case DOUBLE_SINGLE_TAP: tap_code(KC_RGUI); register_code(KC_RGUI);
+    }
+}
+
+void gclipst_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (cur_tap_state.state) {
+        case SINGLE_TAP: unregister_code16(C(S(KC_V))); break;
+        case SINGLE_HOLD: unregister_code16(KC_MS_R); break;
+        case DOUBLE_TAP: unregister_code16(C(S(KC_V))); break;
+        case DOUBLE_HOLD: unregister_code16(KC_MS_R); break;
+        case DOUBLE_SINGLE_TAP: unregister_code(KC_RGUI);
+    }
+    cur_tap_state.state = 0;
 }
 
 void dance_pep_finished(qk_tap_dance_state_t *state, void *user_data) {
@@ -87,4 +109,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [QMK] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dance_qmk_finished, NULL, 220),
     [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dance_doc_finished, NULL, 220),
     [MSLGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mslgui_finished, mslgui_reset),
+    [GCLIPST] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gclipst_finished, gclipst_reset), 
 };

@@ -33,6 +33,7 @@ enum tapdance_types {
 
 enum custom_tapdances {
     MSLGUI,
+    GCLIPST,
     HAP_SAD,
     QMK,
     DOCS,
@@ -41,6 +42,8 @@ enum custom_tapdances {
 uint8_t cur_dance(qk_tap_dance_state_t *state);
 void msgui_finished(qk_tap_dance_state_t *state, void *user_data);
 void msgui_reset(qk_tap_dance_state_t *state, void *user_data);
+void gclipst_finished(qk_tap_dance_state_t *state, void *user_data);
+void gclipst_reset(qk_tap_dance_state_t *state, void *user_data);
 void dance_pep_finished(qk_tap_dance_state_t *state, void *user_data);
 void dance_qmk_finished(qk_tap_dance_state_t *state, void *user_data);
 void dance_doc_finished(qk_tap_dance_state_t *state, void *user_data);
