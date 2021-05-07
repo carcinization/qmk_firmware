@@ -37,7 +37,7 @@ uint8_t presetCounter = 0;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       [0] = LAYOUT(
-            UNO
+            KC_A
           )
 };
 
@@ -99,4 +99,13 @@ void keyboard_post_init_user(void) {
     rgblight_enable_noeeprom();
     rgblight_sethsv_noeeprom(0, 0, 0);
     rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+}
+
+//added lines 104-112
+void encoder_update_user(uint8_t index, bool clockwise) {
+    if (IS_LAYER_ON(1)) {
+        tap_code((clockwise == true) ? KC_PGUP : KC_PGDN);
+    } else {
+        tap_code((clockwise == true) ? KC_VOLU : KC_VOLD);
+    }
 }

@@ -1,4 +1,4 @@
-/* Copyright 2021 @Itswaffle/@waffle#6666
+/* Copyright 2021 @waffle#6666
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,15 +25,18 @@
 #define TAPPING_TERM_PER_KEY
 
 #ifdef RGBLIGHT_ENABLE
+#undef RGBLIGHT_HUE_STEP
 #define RGBLIGHT_HUE_STEP 10
+#undef RGBLIGHT_SAT_STEP
 #define RGBLIGHT_SAT_STEP 10
+#undef RGBLIGHT_VAL_STEP
 #define RGBLIGHT_VAL_STEP 10
 #define RGBLIGHT_SLEEP
-//#define RGBLIGHT_LAYERS
+#define RGBLIGHT_LAYERS
 #endif
 
 #ifdef OLED_DRIVER_ENABLE
-#define OLED_TIMEOUT 30000
+#define OLED_TIMEOUT 50000
 #define OLED_FONT_H "users/waffleus/oledfonts.c"
 #endif
 
@@ -56,7 +59,7 @@
 #endif
 
 #ifdef SPLIT_KEYBOARD
-#define EE_HANDS
+#define MASTER_RIGHT
 #define BOOTMAGIC_LITE_ROW 0
 #define BOOTMAGIC_LITE_COLUMN 0
 #define BOOTMAGIC_LITE_ROW_RIGHT 4
@@ -70,12 +73,4 @@
         #define COMBO_COUNT 17
     #endif
 #define COMBO_TERM 50
-#endif
-
-#ifdef KEYBOARD_crkbd_rev1_common
-#define USE_SERIAL_PD2
-#undef RGBLED_NUM
-#define RGBLIGHT_EFFECT_TWINKLE
-#define RGBLED_NUM 27
-#define RGBLIGHT_LIMIT_VAL 155
 #endif

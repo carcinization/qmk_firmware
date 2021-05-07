@@ -24,8 +24,6 @@ bool random_word(void){
     return rbool;
 }
 #endif
-__attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
-__attribute__((weak)) bool process_record_secrets(uint16_t keycode, keyrecord_t *record) { return true; }
 uint16_t alt_tab_timer = 0;
 bool is_alt_tab_active = false;
 
@@ -35,70 +33,56 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
     switch (keycode) {
         case CP_PSTE:
-            if (record->event.pressed) {
-                tap_code16(C(KC_C));
-            } else {
+            if (record->event.pressed) { tap_code16(C(KC_C)); } else {
                 tap_code16(C(KC_V));
-            }
+                tap_code(KC_ENT); }
             return false;
 
         case MAC_PSTE:
-            if (record->event.pressed) {
-                tap_code16(G(KC_C));
-            } else {
-                tap_code16(G(KC_V));
-            }
+            if (record->event.pressed) { tap_code16(G(KC_C)); } else { tap_code16(G(KC_V)); }
             return false;
+
+        case ROFL:
+            if (record->event.pressed) {
+                SEND_STRING("```Incoming ROFLCOPTER!\n"
+                            "\n   ROFL:ROFL:ROFL:ROFL\n"
+                            "         ___^___ _\n"
+                            " L    __/      []  \\ \n"
+                            "LOL===__            \\ \n"
+                            " L      \\___ ___ ___ ]\n"
+                            "           I   I\n"
+                            "         ----------/```"SS_TAP(X_ENT));
+            }
+            break;
 
         case MT(MOD_LSFT, KC_F23):
             if (record->tap.count > 0) {
-            if (record->event.pressed) {
-                register_code16(KC_EXLM);
-            } else {
-                unregister_code16(KC_EXLM);
-            }
+            if (record->event.pressed) { register_code16(KC_EXLM); } else { unregister_code16(KC_EXLM); }
             return false;
             }
             break;
 
         case MT(MOD_RSFT, KC_F24):
             if (record->tap.count > 0) {
-            if (record->event.pressed) {
-                register_code16(KC_RPRN);
-            } else {
-                unregister_code16(KC_RPRN);
-            }
+            if (record->event.pressed) { register_code16(KC_RPRN); } else { unregister_code16(KC_RPRN); }
             return false;
             }
             break;
 #ifdef UNICODEMAP_ENABLE
         case UNIT:
-            if (record->event.pressed) {
-                send_unicode_string("(＾▽＾)");
-            } else {
-            }
-            break;
-
+            if (record->event.pressed) { send_unicode_string("(＾▽＾)"); } break;
         case UNIT2:
-            if (record->event.pressed) {
-                send_unicode_string("≧ω≦");
-            } else {
-            }
-            break;
-
-        case UNIT3:
-            if (record->event.pressed) {
-            send_unicode_string("(╯°□°）╯︵ ┻━┻");
-            } else {
-            }
-            break;
-
-        case UNIT4:
-            if (record->event.pressed) {
-                send_unicode_string("┬──┬ ノ( ゜-゜ノ)");
-            } else {
-            }
-            break;
+            if (record->event.pressed) { send_unicode_string("≧ω≦"); } break;
+        case TABLE1: // ┬──┬ ノ( ゜-゜ノ)
+            if (record->event.pressed) { send_unicode_hex_string("252C 2500 2500 252C 0020 30CE 0028 0020 309C 002D 309C 30CE 0029"); } break;
+        case TABLE2: // (╯°□°)╯︵┻━┻
+            if (record->event.pressed) { send_unicode_hex_string("0028 256F 00b0 25A1 00B0 0029 256F FE35 253B 2501 253B"); } break;
+        case LENNY: // ( ͡° ͜ʖ ͡°)
+            if (record->event.pressed) { send_unicode_hex_string("0028 0020 0361 00B0 0020 035C 0296 0020 0361 00b0 0029"); } break;
+        case DANCE: // ༼ つ ◕_◕ ༽つ
+            if (record->event.pressed) { send_unicode_hex_string("0F3C 0020 3064 0020 25D5 005F 25D5 0020 0F3D 3064"); } break;
+        case SHRUG: //¯\_(ツ)_/¯
+            if (record->event.pressed) { send_unicode_hex_string("00AF 005C 005F 0028 30C4 0029 005F 002F 00AF"); } break;
 #endif
 #ifdef RGBLIGHT_ENABLE
         case RGBRST:
@@ -139,20 +123,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP
 #if (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
                         ":dfu"
-#elif defined(BOOTLOADER_HALFKAY)
-                        ":teensy"
 #elif defined(BOOLOADER_CATERINA)
                         ":avrdude"
-#elif defined(BOOTLOADER_USBASP)
-                        ":usbasp"
 #endif
-                        SS_TAP(X_ENTER)SS_DELAY(500));
-                        reset_keyboard();
+                        SS_TAP(X_ENTER));
             }
             return false;
             break;
     }
-    return process_record_keymap(keycode, record) && process_record_secrets(keycode, record);
+    return true;
 };
 
 void matrix_scan_user(void) {

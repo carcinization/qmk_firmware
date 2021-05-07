@@ -1,7 +1,22 @@
+/* Copyright 2021 @waffle#6666
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "waffleus.h"
 #include <stdio.h>
-uint32_t oled_timer = 0;
-static uint16_t log_timer = 0;
+static uint32_t oled_timer      = 0;
 static int num_keypresses = 0;
 static int flower_frame = 0;
 uint8_t current_idle_frame = 0;
@@ -15,6 +30,9 @@ bool isSneaking = false;
 bool isJumping = false;
 bool showedJump = true;
 bool anim_phase = false;
+char keylog_str[KEYLOG_LEN] = {};
+uint8_t  keylogs_str_idx = 0;
+uint16_t log_timer = 0;
 
 void render_wpm(void) {
     char wpm_wring[5];
@@ -57,87 +75,62 @@ void render_mod_gui(void) { // win symbol
 
 void render_prompt(void) {
     bool blink = (timer_read() % 1000) < 500;
-        if (layer_state_is(1)) {
-            oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
-        } else if (layer_state_is(2)) {
-            oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
-        } else if (layer_state_is(3)) {
-            oled_write_ln_P(blink ? PSTR("> ad_") : PSTR("> ad "), false);
-        } else {
-            oled_write_ln_P(blink ? PSTR("> _ ") : PSTR(">     "), false);
-        }
+        if (layer_state_is(1)) {        oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
+        } else if (layer_state_is(2)) { oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
+        } else if (layer_state_is(3)) { oled_write_ln_P(blink ? PSTR("> ad_") : PSTR("> ad "), false);
+        } else {                        oled_write_ln_P(blink ? PSTR("> _ ") : PSTR(">     "), false); }
 };
 
 void render_mod_status(void) {
     bool blink = (timer_read() % 1000) < 500;
     uint8_t modifiers = get_mods() | get_oneshot_mods();
-        if (modifiers & MOD_MASK_CTRL) {
-            oled_write_ln_P(blink ? PSTR("$ ctl") : PSTR("$ _  "), false);
-        } else if (modifiers & MOD_MASK_SHIFT) {
-            oled_write_ln_P(blink ? PSTR("$ sft") : PSTR("$ _  "), false);
-        } else if (modifiers & MOD_MASK_ALT) {
-            oled_write_ln_P(blink ? PSTR("$ alt") : PSTR("$ _  "), false);
-        } else if (modifiers & MOD_MASK_GUI) {
-            oled_write_ln_P(blink ? PSTR("$ gui") : PSTR("$ _  "), false);
-        } else {
-            oled_write_ln_P(blink ? PSTR("$ _  ") : PSTR("$     "), false);
-        }
+        if (modifiers & MOD_MASK_CTRL) {            oled_write_ln_P(blink ? PSTR("$ ctl") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_SHIFT) {    oled_write_ln_P(blink ? PSTR("$ sft") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_ALT) {      oled_write_ln_P(blink ? PSTR("$ alt") : PSTR("$ _  "), false);
+        } else if (modifiers & MOD_MASK_GUI) {      oled_write_ln_P(blink ? PSTR("$ gui") : PSTR("$ _  "), false);
+        } else {                                    oled_write_ln_P(blink ? PSTR("$ _  ") : PSTR("$     "), false); }
 }
 
 void render_keylock_status(uint8_t led_usb_state) {
     bool blink = (timer_read() % 1000) < 500;
-        if (led_usb_state & (1 << USB_LED_CAPS_LOCK)) {
-            oled_write_ln_P(blink ? PSTR("% cap") : PSTR("% _  "), false);
-        } else if (led_usb_state & (1 << USB_LED_NUM_LOCK)) {
-            oled_write_ln_P(blink ? PSTR("% num") : PSTR("% _  "), false);
-        } else if (led_usb_state & (1 << USB_LED_SCROLL_LOCK)) {
-            oled_write_ln_P(blink ? PSTR("% scr") : PSTR("% _  "), false);
-        } else {
-            oled_write_ln_P(blink ? PSTR("% _  ") : PSTR("%     "), false);
-        }
+        if (led_usb_state & (1 << USB_LED_CAPS_LOCK)) {             oled_write_ln_P(blink ? PSTR("% cap") : PSTR("% _  "), false);
+        } else if (led_usb_state & (1 << USB_LED_NUM_LOCK)) {       oled_write_ln_P(blink ? PSTR("% num") : PSTR("% _  "), false);
+        } else if (led_usb_state & (1 << USB_LED_SCROLL_LOCK)) {    oled_write_ln_P(blink ? PSTR("% scr") : PSTR("% _  "), false);
+        } else {                                                    oled_write_ln_P(blink ? PSTR("% _  ") : PSTR("%     "), false); }
 }
 
-#define KEYLOG_LENGTH 5
-uint8_t keylogs_str_idx = 0;
-static char keylog_str[KEYLOG_LENGTH + 1] = {"\n"};
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
     'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
-    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '
-};
+    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
 void add_keylog(uint16_t keycode) {
-    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX) || (keycode >= QK_MODS && keycode <= QK_MODS_MAX)) {
-        keycode = keycode & 0xFF;
-    } else if (keycode > 0xFF) {
-        keycode = 0;
-    }
-
-    for (uint8_t i = (KEYLOG_LENGTH - 1); i > 0; --i) {
-        keylog_str[i] = keylog_str[i - 1];
-    }
-
-    if (keycode < (sizeof(code_to_name) / sizeof(char))) {
-        keylog_str[0] = pgm_read_byte(&code_to_name[keycode]);
-    }
-
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) { keycode = keycode & 0xFF; }
+    for (uint8_t i = KEYLOG_LEN - 1; i > 0; i--) { keylog_str[i] = keylog_str[i - 1]; }
+    if (keycode < 60) { keylog_str[0] = code_to_name[keycode]; }
+    keylog_str[KEYLOG_LEN - 1] = 0;
     log_timer = timer_read();
+}
+
+void update_log(void) { if (timer_elapsed(log_timer) > 750) { add_keylog(0); } }
+void render_keylogger(void) { oled_write(keylog_str, false); }
+
+void render_keylogger_status(void) {
+    bool blink = (timer_read() % 1000) < 500;
+    oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
 }
 
 bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
-        num_keypresses = num_keypresses + 1;
-        if (flower_frame < (FLOWER_FRAMES - 1)) {
-            if (num_keypresses % GROW_RATE == 0) {
-                flower_frame = flower_frame + 1;
-            }
-        }
         oled_timer = timer_read32();
         add_keylog(keycode);
+        num_keypresses = num_keypresses + 1;
+        if (flower_frame < (FLOWER_FRAMES - 1)) { if (num_keypresses % GROW_RATE == 0) { flower_frame = flower_frame + 1; } }
     }
+    return true;
     switch (keycode) {
         case KC_SPC:
             if (record->event.pressed) {
@@ -153,21 +146,6 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
         break;
     }
     return true;
-}
-
-void update_log(void) {
-    if (timer_elapsed(log_timer) > 750) {
-        add_keylog(0);
-    }
-}
-
-void render_keylogger(void) {
-    oled_write(keylog_str, false);
-}
-
-void render_keylogger_status(void) {
-    bool blink = (timer_read() % 1000) < 500;
-    oled_write_ln_P(blink ? PSTR("~ _") : PSTR("~  "), false);
 }
 
 void render_main(void) {
@@ -258,18 +236,14 @@ static void render_bongo(void) {
             animation_phase();
         }
         anim_sleep = timer_read32();
-    } else if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
-        oled_off();
-
+    } else if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) { oled_off();
     } else if (timer_elapsed32(anim_timer) > BONGO_FELIX_FRAME_DURATION) {
         anim_timer = timer_read32();
         animation_phase();
     }
 }
 
-void render_cat(void) {
-    render_bongo();
-}
+void render_cat(void) { render_bongo(); }
 
 static void render_felix(int FELIX_X, int FELIX_Y) {
     static const char PROGMEM sit[2][FELIX_SIZE] = { {
@@ -366,17 +340,11 @@ static void render_felix(int FELIX_X, int FELIX_Y) {
         }
         current_frame = (current_frame + 1) % 2;
 
-        if (led_usb_state.caps_lock) {
-            oled_write_raw_P(bark[abs(1 - current_frame)], FELIX_SIZE);
-        } else if (isSneaking) {
-            oled_write_raw_P(sneak[abs(1 - current_frame)], FELIX_SIZE);
-        } else if (current_wpm <= MIN_WALK_SPEED) {
-            oled_write_raw_P(sit[abs(1 - current_frame)], FELIX_SIZE);
-        } else if (current_wpm <= MIN_RUN_SPEED) {
-            oled_write_raw_P(walk[abs(1 - current_frame)], FELIX_SIZE);
-        } else {
-            oled_write_raw_P(run[abs(1 - current_frame)], FELIX_SIZE);
-        }
+        if (led_usb_state.caps_lock) {              oled_write_raw_P(bark[abs(1 - current_frame)], FELIX_SIZE);
+        } else if (isSneaking) {                    oled_write_raw_P(sneak[abs(1 - current_frame)], FELIX_SIZE);
+        } else if (current_wpm <= MIN_WALK_SPEED) { oled_write_raw_P(sit[abs(1 - current_frame)], FELIX_SIZE);
+        } else if (current_wpm <= MIN_RUN_SPEED) {  oled_write_raw_P(walk[abs(1 - current_frame)], FELIX_SIZE);
+        } else {                                    oled_write_raw_P(run[abs(1 - current_frame)], FELIX_SIZE); }
     }
 
     if (timer_elapsed32(anim_timer) > BONGO_FELIX_FRAME_DURATION) {
@@ -386,14 +354,10 @@ static void render_felix(int FELIX_X, int FELIX_Y) {
     if (current_wpm > 0) {
         oled_on();
         anim_sleep = timer_read32();
-    } else if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
-        oled_off();
-    }
+    } else if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) { oled_off(); }
 }
 
-void render_dog(void) {
-    render_felix(0, 5);
-}
+void render_dog(void) { render_felix(0, 5); }
 
 void animation_run(void) {
     if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) { oled_off(); } else {
@@ -740,17 +704,11 @@ static const char PROGMEM plant_anim[FLOWER_FRAMES][FLOWER_SIZE] = {
 	}
 };
 
-void flower_anim(void) {
-    oled_write_raw_P(plant_anim[current_frame], FLOWER_SIZE);
-}
+void flower_anim(void) { oled_write_raw_P(plant_anim[current_frame], FLOWER_SIZE); }
 
 #ifdef KEYBOARD_crkbd_rev1_common
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    if (!is_keyboard_master()) {
-        return 2;
-    } else {
-        return 3;
-    }
+    if (!is_keyboard_master()) { return 3; } else { return 2; }
     return rotation;
 }
 
@@ -762,8 +720,9 @@ void oled_task_user(void) {
         } else {
             oled_on();
         }
-        render_cat();
+        render_secondary();
     } else {
+        render_main();
     }
 }
 #endif

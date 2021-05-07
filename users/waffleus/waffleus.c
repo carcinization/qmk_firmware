@@ -1,3 +1,19 @@
+/* Copyright 2021 @waffle#6666
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "waffleus.h"
 #include "quantum.h"
 
@@ -21,40 +37,23 @@ const uint32_t PROGMEM unicode_map[] = {
 #endif
 
 #ifdef ENOCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
+__attribute__ ((weak)) void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        if (IS_LAYER_ON(_ADJUST)) {
-            tap_code((clockwise == true) ? KC_LEFT : KC_RGHT);
-        } else if (IS_LAYER_ON(_LOWER)) {
-            tap_code((clockwise == true) ? KC_MNXT : KC_MPRV);
-        } else if (IS_LAYER_ON(_RAISE)) {
-            tap_code((clockwise == true) ? KC_PGDN : KC_PGUP);
-        } else {
-            tap_code((clockwise == true) ? KC_VOLU : KC_VOLD);
-        }
+        if (IS_LAYER_ON(_ADJUST)) {         tap_code((clockwise == true) ? KC_LEFT : KC_RGHT);
+        } else if (IS_LAYER_ON(_LOWER)) {   tap_code((clockwise == true) ? KC_MNXT : KC_MPRV);
+        } else if (IS_LAYER_ON(_RAISE)) {   tap_code((clockwise == true) ? KC_PGDN : KC_PGUP);
+        } else {                            tap_code((clockwise == true) ? KC_VOLU : KC_VOLD); }
     } else if (index == 1) {
-        if (IS_LAYER_ON(_ADJUST)) {
-            tap_code16((clockwise == true) ? KC_TRNS : KC_TRNS);
-        } else if (IS_LAYER_ON(_LOWER)) {
-            tap_code((clockwise == true) ? C(KC_TAB) : S(C(KC_TAP)));
-        } else if (IS_LAYER_ON(_RAISE)) {
-            if (clockwise) {
-                tap_code(KC_F3);
-            } else {
-                tap_code16(S(KC_F3));
+        if (IS_LAYER_ON(_ADJUST)) {         tap_code16((clockwise == true) ? KC_TRNS : KC_TRNS);
+        } else if (IS_LAYER_ON(_LOWER)) {   tap_code((clockwise == true) ? C(KC_TAB) : S(C(KC_TAP)));
+        } else if (IS_LAYER_ON(_RAISE)) { if (clockwise) { tap_code(KC_F3); } else { tap_code16(S(KC_F3)); }
+        } else { if (clockwise) {
+            if (!is_alt_tab_active) {
+            is_alt_tab_active = true;
+            register_code(KC_LALT);
             }
-        } else {
-            if (clockwise) {
-                if (!is_alt_tab_active) {
-                    is_alt_tab_active = true;
-                    register_code(KC_LALT);
-                }
-                alt_tab_timer = timer_read();
-                tap_code16(KC_TAB);
-            } else {
-                alt_tab_timer = timer_read();
-                tap_code16(S(KC_TAB));
-            }
+            alt_tab_timer = timer_read();
+            if (clockwise) { tap_code16(KC_TAB); } else { tap_code16(S(KC_TAB)); }
         }
     }
 }
