@@ -36,6 +36,13 @@ enum userspace_custom_keycodes {
 #ifdef RANDICT
     RWORD,
 #endif
+#ifdef SECRETS
+    KC_SECRET1,
+    KC_SECRET2,
+    KC_SECRET3,
+    KC_SECRET4,
+    KC_SECRET5,
+#endif
     ALT_TAB,
     MAKE
 };

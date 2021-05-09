@@ -48,7 +48,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 #endif
 
-void keyboard_post_init_user(void) {
+__attribute__ ((weak)) void keyboard_post_init_user(void) {
   rgblight_enable_noeeprom();
   rgblight_sethsv_noeeprom(HSV_CYAN);
   rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
