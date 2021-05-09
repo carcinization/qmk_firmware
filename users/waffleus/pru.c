@@ -130,6 +130,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         ":dfu"
 #elif defined(BOOLOADER_CATERINA)
                         ":avrdude"
+#elif (defined(MCU_STM32F072) || defined(MCU_STM32F303) || defined(MCU_STM32F103))
+                        ":dfu-util"
 #endif
                         SS_TAP(X_ENTER));
             }

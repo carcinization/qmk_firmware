@@ -37,11 +37,11 @@ enum userspace_custom_keycodes {
     RWORD,
 #endif
 #ifdef SECRETS
-    KC_SECRET1,
-    KC_SECRET2,
-    KC_SECRET3,
-    KC_SECRET4,
-    KC_SECRET5,
+    SECRET1,
+    SECRET2,
+    SECRET3,
+    SECRET4,
+    SECRET5,
 #endif
     ALT_TAB,
     MAKE

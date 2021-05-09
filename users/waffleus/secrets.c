@@ -13,10 +13,10 @@ static const char * const secret[] = {
 
 bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_SECRET1 ... KC_SECRET5:
+        case SECRET1 ... SECRET5:
             if (!record->event.pressed) {
             clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-            send_string_with_delay(secrets[keycode - KC_SECRET1], MACRO_TIMER);
+            send_string_with_delay(secrets[keycode - SECRET1], MACRO_TIMER);
         }
         return false;
         break;

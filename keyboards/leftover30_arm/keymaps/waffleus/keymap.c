@@ -1,26 +1,21 @@
 #include "waffleus.h"
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWERTY] = LAYOUT_waffle(
-        ______________DEFAULTQWERTY1_______________, KC_MNXT,
-        ______________DEFAULTQWERTY2_______________,
-        ______________DEFAULTQWERTY3_______________,
-        KC_MPLY, KC_LGUI, LWRSPC, CP_PSTE, RAISE
+    [_QWERTY] = LAYOUT(
+        ALTQ, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, ROFL,
+        SFA, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_BSPC,
+        CMDZ, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_DOT, KC_COMM, CMDSLSH,
+        KC_MPLY, KC_LCTL, LWRSPC, MAC_PSTE, RAISE
     ),
-    [_LOWER] = LAYOUT_waffle(
-        ______________DEFAULTLOWER1_______________, KC_MPRV,
-        ______________DEFAULTLOWER2_______________,
-        ______________DEFAULTLOWER3_______________,
+    [_LOWER] = LAYOUT(
+        KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MPRV,
+        SFEXM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, SFPRN,
+        CMDESC, KC_TAB, KC_CAPS, KC_TILD, KC_GRV, KC_LEFT, KC_UP, KC_DOWN, KC_RGHT, KC_RGUI,
         KC_MUTE, KC_LGUI, KC_TRNS, KC_RGUI, KC_TRNS
     ),
-    [_RAISE] = LAYOUT_waffle(
-        ______________DEFAULTRAISE1_______________, KC_TRNS,
-        ______________DEFAULTRAISE2_______________,
-        ______________DEFAULTRAISE3_______________,
-        RESET, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+    [_RAISE] = LAYOUT(
+        KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_TOG, UC_MAC,
+        KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, RGB_M_P, RGB_VAD, RGB_VAI, RGB_RMOD, RGB_MOD,
+        QMKTD, DOCSTD, HAPSAD, STARX, HAP, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,
+        RESET, MAKE, KC_TRNS, KC_TRNS, KC_TRNS
     )
 };
-void keyboard_post_init_user(void) {
-  rgblight_enable_noeeprom(); 
-  rgblight_sethsv_noeeprom(HSV_CYAN);
-  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-}
