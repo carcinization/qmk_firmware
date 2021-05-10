@@ -6,7 +6,7 @@ TAP_DANCE_ENABLE = yes
 AUTO_SHIFT_ENABLE = no
 LTO_ENABLE = yes
 UNICODEMAP_ENABLE = yes
-RANDICT = yes
+RANDICT = no
 SECRETS = yes
 
 SRC += waffleus.c \
