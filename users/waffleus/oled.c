@@ -88,7 +88,7 @@ void render_mod_status(void) {
         } else if (modifiers & MOD_MASK_SHIFT) {    oled_write_ln_P(blink ? PSTR("$ sft") : PSTR("$ _  "), false);
         } else if (modifiers & MOD_MASK_ALT) {      oled_write_ln_P(blink ? PSTR("$ alt") : PSTR("$ _  "), false);
         } else if (modifiers & MOD_MASK_GUI) {      oled_write_ln_P(blink ? PSTR("$ gui") : PSTR("$ _  "), false);
-        } else {                                    oled_write_ln_P(blink ? PSTR("$ _  ") : PSTR("$     "), false); }
+        } else {                                    oled_write_ln_P(blink ? PSTR("$ _  ") : PSTR("$    "), false); }
 }
 
 void render_keylock_status(uint8_t led_usb_state) {
@@ -96,7 +96,7 @@ void render_keylock_status(uint8_t led_usb_state) {
         if (led_usb_state & (1 << USB_LED_CAPS_LOCK)) {             oled_write_ln_P(blink ? PSTR("% cap") : PSTR("% _  "), false);
         } else if (led_usb_state & (1 << USB_LED_NUM_LOCK)) {       oled_write_ln_P(blink ? PSTR("% num") : PSTR("% _  "), false);
         } else if (led_usb_state & (1 << USB_LED_SCROLL_LOCK)) {    oled_write_ln_P(blink ? PSTR("% scr") : PSTR("% _  "), false);
-        } else {                                                    oled_write_ln_P(blink ? PSTR("% _  ") : PSTR("%     "), false); }
+        } else {                                                    oled_write_ln_P(blink ? PSTR("% _  ") : PSTR("%    "), false); }
 }
 
 const char code_to_name[60] = {
