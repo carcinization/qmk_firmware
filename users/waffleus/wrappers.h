@@ -110,7 +110,7 @@
 
 #define _______________YOINKRAISE1________________ UC_M_LN, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ARWUP, RESET
 #define _______________YOINKRAISE2________________ UC_M_MA, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, MAKE
-#define _______________YOINKRAISE3________________ UC_M_WC, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, RGB_VAI, EEP_RST
+#define _______________YOINKRAISE3________________ KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, RGB_VAI, EEP_RST
 #define _______________YOINKRAISE4________________ KC_LCTL, KC_LALT, KC_LGUI, KC_SCLN, KC_TRNS, CLIPST, KC_RCTL, KC_TRNS, RGB_VAD, KC_TRNS
 
 /*
