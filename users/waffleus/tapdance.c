@@ -98,7 +98,7 @@ void dance_qmk_finished(qk_tap_dance_state_t *state, void *user_data) {
 
 void dance_doc_finished(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
-      SEND_STRING("<https://docs.qmk.fm/#/newbs_getting_started>");
+      SEND_STRING("<https://docs.qmk.fm/#/newbs>");
     } else {
       SEND_STRING("<https://docs.qmk.fm/#/driver_installation_zadig>");
     }
@@ -109,5 +109,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [QMK] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dance_qmk_finished, NULL, 220),
     [DOCS] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dance_doc_finished, NULL, 220),
     [MSLGUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mslgui_finished, mslgui_reset),
-    [GCLIPST] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gclipst_finished, gclipst_reset), 
+    [GCLIPST] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gclipst_finished, gclipst_reset),
 };
