@@ -6,10 +6,10 @@
 #include "quantum.h"
 
 #define LAYOUT( \
-	K00, K01, \
-	K10, K11, \
-	K20, K21, \
-	K30, K31  \
+	K01, K11, \
+	K21, K31, \
+	K00, K10, \
+	K20, K30  \
 	) \
 	{ \
 		{ K00, K01 }, \
