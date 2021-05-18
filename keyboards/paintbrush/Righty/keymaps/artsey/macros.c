@@ -102,7 +102,7 @@ else {}
  break;
 case A_BASE_IO:
 if(record->event.pressed) {
-tap_code(KC_Y);
+tap_code(KC_N);
 }
 else {}
  break;
