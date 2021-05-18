@@ -1,5 +1,5 @@
 //REPLACE THIS WITH YOUR KEYBOARD.h 
-#include "keyboard.h"
+#include "paintbrush.h"
 
 //MAKE SURE THESE ARE INCLUDED
 #include "artsey.h"

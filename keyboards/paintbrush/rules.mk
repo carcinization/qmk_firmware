@@ -55,3 +55,6 @@ BACKLIGHT_ENABLE ?= no  # Enable keyboard backlight functionality
 AUDIO_ENABLE ?= no
 RGBLIGHT_ENABLE ?= no
 OLED_DRIVER_ENABLE = yes
+COMBO_ENABLE = yes
+DEFAULT_FOLDER = paintbrush/Righty 
+#DEFAULT_FOLDER = paintbrush/Lefty # erase the above and uncomment this to make a lefty board
