@@ -35,12 +35,16 @@ uint8_t  keylogs_str_idx = 0;
 uint16_t log_timer = 0;
 
 void render_wpm(void) {
-    char wpm_wring[5];
-    oled_write_ln(WPM, false);
-    snprintf(wpm_wring,
-    sizeof(wpm_wring), " %3d",
-    get_current_wpm());
-    oled_write(wpm_wring, false);
+    uint8_t n = get_current_wpm();
+    char wpm_counter[6];
+    wpm_counter[5] = '\0';
+    wpm_counter[4] = '0' + n % 10;
+    wpm_counter[3] = ( n /= 10) % 10 ? '0' + (n) % 10 : (n / 10) % 10 ? '0' : ' ';
+    wpm_counter[2] = n / 10 ? '0' + n / 10 : ' ';
+    wpm_counter[1] = ' ';
+    wpm_counter[0] = ' ';
+    oled_write_P(PSTR(WPM), false);
+    oled_write(wpm_counter, false);
 }
 
 void render_qmk_logo(void) {

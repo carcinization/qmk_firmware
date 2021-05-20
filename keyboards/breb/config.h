@@ -36,12 +36,9 @@
 #define RGBLIGHT_SLEEP
 #endif
 
-#ifdef OLED_DRIVER_ENABLE
-#define OLED_DISPLAY_128X32
-#endif
-
 #ifdef ENCODER_ENABLE
 #define TAP_CODE_DELAY 5
 #define ENCODERS_PAD_A { A0, A7 }
 #define ENCODERS_PAD_B { A1, A6 }
 #endif
+
