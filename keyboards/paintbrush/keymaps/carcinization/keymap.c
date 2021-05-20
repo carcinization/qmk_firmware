@@ -6,7 +6,12 @@
 #include "keymap_combo.h"
 #include "artsey.c"
 
-#include "carcinizationoled.c"
+#ifdef OLED_DRIVER_ENABLE
+	#include "oled_map.c"
+	#include "oled.c"
+#endif
+
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
