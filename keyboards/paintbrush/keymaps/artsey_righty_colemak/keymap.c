@@ -7,7 +7,7 @@
 #include "artsey.c"
 
 #ifdef OLED_DRIVER_ENABLE
-	#include oled_map.c
+	#include "oled_map.c"
 	#include "oled.c"
 #endif
 
