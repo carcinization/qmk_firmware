@@ -45,6 +45,10 @@ __attribute__ ((weak)) void encoder_update_user(uint8_t index, bool clockwise) {
 }
 #endif
 
+#ifdef OLED_DRIVER_ENABLE
+__attribute__ ((weak)) void suspend_power_down_user(void) { oled_off(); }
+#endif
+
 #ifdef BOOTLOADER_nanoboot
 void bootloader_jump(void) {
     /*nanoBoot sets up 2 registers (r2,r3), copies then clears the MCUSR register,
