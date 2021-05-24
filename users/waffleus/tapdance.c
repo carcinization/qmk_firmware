@@ -40,7 +40,7 @@ void mslgui_finished(qk_tap_dance_state_t *state, void *user_data) {
     cur_tap_state.state = cur_dance(state);
     switch (cur_tap_state.state) {
         case SINGLE_TAP: register_code(KC_LGUI); break;
-        case SINGLE_HOLD: register_code16(KC_MS_L); break;
+        case SINGLE_HOLD: register_code(KC_LGUI); break;
         case DOUBLE_TAP: register_code(KC_LGUI); break;
         case DOUBLE_HOLD: register_code16(KC_MS_L); break;
         case DOUBLE_SINGLE_TAP: tap_code(KC_LGUI); register_code(KC_LGUI);
@@ -50,7 +50,7 @@ void mslgui_finished(qk_tap_dance_state_t *state, void *user_data) {
 void mslgui_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (cur_tap_state.state) {
         case SINGLE_TAP: unregister_code(KC_LGUI); break;
-        case SINGLE_HOLD: unregister_code16(KC_MS_L); break;
+        case SINGLE_HOLD: unregister_code(KC_LGUI); break;
         case DOUBLE_TAP: unregister_code(KC_LGUI); break;
         case DOUBLE_HOLD: unregister_code16(KC_MS_L);
         case DOUBLE_SINGLE_TAP: unregister_code(KC_LGUI);
