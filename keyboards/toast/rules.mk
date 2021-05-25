@@ -1,0 +1,9 @@
+MCU = atmega32u4
+BOOTLOADER = caterina
+EXTRAKEY_ENABLE = yes
+MOUSEKEY_ENABLE = no
+BOOTMAGIC_ENABLE = lite
+POINTING_DEVICE_ENABLE = yes
+SRC += pimoroni_trackball.c
+QUANTUM_LIB_SRC += i2c_master.c
+#LTO_ENABLE = yes
