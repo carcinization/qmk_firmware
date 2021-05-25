@@ -54,3 +54,6 @@ REI,NAV,layer_move(_A_BASE)
 SO,BASE,layer_move(_A_CUSTOM)
 SO,CUSTOM,layer_move(_A_BASE)
 AYIO,BASE,tap_code(KC_CAPS)
+ARTSEYIO,"BASE,NUM,SYM,BRAC,NAV,MOU,CUSTOM","	clear_oneshot_mods();
+clear_keyboard();
+layer_move(_A_BASE)"

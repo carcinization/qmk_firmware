@@ -761,6 +761,62 @@ tap_code(KC_CAPS);
 }
 else {}
  break;
+case A_BASE_ARTSEYIO:
+if(record->event.pressed) {
+	clear_oneshot_mods();
+clear_keyboard();
+layer_move(_A_BASE);
+}
+else {}
+ break;
+case A_NUM_ARTSEYIO:
+if(record->event.pressed) {
+	clear_oneshot_mods();
+clear_keyboard();
+layer_move(_A_BASE);
+}
+else {}
+ break;
+case A_SYM_ARTSEYIO:
+if(record->event.pressed) {
+	clear_oneshot_mods();
+clear_keyboard();
+layer_move(_A_BASE);
+}
+else {}
+ break;
+case A_BRAC_ARTSEYIO:
+if(record->event.pressed) {
+	clear_oneshot_mods();
+clear_keyboard();
+layer_move(_A_BASE);
+}
+else {}
+ break;
+case A_NAV_ARTSEYIO:
+if(record->event.pressed) {
+	clear_oneshot_mods();
+clear_keyboard();
+layer_move(_A_BASE);
+}
+else {}
+ break;
+case A_MOU_ARTSEYIO:
+if(record->event.pressed) {
+	clear_oneshot_mods();
+clear_keyboard();
+layer_move(_A_BASE);
+}
+else {}
+ break;
+case A_CUSTOM_ARTSEYIO:
+if(record->event.pressed) {
+	clear_oneshot_mods();
+clear_keyboard();
+layer_move(_A_BASE);
+}
+else {}
+ break;
  
   }
   return true;
