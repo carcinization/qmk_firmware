@@ -37,7 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Underglow
 
 // #undef RGBLED_NUM
-#define RGBLED_NUM 12    // Number of LEDs
+/* #define RGBLED_NUM 12  */   // Number of LEDs
+#define RGBLED_SPLIT {6, 6}
 // #define RGBLIGHT_ANIMATIONS
 #	define RGBLIGHT_EFFECT_BREATHING
 #	define RGBLIGHT_EFFECT_RAINBOW_MOOD
