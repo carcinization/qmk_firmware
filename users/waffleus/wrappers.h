@@ -114,6 +114,32 @@
 #define _______________YOINKRAISE4________________ KC_LCTL, KC_LALT, KC_LGUI, KC_SCLN, KC_TRNS, CLIPST, KC_RCTL, KC_TRNS, RGB_VAD, KC_TRNS
 
 /*
+8888888b.
+888   Y88b
+888    888
+888   d88P  .d88b.  88888b.d88b.   .d88b.   .d88b.
+8888888P"  d88""88b 888 "888 "88b d8P  Y8b d88""88b
+888 T88b   888  888 888  888  888 88888888 888  888
+888  T88b  Y88..88P 888  888  888 Y8b.     Y88..88P
+888   T88b  "Y88P"  888  888  888  "Y8888   "Y88P"
+*/
+
+#define ______________ROMEOQWERTY1________________ QMKTD, ALTQ, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, ALTP, KC_VOLU,
+#define ______________ROMEOQWERTY2________________ ALT_TAB, SFA, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, SFL, KC_BSPC,
+#define ______________ROMEOQWERTY3________________ CP_PSTE, KC_MPLY, CTLZ, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, CTLDOT, KC_RCTL,
+#define ______________ROMEOQWERTY4________________ KC_LALT, KC_TRNS, KC_LGUI, LWRSPC, KC_LGUI, RAISE, KC_RGUI, KC_TRNS, KC_VOLD
+
+#define ______________ROMEOLOWER1_________________ DOCSTD, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, GPSCR,
+#define ______________ROMEOLOWER2_________________ KC_TRNS, SFEXM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, SFPRN,
+#define ______________ROMEOLOWER3_________________ HAPSAD, KC_TRNS, CTLESC, KC_TAB, KC_CAPS, KC_TILD, KC_GRV, KC_LEFT, KC_UP, KC_DOWN, CTLRGHT, KC_LCTL,
+#define ______________ROMEOLOWER4_________________ KC_LALT, KC_TRNS, KC_LGUI, KC_TRNS, KC_LGUI, KC_SLSH, KC_RGUI, KC_TRNS, KC_RALT
+
+#define ______________ROMEORAISE1_________________ KC_MNXT, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, SHRUG, TABLE1, TABLE2, ARWUP, STARX, ROFL,
+#define ______________ROMEORAISE2_________________ KC_MPRV, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RANDICT,
+#define ______________ROMEORAISE3_________________ KC_TRNS, KC_TRNS, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10,
+#define ______________ROMEORAISE4_________________ KC_LALT, KC_TRNS, KC_LGUI, KC_SCLN, KC_SPC, KC_TRNS, KC_RGUI, KC_TRNS, KC_RALT
+
+/*
                                                tttt
                                             ttt:::t
                                             t:::::t
