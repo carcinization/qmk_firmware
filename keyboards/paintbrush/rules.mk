@@ -56,4 +56,7 @@ AUDIO_ENABLE ?= no
 RGBLIGHT_ENABLE ?= no
 OLED_DRIVER_ENABLE = yes
 
+DEFAULT_FOLDER = paintbrush/righty
+# DEFAULT_FOLDER = paintbrush/lefty
+
 

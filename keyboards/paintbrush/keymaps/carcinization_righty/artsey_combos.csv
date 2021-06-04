@@ -60,3 +60,4 @@ ARTSEYIO,"BASE,NUM,SYM,BRAC,NAV,MOU,CUSTOM","	layer_move(_A_BASE);
 	tap_code(KC_NUMLOCK);
 	if (host_keyboard_leds() & (1 << USB_LED_SCROLL_LOCK)) 
 	tap_code(KC_SCROLLLOCK)"
+
