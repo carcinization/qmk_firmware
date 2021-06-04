@@ -42,7 +42,7 @@ bool showedJump = true;
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (!is_keyboard_master()) {
-        return 3;
+        return 2;
     } else {
         return 3;
     }
@@ -186,7 +186,14 @@ void render_mod_status(void) {
         }
 }
 
-
+void oled_render_logo(void) {
+    static const char PROGMEM crkbd_logo[] = {
+        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94,
+        0xa0, 0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4,
+        0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4,
+        0};
+    oled_write_P(crkbd_logo, false);
+}
 
 
 
@@ -385,14 +392,21 @@ void render_main(void) {
     }
 }
 
+void render_secondary(void) {
+    if (get_current_wpm() != 000) {
+		oled_render_logo();
+    } else {
+		fade_display();
+    }
+}
+
 void oled_task_user(void) {
 	current_wpm = get_current_wpm();
     led_usb_state = host_keyboard_led_state();
     if (is_keyboard_master()) {
         render_main();
     } else {
-        oled_set_cursor(0, 7);
-        render_main();
+        render_secondary();
     }
 }
 
@@ -404,13 +418,14 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
+	switch (keycode) {
         
 
         /* KEYBOARD PET STATUS START */
 
         case KC_LCTL:
         case KC_RCTL:
+		case MT(MOD_LCTL,KC_MINS):
             if (record->event.pressed) {
                 isSneaking = true;
             } else {
@@ -427,6 +442,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
 		case KC_LSFT:
 		case KC_RSFT:
+		case MT(MOD_LSFT,KC_SPC):
+		case KC_SFTENT:
 			if (record->event.pressed) {
 				isBarking = true;
 			} else {
@@ -438,4 +455,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+
 
