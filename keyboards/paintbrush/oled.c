@@ -1,9 +1,19 @@
 /* Blinking mod status, keylock status, wpm, and layer state adapted with permission from @Itswaffle/@waffle#6666 
-at https://github.com/ItsWaffIe/qmk_firmware/blob/waffle/users/waffleus/oled.c#L76-#L124 */
+at https://github.com/ItsWaffIe/qmk_firmware/blob/waffle/users/waffleus/oled.c#L76-#L124 
 
 
+WPM is disabled by default. If you wish to enable WPM:
+1. Go to your keymap folder
+2. Open the rules.mk file
+3. Paste:
+		WPM_ENABLE = yes
+Note: This is based on the default QMK WPM feature. Its applicability to Artsey has not been vetted.
 
-// Set coordinates for visualizer to show
+
+The "maps" of each Artsey layer can be found and edited in paintbrush/keymaps/[specific_keymap]/oled_map.c
+*/
+
+
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
  return 3;
 }
@@ -144,10 +154,9 @@ void render_map(void) {
 			oled_write_P(mou_map, false);
 			break;
 		case _A_CUSTOM:
-			    oled_write_ln_P(PSTR("Undefined"), false);
+			    oled_write_ln_P(PSTR("Undefined"), false); //I didn't create a map for the custom layer. If you do, you would change this line.
 			break;
         default:
-            // Or use the write_ln shortcut over adding '\n' to the end of your string
             oled_clear();
     }
 }

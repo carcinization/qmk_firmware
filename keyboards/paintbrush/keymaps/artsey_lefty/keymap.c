@@ -1,3 +1,8 @@
+/* This keymap relies on files available in the artsey qmk firmware directory.
+
+Please see the readme file in paintbrush/keymaps/readme.md for detailed instructions. */
+
+
 //REPLACE THIS WITH YOUR KEYBOARD.h 
 #include "paintbrush.h"
 
