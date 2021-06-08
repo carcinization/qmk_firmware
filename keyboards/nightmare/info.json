@@ -4,6 +4,9 @@
     "maintainer": "cfbender",
     "width": 15.25,
     "height": 4,
+	"customKeycodes": [
+    {"name": "Lock Shift", "title": "Lock Shift", "shortName": "LckSft"},
+  ], 
     "layouts": {
         "LAYOUT_default": {
             "layout": [

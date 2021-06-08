@@ -1,0 +1,156 @@
+{
+  "name": "nightmare",
+  "vendorId": 1076,
+  "productId": 20041,
+  "lighting": "none",
+  "matrix": { "rows": 4, "cols": 15 }
+  "layouts": {
+	"keymap":[
+  [
+    {
+      "c": "#ca1a0e",
+      "t": "#ffffff",
+      "a": 7
+    },
+    "Home",
+    {
+      "x": 0.25,
+      "c": "#e4dedd",
+      "t": "#000000"
+    },
+    "Esc",
+    {
+      "c": "#950013",
+      "t": "#ffffff",
+      "a": 4
+    },
+    "Q",
+    "W",
+    "E",
+    "R",
+    "T",
+    "Y",
+    "U",
+    "I",
+    "O",
+    "P",
+    "{\n[",
+    "}\n]",
+    {
+      "c": "#ca1a0e",
+      "a": 7
+    },
+    "Back"
+  ],
+  [
+    "Insert",
+    {
+      "x": 0.25,
+      "a": 1,
+      "w": 1.25
+    },
+    "<i class='kb kb-Line-End'></i>\n<i class='kb kb-Line-Start'></i>\n\n\n\n1.25u\nTab",
+    {
+      "c": "#950013",
+      "a": 4
+    },
+    "A",
+    "S",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L",
+    ":\n;",
+    "\"\n'",
+    {
+      "c": "#ca1a0e",
+      "a": 3,
+      "w": 1.75
+    },
+    "Enter\n\n\n\n\n1.75u"
+  ],
+  [
+    {
+      "a": 7
+    },
+    "PgUp",
+    {
+      "x": 0.25,
+      "a": 3,
+      "w": 1.75
+    },
+    "<i class='fa fa-arrow-up'></i> Shift\n\n\n\n\n1.75u",
+    {
+      "c": "#950013",
+      "a": 4
+    },
+    "Z",
+    "X",
+    "C",
+    "V",
+    "B",
+    "N",
+    "M",
+    "<\n.",
+    ">\n,",
+    "?\n/",
+    {
+      "c": "#ca1a0e",
+      "a": 3,
+      "w": 1.25
+    },
+    "<i class='fa fa-arrow-up'></i> Shift\n\n\n\n\n1.25u",
+    {
+      "a": 7
+    },
+    "Fn"
+  ],
+  [
+    "PgDn",
+    {
+      "x": 1.5
+    },
+    "Alt",
+    {
+      "a": 3,
+      "w": 1.25
+    },
+    "Control\n\n\n\n\n1.25u",
+    {
+      "c": "#950013",
+      "a": 7
+    },
+    "<i class='fa fa-chevron-down'></i>",
+    {
+      "c": "#e4dedd",
+      "t": "#000000",
+      "a": 0,
+      "w": 2.25
+    },
+    "spc1\n\n\n\n\n2.25u",
+    {
+      "w": 2.75
+    },
+    "spc2\n\n\n\n\n2.75u",
+    {
+      "c": "#950013",
+      "t": "#ffffff",
+      "a": 7
+    },
+    "<i class='fa fa-chevron-up'></i>",
+    {
+      "c": "#ca1a0e",
+      "a": 3,
+      "w": 1.25
+    },
+    "Control\n\n\n\n\n1.25",
+    {
+      "a": 7
+    },
+    "Code"
+  ]
+]
+}
