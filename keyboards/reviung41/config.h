@@ -30,6 +30,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 7
 #define MATRIX_COLS 6
 
+#define USE_I2C
+#define F_SCL 100000UL
+
 /*
  * Keyboard Matrix Assignments
  *
