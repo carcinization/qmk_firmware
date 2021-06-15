@@ -16,6 +16,7 @@
 #include QMK_KEYBOARD_H
 #include "pimoroni_trackball.h"
 #include "pointing_device.h"
+#include "i2c_master.h"
 
 enum layer_names {
     _BASE,
@@ -33,6 +34,8 @@ enum custom_keycodes {
   BALL_RCL,//right click
   BALL_MCL,//middle click
 };
+
+void keyboard_post_init_user(void) { i2c_init(); }
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
