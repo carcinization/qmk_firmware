@@ -159,7 +159,7 @@ void pointing_device_task(void) {
     if (timer_elapsed(debounce_timer) > MOUSE_DEBOUNCE) debounce = false;
 
     report_mouse_t mouse = pointing_device_get_report();
-    // trackball_check_click(state[4] & (1 << 7), &mouse);
+    trackball_check_click(state[4] & (1 << 7), &mouse);
 
 #ifndef PIMORONI_TRACKBALL_ROTATE
     update_member(&mouse.x, &x_offset);
