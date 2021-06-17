@@ -8,39 +8,24 @@
     "matrix": { "rows": 7, "cols": 6 },
 	"customKeycodes": [
     {
-      "name": "Ball Hue Increase",
-      "title": "cycles hue",
-      "shortName": "BALL_HUI"
+      "name": "Ball Hue",
+      "title": "trackball cycles hue",
+      "shortName": "BALL_HUE"
     },
     {
-      "name": "Ball White",
-      "title": "cycles white",
-      "shortName": "BALL_WHT"
+      "name": "Ball Saturation",
+      "title": "trackball cycles saturation",
+      "shortName": "BALL_SAT"
     },
-    {
-      "name": "Ball Decrease",
-      "title": "decreased color",
-      "shortName": "BALL_DEC"
-    },
+	{
+      "name": "Ball Value",
+      "title": "trackball cycles value",
+      "shortName": "BALL_VAL"
+	},
 	 {
       "name": "Ball Scroll",
       "title": "Scrolls",
       "shortName": "BALL_SCR"
-    },
-	 {
-      "name": "Ball Left Click",
-      "title": "left click",
-      "shortName": "BALL_NCL"
-    },
-	 {
-      "name": "Ball Right Click",
-      "title": "right clicki",
-      "shortName": "BALL_RCL"
-    },
-	 {
-      "name": "Ball Middle Click",
-      "title": "middle click",
-      "shortName": "BALL_MCL"
     },
 	]
     "layouts": {

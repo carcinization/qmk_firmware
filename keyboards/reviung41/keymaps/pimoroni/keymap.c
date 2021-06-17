@@ -144,7 +144,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
    break;
 
   case BALL_NCL:
-     record->event.pressed?register_code(KC_BTN1):unregister_code(KC_BTN1);
+    record->event.pressed?register_code(KC_BTN1):unregister_code(KC_BTN1);
      break;
   case BALL_RCL:
       record->event.pressed?register_code(KC_BTN2):unregister_code(KC_BTN2);
