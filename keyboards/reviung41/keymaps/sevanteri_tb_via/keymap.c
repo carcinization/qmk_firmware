@@ -27,12 +27,10 @@ enum layer_names {
 };
 
 enum custom_keycodes {
-  BALL_HUE = SAFE_RANGE, //hold + scroll ball up and down to cycle hue
+  BALL_HUE = USER00, //hold + scroll ball up and down to cycle hue
   BALL_SAT,//hold + scroll ball up and down to cycle saturation
   BALL_VAL,//hold + scroll ball up and down to cycle value
-  BALL_NCL,
-  BALL_MCL,
-  BALL_RCL,//hold + scroll ball up and down to scroll
+  BALL_RCL,
 };
 
 // void keyboard_post_init_user(void) { i2c_init(); }
@@ -41,7 +39,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_reviung41(
     KC_TAB,   KC_Q,     KC_W,     KC_F,     KC_P,      KC_G,               KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
-    KC_LCTL,  KC_A, BALL_NCL, BALL_RCL, BALL_MCL, KC_D,               KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
+    KC_LCTL,  KC_A, KC_R, KC_S, KC_T, KC_D,               KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
     KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,               KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  RSFT_T(KC_ENT),
                                             KC_NO,   MO(1),    KC_SPC,   MO(2),    LT(3, KC_RALT)
   ),
@@ -68,8 +66,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
     [_MOUS] = LAYOUT_reviung41(
     RGB_VAI,   RGB_SAI, RGB_HUI,  RGB_MOD,  XXXXXXX,   RGB_TOG,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-    RGB_VAD,   RGB_SAD, RGB_HUD,  RGB_RMOD, XXXXXXX,   XXXXXXX,            XXXXXXX,  KC_BTN1,  KC_BTN2,  KC_BTN3,  XXXXXXX,  XXXXXXX,
-    XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_C,            RESET,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    RGB_VAD,   RGB_SAD, RGB_HUD,  RGB_RMOD, XXXXXXX,   XXXXXXX,            XXXXXXX,  BALL_RCL,  KC_TRNS,  KC_TRNS,  XXXXXXX,  XXXXXXX,
+    XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_C,            KC_TRNS,   BALL_HUE,  BALL_SAT,  BALL_VAL,  XXXXXXX,  XXXXXXX,
                                             _______,   _______,  XXXXXXX,  _______,  _______
   ),
 };
@@ -82,6 +80,7 @@ static int16_t mouse_auto_layer_timer = 0;
 static bool hue_mode_enabled = 0;
 static bool saturation_mode_enabled = 0;
 static bool value_mode_enabled = 0;
+static bool right_click_mode_enabled = 0;
 #define MOUSE_TIMEOUT 1000
 #define TRACKBALL_TIMEOUT 5
 
@@ -163,13 +162,22 @@ void pointing_device_task() {
             mods = get_mods();
         }
 
-        if (state.button_triggered) {
+        if (state.button_triggered && (right_click_mode_enabled == 1)) {
             if(state.button_down) {
-                mouse.buttons |= MOUSE_BTN1;
+                mouse.buttons |= MOUSE_BTN2;
             } else {
-                mouse.buttons &= ~MOUSE_BTN1;
+                mouse.buttons &= ~MOUSE_BTN2;
             }
             pointing_device_set_report(mouse);
+            pointing_device_send();
+			
+		} else if (state.button_triggered) {
+			if(state.button_down) {
+				mouse.buttons |= MOUSE_BTN1;
+			} else {
+				mouse.buttons &= ~MOUSE_BTN1;
+			}
+			pointing_device_set_report(mouse);
             pointing_device_send();
         } else {
 			// on the ADJUST layer with BALL_VAL held, roll ball downwards to change trackball value
@@ -188,7 +196,6 @@ void pointing_device_task() {
             } else if (layer_state_is(_NUM) || layer_state_is(_SYM)) {
                 h_offset += state.x;
                 v_offset -= state.y;
-
             } else if ((state.x || state.y) && !state.button_down) {
 				
 			if (!mouse_auto_layer_timer && !layer_state_is(_NUM)) {
@@ -255,8 +262,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {/*{{{*/
         value_mode_enabled = 0;
         }
         break;
+	case BALL_RCL:
+	if (record->event.pressed) {
+        right_click_mode_enabled = 1;
+        } else {
+        right_click_mode_enabled = 0;
+        }
+        break;
 		
-  case BALL_NCL:
+/*   case BALL_NCL:
      record->event.pressed?register_code(KC_BTN1):unregister_code(KC_BTN1);
      break;
   case BALL_RCL:
@@ -264,34 +278,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {/*{{{*/
       break;
   case BALL_MCL:
       record->event.pressed?register_code(KC_BTN3):unregister_code(KC_BTN3);
-      break;
+      break; */
     }
 	
-	if ((keycode < KC_BTN1 || keycode > KC_BTN5)
+	if ((keycode < KC_BTN1 || ((keycode > KC_BTN5) && (keycode < SAFE_RANGE)))
 			&& layer_state_is(_MOUS)
             && record->event.pressed) {
         layer_off(_MOUS);
         mouse_auto_layer_timer = 0;
     }
     return true;
-	
-	/* If Mousekeys is disabled, then use handle the mouse button
- * keycodes.  This makes things simpler, and allows usage of
- * the keycodes in a consistent manner.  But only do this if
- * Mousekeys is not enable, so it's not handled twice.
- */
-#ifndef MOUSEKEY_ENABLE
-    if (IS_MOUSEKEY_BUTTON(keycode)) {
-        report_mouse_t currentReport = pointing_device_get_report();
-        if (record->event.pressed) {
-            currentReport.buttons |= 1 << (keycode - KC_MS_BTN1);
-        } else {
-            currentReport.buttons &= ~(1 << (keycode - KC_MS_BTN1));
-        }
-        pointing_device_set_report(currentReport);
-        pointing_device_send();
-    }
-#endif
 
 }/*}}}*/
 

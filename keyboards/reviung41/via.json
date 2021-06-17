@@ -23,9 +23,9 @@
       "shortName": "BALL_VAL"
 	},
 	 {
-      "name": "Ball Scroll",
-      "title": "Scrolls",
-      "shortName": "BALL_SCR"
+      "name": "Ball Right Click Enable",
+      "title": "Hold to make ball right click",
+      "shortName": "BALL_RCL"
     },
 	]
     "layouts": {
