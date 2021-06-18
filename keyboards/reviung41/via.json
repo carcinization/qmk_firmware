@@ -27,6 +27,11 @@
       "title": "Hold to make ball right click",
       "shortName": "BALL_RCL"
     },
+	 {
+      "name": "Ball Drag Enable",
+      "title": "Hold to make next ball click stay held (do a click without this key held to release drag)",
+      "shortName": "BALL_DRG"
+    },
 	]
     "layouts": {
         "keymap": [

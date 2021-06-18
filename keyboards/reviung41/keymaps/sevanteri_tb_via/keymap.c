@@ -31,6 +31,7 @@ enum custom_keycodes {
   BALL_SAT,//hold + scroll ball up and down to cycle saturation
   BALL_VAL,//hold + scroll ball up and down to cycle value
   BALL_RCL,
+  BALL_DRG,
 };
 
 // void keyboard_post_init_user(void) { i2c_init(); }
@@ -68,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RGB_VAI,   RGB_SAI, RGB_HUI,  RGB_MOD,  XXXXXXX,   RGB_TOG,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
     RGB_VAD,   RGB_SAD, RGB_HUD,  RGB_RMOD, XXXXXXX,   XXXXXXX,            XXXXXXX,  BALL_RCL,  KC_TRNS,  KC_TRNS,  XXXXXXX,  XXXXXXX,
     XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_C,            KC_TRNS,   BALL_HUE,  BALL_SAT,  BALL_VAL,  XXXXXXX,  XXXXXXX,
-                                            _______,   _______,  XXXXXXX,  _______,  _______
+                                            _______,   _______,  BALL_DRG,  BALL_RCL,  _______
   ),
 };
 
@@ -81,6 +82,7 @@ static bool hue_mode_enabled = 0;
 static bool saturation_mode_enabled = 0;
 static bool value_mode_enabled = 0;
 static bool right_click_mode_enabled = 0;
+static bool drag_mode_enabled = 0;
 #define MOUSE_TIMEOUT 1000
 #define TRACKBALL_TIMEOUT 5
 
@@ -169,8 +171,12 @@ void pointing_device_task() {
                 mouse.buttons &= ~MOUSE_BTN2;
             }
             pointing_device_set_report(mouse);
-            pointing_device_send();
-			
+		pointing_device_send();
+		} else if (state.button_triggered && (drag_mode_enabled == 1)) {
+			if (state.button_down){
+			mouse.buttons |= MOUSE_BTN1;
+			pointing_device_set_report(mouse);
+            pointing_device_send();}
 		} else if (state.button_triggered) {
 			if(state.button_down) {
 				mouse.buttons |= MOUSE_BTN1;
@@ -194,8 +200,8 @@ void pointing_device_task() {
                 trackball_set_hsv(tb_hue | 1, tb_saturation, tb_value);
 			// on the NUM layer, trackball behaves as vertical scroll
             } else if (layer_state_is(_NUM) || layer_state_is(_SYM)) {
-                h_offset += state.x;
-                v_offset -= state.y;
+                h_offset += (0.5*state.x);
+                v_offset -= (0.5*state.y);
             } else if ((state.x || state.y) && !state.button_down) {
 				
 			if (!mouse_auto_layer_timer && !layer_state_is(_NUM)) {
@@ -269,7 +275,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {/*{{{*/
         right_click_mode_enabled = 0;
         }
         break;
-		
+	case BALL_DRG:
+	if (record->event.pressed) {
+        drag_mode_enabled = 1;
+        } else {
+        drag_mode_enabled = 0;
+        }
+        break;
 /*   case BALL_NCL:
      record->event.pressed?register_code(KC_BTN1):unregister_code(KC_BTN1);
      break;
