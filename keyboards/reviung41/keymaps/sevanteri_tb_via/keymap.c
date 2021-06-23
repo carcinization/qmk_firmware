@@ -18,6 +18,15 @@
 #include "pointing_device.h"
 #include "i2c_master.h"
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_SFTENT:
+            return 50;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
 enum layer_names {
     _BASE,
     _NUM,
@@ -54,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_SYM] = LAYOUT_reviung41(
     _______,  KC_1,     KC_2,     KC_3,     KC_4,      KC_5,               KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_DEL,
-    _______,  KC_MINS,  KC_EQL,   KC_LBRC,  KC_RBRC,   KC_BSLS,            KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6, 
+    _______,  KC_MINS,  KC_EQL,   KC_LBRC,  KC_RBRC,   KC_BSLS,            KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,
     _______,  KC_ESC,   KC_RGUI,  KC_RALT,  KC_CAPS,   KC_QUOT,            KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,
                                             _______,   _______,  KC_BSPC,  _______,  _______
   ),
@@ -92,7 +101,7 @@ static bool drag_mode_enabled = 0;
 typedef union {
   uint32_t raw;
   struct {
-	uint8_t tb_hue :8;  
+	uint8_t tb_hue :8;
     uint8_t tb_value :8;
 	uint8_t tb_saturation :8;
   };
@@ -191,11 +200,11 @@ void pointing_device_task() {
                 tb_value += state.y * 2;
                 trackball_set_hsv(tb_hue, tb_saturation, tb_value | 1);
 			// on the ADJUST layer with BALL_SAT held, roll ball downwards to change trackball saturation
-			} else if (layer_state_is(_ADJUST) && saturation_mode_enabled == 1) {	
+			} else if (layer_state_is(_ADJUST) && saturation_mode_enabled == 1) {
 				tb_saturation += state.y * 2;
                 trackball_set_hsv(tb_hue, tb_saturation | 1, tb_value);
 			// on the ADJUST layer, or with BALL_HUE held, roll ball downwards to change trackball hue
-			} else if (layer_state_is(_ADJUST) || hue_mode_enabled == 1) {	
+			} else if (layer_state_is(_ADJUST) || hue_mode_enabled == 1) {
 				tb_hue += state.y;
                 trackball_set_hsv(tb_hue | 1, tb_saturation, tb_value);
 			// on the NUM layer, trackball behaves as vertical scroll
@@ -203,12 +212,12 @@ void pointing_device_task() {
                 h_offset += (0.5*state.x);
                 v_offset -= (0.5*state.y);
             } else if ((state.x || state.y) && !state.button_down) {
-				
+
 			if (!mouse_auto_layer_timer && !layer_state_is(_NUM)) {
                     layer_on(_MOUS);
                 }
                 mouse_auto_layer_timer = timer_read() | 1;
-				
+
                 uint8_t scale = 3;
                 if (mods & MOD_MASK_CTRL) scale = 2;
                 x_offset += state.x * state.x * SIGN(state.x) * scale;
@@ -292,7 +301,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {/*{{{*/
       record->event.pressed?register_code(KC_BTN3):unregister_code(KC_BTN3);
       break; */
     }
-	
+
 	if ((keycode < KC_BTN1 || ((keycode > KC_BTN5) && (keycode < SAFE_RANGE)))
 			&& layer_state_is(_MOUS)
             && record->event.pressed) {
@@ -307,7 +316,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {/*{{{*/
 static uint8_t last_layer = _BASE;
 layer_state_t layer_state_set_user(layer_state_t state) {/*{{{*/
     uint8_t layer = get_highest_layer(state);
-	
+
     switch(layer) {
         case _NUM:
             trackball_set_hsv(tb_hue + 20, tb_saturation, ((tb_value-30) > 0 ? (tb_value-30) : 0));
