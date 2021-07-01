@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "..\\artsey-qmk"
+		},
+		{
+			"path": "..\\artsey_qmk_boards"
 		}
 	],
 	"settings": {
