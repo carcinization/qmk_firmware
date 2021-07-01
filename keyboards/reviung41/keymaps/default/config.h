@@ -15,20 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//comment that out if your trackball is on the left side
-// #define TRACKBALL_RIGHT
-
-#ifdef TRACKBALL_RIGHT
-    #define PIMORONI_TRACKBALL_INVERT_X
-    #define PIMORONI_TRACKBALL_INVERT_Y
-#endif
-
-#   define TRACKBALL_ORIENTATION 2
-
-#define TAPPING_TERM 200
-#define TAPPING_TERM_PER_KEY
-#define PERMISSIVE_HOLD_PER_KEY
 
 
 
-
+#define AUDIO_PIN B6

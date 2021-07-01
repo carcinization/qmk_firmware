@@ -23,12 +23,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define PIMORONI_TRACKBALL_INVERT_Y
 #endif
 
-#   define TRACKBALL_ORIENTATION 2
+#   define TRACKBALL_ORIENTATION 1
 
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD_PER_KEY
 
+#define AUDIO_PIN B6
 
+#ifdef AUDIO_ENABLE
+    #define STARTUP_SONG SONG(PREONIC_SOUND)
+#endif
 
-
+ #undef RGBLIGHT_ANIMATIONS
+// /*== or choose animations ==*/
+  #define RGBLIGHT_EFFECT_BREATHING
+  #define RGBLIGHT_EFFECT_RAINBOW_MOOD
+  #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+  #define RGBLIGHT_EFFECT_SNAKE
+  #define RGBLIGHT_EFFECT_KNIGHT
+//   #define RGBLIGHT_EFFECT_CHRISTMAS
+  #define RGBLIGHT_EFFECT_STATIC_GRADIENT
+//   #define RGBLIGHT_EFFECT_RGB_TEST
+//   #define RGBLIGHT_EFFECT_ALTERNATING
+  #define RGBLIGHT_EFFECT_TWINKLE
