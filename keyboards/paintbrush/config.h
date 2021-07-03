@@ -24,6 +24,8 @@
 #define BACKLIGHT_LEVELS 3
 #endif
 
+#define TAP_CODE_DELAY 30
+
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCING_DELAY 5
 
