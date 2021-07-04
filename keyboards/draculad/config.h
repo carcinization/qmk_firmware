@@ -44,19 +44,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define OLED_TIMEOUT 30000
 #endif
 
-#define RGB_DI_PIN D3
-#ifdef RGB_DI_PIN
-#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-#define RGBLIGHT_EFFECT_RAINBOW_MOOD
-#define RGBLIGHT_EFFECT_STATIC_GRADIENT
-#define RGBLIGHT_EFFECT_BREATHING
-#define RGBLED_NUM 10
-#define RGBLIGHT_SPLIT
-#define RGBLIGHT_HUE_STEP 8
-#define RGBLIGHT_SAT_STEP 8
-#define RGBLIGHT_VAL_STEP 8
-#define RGBLIGHT_SLEEP
-#endif
+// #define RGB_DI_PIN D3
+// #ifdef RGB_DI_PIN
+// #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+// #define RGBLIGHT_EFFECT_RAINBOW_MOOD
+// #define RGBLIGHT_EFFECT_STATIC_GRADIENT
+// #define RGBLIGHT_EFFECT_BREATHING
+// #define RGBLED_NUM 10
+// #define RGBLIGHT_SPLIT
+// #define RGBLIGHT_HUE_STEP 8
+// #define RGBLIGHT_SAT_STEP 8
+// #define RGBLIGHT_VAL_STEP 8
+// #define RGBLIGHT_SLEEP
+// #endif
 
 #define ENCODERS_PAD_A {B2 , B4}
 #define ENCODERS_PAD_B {B6 , B5}
@@ -64,6 +64,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODER_RESOLUTIONS { 4, 4, 4, 1}
 #define UNUSED_PINS
 
-#define EE_HANDS
-
-#define LAYER_STATE_8BIT
+#define MASTER_RIGHT
