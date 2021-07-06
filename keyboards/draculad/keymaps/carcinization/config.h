@@ -23,6 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define PIMORONI_TRACKBALL_INVERT_Y
     #define TRACKBALL_ORIENTATION 3
 #endif
-
+#define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD
+#define RETRO_TAPPING_PER_KEY
 
 #define MASTER_RIGHT

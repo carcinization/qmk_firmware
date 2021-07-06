@@ -28,13 +28,43 @@ enum layer_number {
   _MOUS
 };
 
+enum {
+    TD_QESC,
+    TD_QUOTTAB,
+};
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_QESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC),
+    [TD_QUOTTAB] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_TAB),
+};
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LCTL_T(KC_Z):
+        case LALT_T(KC_X):
+            return TAPPING_TERM + 250;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
+bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LCTL_T(KC_Z):
+        case LALT_T(KC_X):
+            return true;
+        default:
+            return false;
+    }
+}
+
 enum custom_keycodes {
   BALL_HUE = SAFE_RANGE, //hold + scroll ball up and down to cycle hue
   BALL_SAT,//hold + scroll ball up and down to cycle saturation
   BALL_VAL,//hold + scroll ball up and down to cycle value
-  BALL_NCL,
-  BALL_RCL,//hold + mouse click for right click
-  BALL_MCL,
+  BALL_RCL,//hold + mouse click for right click,
   BALL_DRG,//hold + mouse click for drag mouse
 };
 
@@ -43,37 +73,37 @@ char wpm_as_str[8];
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] =  LAYOUT(
-        KC_Q,         KC_W,    KC_E,    KC_R,    KC_T,                                         KC_Y,            KC_U,             KC_I,    KC_O,    KC_P,
-        KC_A,         KC_S,    KC_D,    KC_F,    KC_G,                                         KC_H,            KC_J,             KC_K,    KC_L,    KC_SCLN,
-        LSFT_T(KC_Z), KC_X,    KC_C,    KC_V,    KC_B,                                         KC_N,            KC_M,             KC_COMM, KC_DOT,  RSFT_T(KC_SLSH),
-                                                 KC_MUTE,                                      TG(_MOUS),
-                                        KC_LCTL, LALT_T(KC_BSPC), LT(_NUM,KC_SPC),    KC_NO,   KC_LSFT, LT(_SYM,KC_DEL)
+        TD(TD_QESC),         KC_W,    KC_F,    KC_P,    KC_G,                                         KC_J,            KC_L,             KC_U,    KC_Y,    KC_BSPC,
+        KC_A,         KC_R,    KC_S,    KC_T,    KC_D,                                         KC_H,            KC_N,             KC_E,    KC_I,    KC_O,
+        LCTL_T(KC_Z), LALT_T(KC_X),    KC_C,    KC_V,    KC_B,                                 KC_K,     KC_M,    KC_COMM, KC_DOT,  KC_ENT,
+                                                 KC_MUTE,                                      TO(_ADJUST),
+                                        LCTL_T(KC_MINS), TD(TD_QUOTTAB), LT(_NUM,KC_SPC),    KC_NO,   KC_LSFT, LT(_SYM,KC_DEL)
     ),
     [_NUM] = LAYOUT(
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-        KC_TAB,  KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX,                      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT,
-        KC_LSFT, XXXXXXX, KC_MPRV, KC_MNXT, RESET,                        KC_HOME, KC_END,  KC_PGUP, KC_PGDN, KC_RSFT,
-                                            XXXXXXX,                      KC_NO,
-                                   KC_LCTL, KC_LALT, XXXXXXX,    KC_NO,   _______, KC_ENT
+        KC_LEFT,  KC_DOWN, KC_UP, KC_RIGHT, KC_SCLN,                      KC_EQUAL, KC_LEFT, KC_UP,   KC_DOWN, KC_RIGHT,
+        KC_MINS, KC_PGDN, KC_PGUP, KC_END, LCTL(KC_PSCREEN),              KC_LBRC, KC_RBRC,  KC_BSLS, KC_GRAVE, KC_SLSH,
+                                            XXXXXXX,                      KC_TRNS,
+                                   KC_TRNS, KC_TRNS, XXXXXXX,    KC_NO,   _______, KC_TRNS
     ),
     [_SYM] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,                        XXXXXXX, XXXXXXX, XXXXXXX, KC_EQL,  KC_MINS,
-        XXXXXXX, KC_F5,   KC_F6,   KC_F7,   KC_F8,                        KC_LBRC, KC_RBRC, XXXXXXX, KC_GRV,  KC_BSLS,
-        KC_LSFT, KC_F9,   KC_F10,  KC_F11,  KC_F12,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_RSFT,
-                                            XXXXXXX,                      KC_NO,
+        KC_EXLM,  KC_AT,   KC_HASH,   KC_DOLLAR,   KC_PERC,               KC_CIRC, KC_AMPR, KC_ASTERISK, KC_LPRN,  KC_RPRN,
+        KC_F1, KC_F2,   KC_F3,   KC_F4,   KC_F5,                         KC_F6, KC_F7, KC_F8, KC_F9,  KC_F10,
+        KC_LCTL, KC_LALT, KC_LGUI, KC_DEL, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, KC_F11, KC_F12,
+                                            XXXXXXX,                       XXXXXXX,
                                    KC_LALT, XXXXXXX, XXXXXXX,    XXXXXXX, KC_NO,   _______
     ),
     [_ADJUST] = LAYOUT(
-        KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        KC_LALT, KC_BTN3, KC_BTN2, KC_BTN1, BALL_RCL,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                            XXXXXXX,                       XXXXXXX,
+        RESET, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       BALL_HUE, BALL_VAL, BALL_SAT, XXXXXXX, XXXXXXX,
+        EEP_RST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                            XXXXXXX,                       TO(_BASE),
                                    XXXXXXX, XXXXXXX,  XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [_MOUS] = LAYOUT(
-        RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      BALL_HUE, BALL_VAL, BALL_SAT, XXXXXXX, XXXXXXX,
-        EEP_RST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      RGB_MOD,  RGB_HUI,  RGB_SAI,  RGB_VAI, RGB_TOG,
-        BALL_MCL, BALL_RCL, BALL_NCL, BALL_DRG, XXXXXXX,                      RGB_RMOD, RGB_HUD,  RGB_SAD,  RGB_VAD, _______,
+        XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      BALL_HUE, BALL_VAL, BALL_SAT, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, BALL_DRG, BALL_RCL,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                             XXXXXXX,                      _______,
                                    XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,  XXXXXXX
     )
@@ -214,7 +244,7 @@ static int16_t mouse_auto_layer_timer = 0;
 static bool hue_mode_enabled = 0;
 static bool saturation_mode_enabled = 0;
 static bool value_mode_enabled = 0;
-// static bool right_click_mode_enabled = 0;
+static bool right_click_mode_enabled = 0;
 static bool drag_mode_enabled = 0;
 #define MOUSE_TIMEOUT 1000
 #define TRACKBALL_TIMEOUT 5
@@ -248,9 +278,9 @@ void keyboard_post_init_user(void) {
 
 void eeconfig_init_user(void) {
   user_config.raw = 0;
-  user_config.tb_hue = 80;
-  user_config.tb_saturation = 80;
-  user_config.tb_value = 80;
+  user_config.tb_hue = 255;
+  user_config.tb_saturation = 255;
+  user_config.tb_value = 255;
   eeconfig_update_user(user_config.raw);
 }
 // }}}
@@ -297,15 +327,16 @@ void pointing_device_task() {
             mods = get_mods();
         }
 
-        // if (state.button_triggered && (right_click_mode_enabled == 1)) {
-        //     if(state.button_down) {
-        //         mouse.buttons |= MOUSE_BTN2;
-        //     } else {
-        //         mouse.buttons &= ~MOUSE_BTN2;
-        //     }
-        //     pointing_device_set_report(mouse);
-		// pointing_device_send();
-		} else if (state.button_triggered && (drag_mode_enabled == 1)) {
+        if (state.button_triggered && (right_click_mode_enabled == 1)) {
+            if(state.button_down) {
+                mouse.buttons |= MOUSE_BTN2;
+            } else {
+                mouse.buttons &= ~MOUSE_BTN2;
+            }
+            pointing_device_set_report(mouse);
+		    pointing_device_send();
+		} else
+        if (state.button_triggered && (drag_mode_enabled == 1)) {
 			if (state.button_down){
 			mouse.buttons |= MOUSE_BTN1;
 			pointing_device_set_report(mouse);
@@ -355,7 +386,7 @@ void pointing_device_task() {
         /*         s[2], s[3], */
         /*         s[4]); */
 
-
+    }
 
     while (x_offset || y_offset || h_offset || v_offset) {
         update_member(&mouse.x, &x_offset);
@@ -401,13 +432,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {/*{{{*/
         value_mode_enabled = 0;
         }
         break;
-	// case BALL_RCL:
-	// if (record->event.pressed) {
-    //     right_click_mode_enabled = 1;
-    //     } else {
-    //     right_click_mode_enabled = 0;
-    //     }
-    //     break;
+	case BALL_RCL:
+	if (record->event.pressed) {
+        right_click_mode_enabled = 1;
+        } else {
+        right_click_mode_enabled = 0;
+        }
+        break;
 	case BALL_DRG:
 	if (record->event.pressed) {
         drag_mode_enabled = 1;
@@ -415,15 +446,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {/*{{{*/
         drag_mode_enabled = 0;
         }
         break;
-    case BALL_NCL:
-     record->event.pressed?register_code(KC_BTN1):unregister_code(KC_BTN1);
-     break;
-  case BALL_RCL:
-      record->event.pressed?register_code(KC_BTN2):unregister_code(KC_BTN2);
-      break;
-  case BALL_MCL:
-      record->event.pressed?register_code(KC_BTN3):unregister_code(KC_BTN3);
-      break;
   }
 
 	if ((keycode < KC_BTN1 || ((keycode > KC_BTN5) && (keycode < SAFE_RANGE)))

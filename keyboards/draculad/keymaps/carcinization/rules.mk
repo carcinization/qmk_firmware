@@ -4,4 +4,5 @@ SRC += pimoroni_trackball.c
 QUANTUM_LIB_SRC += i2c_master.c
 OLED_DRIVER_ENABLE = yes
 MOUSEKEY_ENABLE = no
-RGBLIGHT_ENABLE = no
+RGBLIGHT_ENABLE = yes
+TAP_DANCE_ENABLE = yes
