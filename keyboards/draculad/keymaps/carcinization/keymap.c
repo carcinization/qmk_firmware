@@ -30,19 +30,24 @@ enum layer_number {
 
 enum {
     TD_QESC,
-    TD_QUOTTAB,
+    TD_WTAB,
+    TD_QUOTJ,
+    TD_YSCLN,
+    TD_ZMINS,
 };
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
     [TD_QESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC),
-    [TD_QUOTTAB] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_TAB),
+    [TD_WTAB] = ACTION_TAP_DANCE_DOUBLE(KC_W, KC_TAB),
+    [TD_QUOTJ] = ACTION_TAP_DANCE_DOUBLE(KC_J, KC_QUOT),
+    [TD_YSCLN] = ACTION_TAP_DANCE_DOUBLE(KC_Y, KC_SCLN),
+    [TD_ZMINS] = ACTION_TAP_DANCE_DOUBLE(KC_Z, KC_MINS),
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LCTL_T(KC_Z):
         case LALT_T(KC_X):
             return TAPPING_TERM + 250;
         default:
@@ -52,7 +57,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LCTL_T(KC_Z):
         case LALT_T(KC_X):
             return true;
         default:
@@ -73,18 +77,18 @@ char wpm_as_str[8];
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] =  LAYOUT(
-        TD(TD_QESC),         KC_W,    KC_F,    KC_P,    KC_G,                                         KC_J,            KC_L,             KC_U,    KC_Y,    KC_BSPC,
+        TD(TD_QESC),  TD(TD_WTAB),    KC_F,    KC_P,    KC_G,                        TD(TD_QUOTJ),            KC_L,       KC_U,    TD(TD_YSCLN),    KC_BSPC,
         KC_A,         KC_R,    KC_S,    KC_T,    KC_D,                                         KC_H,            KC_N,             KC_E,    KC_I,    KC_O,
-        LCTL_T(KC_Z), LALT_T(KC_X),    KC_C,    KC_V,    KC_B,                                 KC_K,     KC_M,    KC_COMM, KC_DOT,  KC_ENT,
+        TD(TD_ZMINS), LALT_T(KC_X),    KC_C,    KC_V,    KC_B,                                 KC_K,     KC_M,    KC_COMM, KC_DOT,  KC_ENT,
                                                  KC_MUTE,                                      TO(_ADJUST),
-                                        LCTL_T(KC_MINS), TD(TD_QUOTTAB), LT(_NUM,KC_SPC),    KC_NO,   KC_LSFT, LT(_SYM,KC_DEL)
+                                        TO(_NUM), LCTL_T(KC_INS), LT(_NUM,KC_SPC),    KC_NO,   KC_LSFT, LT(_SYM,KC_DEL)
     ),
     [_NUM] = LAYOUT(
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         KC_LEFT,  KC_DOWN, KC_UP, KC_RIGHT, KC_SCLN,                      KC_EQUAL, KC_LEFT, KC_UP,   KC_DOWN, KC_RIGHT,
         KC_MINS, KC_PGDN, KC_PGUP, KC_END, LCTL(KC_PSCREEN),              KC_LBRC, KC_RBRC,  KC_BSLS, KC_GRAVE, KC_SLSH,
                                             XXXXXXX,                      KC_TRNS,
-                                   KC_TRNS, KC_TRNS, XXXXXXX,    KC_NO,   _______, KC_TRNS
+                                   TO(_BASE), KC_TRNS, XXXXXXX,    KC_NO,   _______, KC_TRNS
     ),
     [_SYM] = LAYOUT(
         KC_EXLM,  KC_AT,   KC_HASH,   KC_DOLLAR,   KC_PERC,               KC_CIRC, KC_AMPR, KC_ASTERISK, KC_LPRN,  KC_RPRN,
