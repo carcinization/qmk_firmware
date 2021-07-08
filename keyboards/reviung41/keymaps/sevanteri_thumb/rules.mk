@@ -10,4 +10,3 @@ EXTRAKEY_ENABLE = yes
 COMMAND_ENABLE = no
 CONSOLE_ENABLE = no
 AUDIO_ENABLE = yes
-DEBOUNCE_TYPE = asym_eager_defer_pk
