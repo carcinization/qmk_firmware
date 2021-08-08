@@ -14,7 +14,7 @@ EI,BASE,tap_code(KC_H)
 EO,BASE,tap_code(KC_B)
 YI,BASE,tap_code(KC_U)
 YO,BASE,tap_code(KC_K)
-IO,BASE,tap_code(KC_Y)
+IO,BASE,tap_code(KC_N)
 EYI,BASE,tap_code(KC_L)
 EYO,BASE,
 EIO,BASE,tap_code(KC_P)
@@ -51,6 +51,8 @@ ATY,MOU,layer_move(_A_BASE)
 REI,"BASE,NUM,SYM,BRAC,MOU,CUSTOM",layer_move(_A_NAV)
 REI,NAV,layer_move(_A_BASE)
 AYIO,BASE,tap_code(KC_CAPS)
+SO,BASE,layer_move(_A_CUSTOM)
+SO,CUSTOM,layer_move(_A_BASE)
 ARTSEYIO,"BASE,NUM,SYM,BRAC,NAV,MOU,CUSTOM","	layer_move(_A_BASE);
 	clear_oneshot_mods();
 	clear_keyboard();
