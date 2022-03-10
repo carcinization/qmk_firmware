@@ -34,20 +34,20 @@
 
 led_config_t g_led_config = {
     {
-        {  11,  12,  21,  22,  31,  32 },
-        {  10,  13,  20,  23,  30,  33 },
-        {  9,   14,  19,  24,  29,  34},
-        {  8,   15,  18,  25,  28,  35},
-        {  7,   16,  17,  26,  27,  NO_LED },
-        {  47,  48,  57,  58,  67,  68},
-        {  46,  49,  56,  59,  66,  69},
-        {  45,  50,  55,  60,  65,  70},
-        {  44,  51,  54,  61,  64,  71},
-        {  43,  52,  53,  62,  63,  NO_LED }
+        {  4,  5,  14,  15,  24,  25 },
+        {  3,  6,  13,  16,  23,  26 },
+        {  2,   7,  12,  17,  22,  27},
+        {  1,   8,  11,  18,  21,  28},
+        {  0,   9,  10,  19,  20,  NO_LED },
+        {  33,  34,  43,  44,  53,  54},
+        {  32,  35,  42,  45,  52,  55},
+        {  31,  36,  41,  46,  51,  56},
+        {  30,  37,  40,  47,  50,  57},
+        {  29,  38,  39,  48,  49,  NO_LED }
     },
     {
        // Left side underglow
-        {96, 40}, {16, 20}, {48, 10}, {80, 18}, {88, 60}, {56, 57}, {24,60},
+        // {96, 40}, {16, 20}, {48, 10}, {80, 18}, {88, 60}, {56, 57}, {24,60},
         // Left side Matrix
         {32, 57}, { 0, 48}, { 0, 36}, { 0, 24}, { 0, 12},
         {16, 12}, {16, 24}, {16, 36}, {16, 48}, {48, 55},
@@ -58,7 +58,7 @@ led_config_t g_led_config = {
 
 
         // Right side underglow
-        {128, 40}, {208, 20}, {176, 10}, {144, 18}, {136, 60}, {168, 57}, {200,60},
+        // {128, 40}, {208, 20}, {176, 10}, {144, 18}, {136, 60}, {168, 57}, {200,60},
         // Right side Matrix
         {192, 57}, {224, 48}, {224, 36}, {224, 24}, {224, 12},
         {208, 12}, {208, 24}, {208, 36}, {208, 48}, {176, 55},
@@ -68,14 +68,14 @@ led_config_t g_led_config = {
         {144, 10}, {144, 22}, {144, 34}, {144, 47},
     },
     {
-        LED_FLAG_NONE, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
+        // LED_FLAG_NONE, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
-        LED_FLAG_NONE, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
+        // LED_FLAG_NONE, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,

@@ -2,8 +2,8 @@
 MCU = atmega32u4
 
 # Bootloader selection
-BOOTLOADER = caterina
+BOOTLOADER = atmel-dfu
 
 SPLIT_KEYBOARD = yes
 DEFAULT_FOLDER = sofle/rev1
-SWAP_HANDS_ENABLE = yes
+SWAP_HANDS_ENABLE = no
