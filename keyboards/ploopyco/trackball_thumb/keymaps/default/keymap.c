@@ -21,6 +21,22 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT( /* Base */
-        KC_BTN4, DPI_CONFIG, KC_BTN1, KC_BTN3, KC_BTN2, KC_BTN5
+        KC_LCTL, DF(1), KC_BTN1, KC_BTN3, KC_BTN2, KC_LSFT
     ),
+      [1] = LAYOUT( /* Horizontal Scroll */
+        KC_TRNS, DF(0),KC_TRNS,KC_TRNS,KC_TRNS,MO(2)
+    ),
+     [2] = LAYOUT( /* Horizontal Scroll */
+        KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS
+    )
+};
+
+enum combos {
+DPI
+};
+
+const uint16_t PROGMEM dpi_combo[] = {DF(1), KC_LSFT, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [DPI] = COMBO(dpi_combo, DPI_CONFIG)
 };

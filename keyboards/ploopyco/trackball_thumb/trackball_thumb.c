@@ -31,7 +31,7 @@
 #    define OPT_SCALE 1  // Multiplier for wheel
 #endif
 #ifndef PLOOPY_DPI_OPTIONS
-#    define PLOOPY_DPI_OPTIONS { 1200, 1600, 2400 }
+#    define PLOOPY_DPI_OPTIONS { 800, 1100, 1600 }
 #    ifndef PLOOPY_DPI_DEFAULT
 #        define PLOOPY_DPI_DEFAULT 1
 #    endif
@@ -72,7 +72,11 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
         return false;
     }
 #ifdef MOUSEKEY_ENABLE
-    tap_code(clockwise ? KC_WH_U : KC_WH_D);
+ switch(biton32(layer_state)){
+     case 2:
+     tap_code(clockwise ? KC_WH_L : KC_WH_R);
+     default:
+     tap_code(clockwise ? KC_WH_U : KC_WH_D);}
 #else
     mouse_report_t mouse_report = pointing_device_get_report();
     mouse_report.v = clockwise ? 1 : -1;
