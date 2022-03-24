@@ -28,7 +28,7 @@ void process_mouse_user(report_mouse_t *mouse_report, int16_t x, int16_t y) {
 	if (scroll_enabled) {
 		delta_x += x;
 		delta_y += y;
-		
+
 		if (delta_x > 60) {
 			mouse_report->h = 1;
 			delta_x = 0;
@@ -62,7 +62,7 @@ bool led_update_user(led_t led_state) {
 		scroll_timer = timer_read();
 		lock_count = 0;
 	}
-    
+
 	if (led_state.num_lock != lock_state) {
 		lock_count++;
 
@@ -73,7 +73,7 @@ bool led_update_user(led_t led_state) {
 			delta_y = 0;
 		}
 	}
-    
+
 	lock_state = led_state.num_lock;
 	return true;
 }
