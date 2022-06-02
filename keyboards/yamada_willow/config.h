@@ -30,6 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 10
 #define MATRIX_COLS 10
 
+#define TAPPING_TERM 160
+#define IGNORE_MOD_TAP_INTERRUPT
+#define PERMISSIVE_HOLD
+
 /*
  * Keyboard Matrix Assignments
  *
@@ -74,9 +78,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_CENTER { 112, 32 }
 #define RGB_DISABLE_TIMEOUT 120000
 #define RGB_DISABLE_WHEN_USB_SUSPENDED true
-#define RGB_MATRIX_HUE_STEP 4
+#define RGB_MATRIX_HUE_STEP 8
 #define RGB_MATRIX_SAT_STEP 4
-#define RGB_MATRIX_VAL_STEP 4
+#define RGB_MATRIX_VAL_STEP 8
 #define RGB_MATRIX_SPD_STEP 4
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS

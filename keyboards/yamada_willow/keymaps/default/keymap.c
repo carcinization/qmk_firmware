@@ -232,11 +232,11 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     int is_layer = get_highest_layer(layer_state|default_layer_state);
     HSV hsv = {0, 255, rgblight_get_val()};
     if (is_layer == 1) {
-      hsv.h = 128; //CYAN
+      hsv.h = 106; //SPRING GREEN
     } else if (is_layer == 2)  {
-      hsv.h = 85; //GREEN
+      hsv.h = 5; //ORANGE
     } else if (is_layer == 3)  {
-      hsv.h = 43; //YELLOW
+      hsv.h = 235; //ROSE
     } else {
       hsv.h = 191; //PURPLE
     }
